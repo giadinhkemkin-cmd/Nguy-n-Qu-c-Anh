@@ -1,7 +1,33 @@
 ---
 import Base from '../layouts/Base.astro';
 import Hero from '../components/heroes/HeroSign.astro';
+import DayRoad from '../components/DayRoad.astro';
+import MapSection from '../components/MapSection.astro';
+import TourList from '../components/TourList.astro';
+import RuleSigns from '../components/RuleSigns.astro';
+import BookSteps from '../components/BookSteps.astro';
+import Faq from '../components/Faq.astro';
+import CtaBand from '../components/CtaBand.astro';
+import ActionBar from '../components/ActionBar.astro';
+import { tours, congTy } from '../lib/data.js';
+const faqLd = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: congTy.cau_hoi_thuong_gap.map((q) => ({ '@type': 'Question', name: q.hoi, acceptedAnswer: { '@type': 'Answer', text: q.dap } })) };
 ---
-<Base title="Gió Nồm Travel – Tour ghép nhóm nhỏ ở Đà Nẵng" description="Năm tour ghép quanh Đà Nẵng, Hội An, Huế. Mỗi xe tối đa 12 khách, giờ đi lệch giờ đoàn đông. Giá đã gồm vé, đón tận khách sạn.">
+<Base title="Gió Nồm Travel – Tour ghép nhóm nhỏ ở Đà Nẵng" description="Năm tour ghép quanh Đà Nẵng, Hội An, Huế. Mỗi xe tối đa 12 khách, giờ đi lệch giờ đoàn đông. Giá đã gồm vé, đón tận khách sạn." jsonld={faqLd}>
   <Hero />
+  <DayRoad />
+  <section class="section" aria-labelledby="tours-h2">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="tours-h2">Năm tour, giá đã gồm vé</h2>
+        <p>Giá ghi cho một người lớn, đã gồm xe đón tận khách sạn, vé tham quan, bữa ăn trong lịch trình và hướng dẫn viên.</p>
+      </div>
+      <TourList list={tours} />
+    </div>
+  </section>
+  <MapSection />
+  <RuleSigns />
+  <BookSteps />
+  <Faq />
+  <CtaBand />
+  <ActionBar />
 </Base>

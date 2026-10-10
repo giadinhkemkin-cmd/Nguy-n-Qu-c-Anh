@@ -1,0 +1,152 @@
+---
+// Toàn bộ nội dung trang chi tiết tour. Dùng chung cho /tour/<slug>/ và trang thử break-ui.
+import Icon from './Icon.astro';
+import RouteMap from './RouteMap.astro';
+import Itinerary from './Itinerary.astro';
+import Departures from './Departures.astro';
+import TourList from './TourList.astro';
+import CtaBand from './CtaBand.astro';
+import ActionBar from './ActionBar.astro';
+import { tours, congTy, vnd, coGia, diemChinh, PICTO, MAU_TUYEN, khungTuyen, clean, chuyenConCho, ngayVN, maChuyen, dangMua } from '../lib/data.js';
+interface Props { t: any }
+const { t } = Astro.props;
+const d = diemChinh(t);
+const next = chuyenConCho(t.slug);
+const mua = dangMua(t);
+const msg = next ? `Chào Gió Nồm, mình muốn giữ chỗ tour ${t.ten_ngan}, chuyến ${maChuyen(t.slug, next.ngay)} (${ngayVN(next.ngay)}). Số người lớn: …, trẻ em: …` : `Chào Gió Nồm, mình muốn hỏi tour ${t.ten_ngan}.`;
+const others = tours.filter((x) => x.slug !== t.slug).slice(0, 3);
+---
+
+  <header class="th" style={`--tuyen:${MAU_TUYEN[t.mau]}`}>
+    <div class="wrap">
+      <nav class="th__crumbs" aria-label="Đường dẫn"><a href="/">Trang chủ</a><span aria-hidden="true">/</span><a href="/tour/">Tour</a><span aria-hidden="true">/</span><span aria-current="page">{t.ten_ngan}</span></nav>
+      <div class="th__grid">
+        <div class="sign th__sign" style={`view-transition-name:sign-${t.slug}`}>
+          <div class="th__tag"><span class="th__pic" aria-hidden="true"><Icon name={PICTO[t.mau]} size={26} /></span><span>{t.vung} · {t.thoi_luong}</span></div>
+          <h1 class:list={["th__h1", { "th__h1--long": t.ten.length > 60 }]}>{t.ten}</h1>
+          <p class="th__lead">{t.mo_ta_ngan}</p>
+          <dl class="th__facts">
+            <div><dt>Tới {d.ten}</dt><dd class="num th__arr">{d.gio}</dd></div>
+            <div><dt>Thời gian</dt><dd class="num">{t.gio}</dd></div>
+            <div><dt>Nhóm</dt><dd>Tối đa {t.nhom_toi_da} khách</dd></div>
+            <div><dt>Lịch</dt><dd>{mua ? t.lich.mo_ta : 'Tháng 3 – 9'}</dd></div>
+          </dl>
+        </div>
+        <div class="th__price">
+          <div class="th__rows">
+            <p><span>Người lớn</span><strong class="num">{vnd(t.gia_nguoi_lon)}</strong></p>
+            {coGia(t.gia_tre_em) && <p><span>Trẻ em 1–1,4 m</span><strong class="num">{vnd(t.gia_tre_em)}</strong></p>}
+            <p><span>Dưới 1 m</span><strong>Miễn phí</strong></p>
+            {t.phu_thu_phong_don && <p><span>Phụ thu phòng đơn</span><strong class="num">{vnd(t.phu_thu_phong_don)}</strong></p>}
+          </div>
+          <p class="th__incl">Đã gồm xe đón tận khách sạn, vé tham quan, bữa ăn trong lịch trình. Cọc 30%, huỷ miễn phí trước 24 giờ.</p>
+          {next && mua && <p class="th__next"><span class="th__dot" aria-hidden="true"></span>{ngayVN(next.ngay)} còn <strong class="num">{next.con_cho}/12</strong> chỗ</p>}
+          {!mua && <p class="th__next th__next--off">Đang nghỉ mùa biển động, mở lại tháng 3.</p>}
+          <a class="btn btn--block" href={congTy.zalo} target="_blank" rel="noopener" data-zalo data-msg={msg}><Icon name="chat" />{mua ? 'Giữ chỗ qua Zalo' : 'Nhắn để được báo lịch'}</a>
+          <a class="btn btn--ghost btn--block th__call" href={`tel:${congTy.dien_thoai_tel}`}><Icon name="phone" />Gọi {congTy.dien_thoai}</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="hl section" aria-labelledby="hl-h2">
+    <div class="wrap hl__in">
+      <div>
+        <div class="section-head"><h2 id="hl-h2">Chuyến này có gì</h2>{!(t.diem_nhan?.length) && <p>{t.mo_ta_ngan}</p>}</div>
+        {t.diem_nhan?.length > 0 && <ul class="hl__list">{t.diem_nhan.map((x) => <li><Icon name="check" size={20} />{x}</li>)}</ul>}
+      </div>
+      <figure class="hl__map sign">
+        <RouteMap viewBox={khungTuyen(t, 1.25, 60)} only={t.slug} title={`Bản đồ tuyến ${t.ten_ngan}`} />
+        <figcaption>Tuyến đi vẽ trên bản đồ. Chấm vàng: văn phòng Gió Nồm.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <Itinerary t={t} />
+
+  <section class="inc section" aria-labelledby="inc-h2">
+    <div class="wrap">
+      <div class="section-head"><h2 id="inc-h2">Giá đã gồm gì</h2></div>
+      <div class="inc__grid">
+        <div class="inc__col"><h3>Đã gồm</h3>{t.bao_gom?.length ? <ul>{t.bao_gom.map((x) => <li><Icon name="check" size={20} />{x}</li>)}</ul> : <p class="inc__none">Hỏi Gió Nồm để biết chi tiết.</p>}</div>
+        <div class="inc__col inc__col--no"><h3>Chưa gồm</h3>{t.chua_gom?.length ? <ul>{t.chua_gom.map((x) => <li><Icon name="x" size={20} />{x}</li>)}</ul> : <p class="inc__none">Không có chi phí ngoài giá tour.</p>}</div>
+        {t.nen_mang?.length > 0 && <div class="inc__col inc__col--bring"><h3>Nên mang theo</h3><ul>{t.nen_mang.map((x) => <li><Icon name="mui-ten" size={16} rotate={90} />{x}</li>)}</ul></div>}
+      </div>
+      {clean(t.luu_y) && <div class="inc__note"><svg class="inc__warn" viewBox="0 0 52 46" aria-hidden="true"><path d="M26 4 49 42H3Z" fill="#f3b300" stroke="#23262b" stroke-width="3.5" stroke-linejoin="round"/><path d="M26 16v13" stroke="#23262b" stroke-width="4.5" stroke-linecap="round"/><circle cx="26" cy="35.5" r="2.6" fill="#23262b"/></svg><div><h3>Cần biết trước</h3><p>{clean(t.luu_y)}</p></div></div>}
+    </div>
+  </section>
+
+  <Departures t={t} />
+
+  <section class="pol section" aria-labelledby="pol-h2">
+    <div class="wrap pol__in">
+      <div class="section-head"><h2 id="pol-h2">Đặt cọc và huỷ tour</h2><p>{congTy.chinh_sach.dat_coc}</p></div>
+      <ul class="pol__list">{congTy.chinh_sach.huy_tour.map((x) => <li>{x}</li>)}<li>{congTy.chinh_sach.tre_em}</li></ul>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="more-h2">
+    <div class="wrap">
+      <div class="section-head"><h2 id="more-h2">Ghép thêm một tour</h2><p>Nhiều khách đi hai tour trong ba ngày: một buổi sáng sớm, một buổi chiều tối.</p></div>
+      <TourList list={others} />
+    </div>
+  </section>
+  <CtaBand title={`Giữ chỗ ${t.ten_ngan}`} body="Nhắn ngày đi và số người. Gió Nồm trả lời từ 7:00 đến 21:00, cả tuần." msg={msg} />
+  <ActionBar msg={msg} />
+
+<style>
+  .th { padding-top: var(--sp-4); }
+  .th__crumbs { display: flex; flex-wrap: wrap; gap: 0.4rem; font-size: var(--fs-small); color: var(--c-ink-2); margin-bottom: var(--sp-3); }
+  .th__crumbs a { color: var(--c-sign); min-height: 32px; display: inline-flex; align-items: center; }
+  .th__grid { display: grid; gap: var(--sp-4); }
+  .th__sign { padding: 1.4rem 1.2rem 1.3rem; }
+  .th__tag { display: flex; align-items: center; gap: 0.6rem; font-size: var(--fs-small); color: var(--c-on-sign-2); text-transform: uppercase; letter-spacing: 0.08em; }
+  .th__pic { width: 38px; height: 38px; border-radius: 6px; background: #fff; color: var(--c-sign); display: grid; place-items: center; box-shadow: inset 0 -4px 0 var(--tuyen); }
+  .th__h1 { font-size: clamp(2.2rem, 4vw + 1.2rem, 4.2rem); line-height: 1; margin-top: var(--sp-4); max-width: 18ch; }
+  .th__h1--long { font-size: clamp(1.9rem, 2.6vw + 1.1rem, 3rem); }
+  .th__lead { margin-top: var(--sp-4); color: var(--c-on-sign-2); font-size: var(--fs-lead); max-width: 40rem; line-height: 1.5; }
+  .th__facts { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem 1rem; margin: var(--sp-5) 0 0; padding-top: var(--sp-4); border-top: 2px solid rgba(255,255,255,.3); }
+  .th__facts dt { font-size: var(--fs-tiny); color: var(--c-on-sign-2); text-transform: uppercase; letter-spacing: 0.08em; }
+  .th__facts dd { margin: 0.15rem 0 0; font-weight: 600; }
+  .th__facts .num { font-family: var(--f-display); font-size: 1.3rem; font-weight: 700; }
+  .th__arr { display: inline-block; background: #fff; color: var(--c-time); padding: 0.2rem 0.45rem 0.05rem; border-radius: 4px; box-shadow: inset 0 3px 0 var(--c-cap); font-size: 1.5rem !important; }
+  .th__price { background: #fff; border-radius: var(--r-sign); padding: 1.3rem 1.2rem; display: grid; gap: 0.8rem; align-content: start; box-shadow: 0 18px 40px -28px rgba(20,30,60,.5); }
+  .th__rows { display: grid; }
+  .th__rows p { display: flex; justify-content: space-between; align-items: baseline; padding: 0.45rem 0; border-bottom: 1px solid var(--c-rule); }
+  .th__rows p:first-child strong { font-size: 2rem; }
+  .th__rows span { color: var(--c-ink-2); font-size: var(--fs-small); }
+  .th__rows strong { font-family: var(--f-display); font-size: 1.3rem; }
+  .th__incl { font-size: var(--fs-small); color: var(--c-ink-2); }
+  .th__next { display: flex; align-items: center; gap: 0.5rem; font-size: var(--fs-small); }
+  .th__next--off { color: var(--c-cap); font-weight: 600; }
+  .th__dot { width: 9px; height: 9px; border-radius: 50%; background: #2e9b5a; box-shadow: 0 0 0 3px rgba(46,155,90,.2); }
+  .th__call { color: var(--c-sign); }
+  .hl__in { display: grid; gap: var(--sp-6); }
+  .hl__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.2rem; border-top: 3px solid var(--c-ink); }
+  .hl__list li { overflow-wrap: anywhere; display: flex; gap: 0.75rem; padding: 0.8rem 0; border-bottom: 1px solid var(--c-rule); font-size: 1.1rem; }
+  .hl__list svg { flex: none; color: var(--tuyen, var(--c-sign)); margin-top: 0.2rem; }
+  .hl__map { margin: 0; padding: 0; overflow: hidden; --map-sea: var(--c-sign); }
+  .hl__map :global(svg) { aspect-ratio: 1.25; height: auto; }
+  .hl__map figcaption { position: absolute; left: 1rem; bottom: 0.9rem; font-size: var(--fs-tiny); color: #fff; background: rgba(13,51,120,.85); padding: 0.3rem 0.6rem; border-radius: 4px; z-index: 1; }
+  .inc__grid { display: grid; gap: var(--sp-5); }
+  .inc__col h3, .inc__note h3 { font-size: var(--fs-h3); margin-bottom: 0.5rem; }
+  .inc__none { color: var(--c-ink-2); padding: 0.45rem 0; border-bottom: 1px solid var(--c-rule); }
+  .inc__col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.1rem; }
+  .inc__col li { display: flex; gap: 0.6rem; padding: 0.45rem 0; border-bottom: 1px solid var(--c-rule); }
+  .inc__col svg { flex: none; margin-top: 0.25rem; color: #2e7d4a; }
+  .inc__col--no svg { color: var(--c-cap); }
+  .inc__col--bring svg { color: var(--c-sign); margin-top: 0.35rem; }
+  .inc__note { margin-top: var(--sp-6); background: #fff; border-radius: var(--r-sign); padding: 1.3rem 1.2rem; display: grid; grid-template-columns: 52px 1fr; gap: 1rem; align-items: start; }
+  .inc__warn { width: 52px; height: 46px; }
+  .inc__note p { max-width: 46rem; color: var(--c-ink-2); }
+  .pol__list { list-style: none; margin: 0; padding: 0; border-top: 3px solid var(--c-ink); }
+  .pol__list li { padding: 0.8rem 0; border-bottom: 1px solid var(--c-rule); max-width: 46rem; }
+  @media (min-width: 960px) {
+    .th__grid { grid-template-columns: 1fr 22rem; align-items: stretch; }
+    .th__sign { padding: 2.4rem 2.4rem 2rem; }
+    .th__facts { grid-template-columns: repeat(4, auto); justify-content: start; column-gap: 2.5rem; }
+    .hl__in { grid-template-columns: 1fr 1.1fr; gap: 4rem; align-items: start; }
+    .inc__grid { grid-template-columns: repeat(3, 1fr); gap: 3rem; }
+    .pol__in { display: grid; grid-template-columns: 1fr 1.4fr; gap: 4rem; }
+  }
+</style>

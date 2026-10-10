@@ -1,0 +1,15 @@
+---
+// break-ui: dữ liệu xấu nhất đi qua đúng component thật (TourList, TourDetail). Trang dev, noindex.
+import Base from '../../layouts/Base.astro';
+import TourDetail from '../../components/TourDetail.astro';
+import TourList from '../../components/TourList.astro';
+import worst from '../../../../data/_test/worst-case.json';
+const t = worst[1];
+---
+<Base title="Thử dữ liệu xấu nhất 2" description="Trang thử break-ui" noindex>
+  <div class="wrap" style="padding-block:1rem;display:flex;gap:1rem;flex-wrap:wrap">
+    <strong>Dữ liệu:</strong><a href="/tour/ba-na-cau-vang/">Demo (dữ liệu thật)</a><a href="/prototype/break-ui-1/">Xấu nhất 1</a><a href="/prototype/break-ui-2/">Xấu nhất 2</a>
+  </div>
+  <section class="wrap"><TourList list={worst} full /></section>
+  <TourDetail t={t} />
+</Base>

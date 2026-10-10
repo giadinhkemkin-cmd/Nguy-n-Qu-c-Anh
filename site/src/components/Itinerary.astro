@@ -1,0 +1,174 @@
+---
+// Lịch trình theo giờ + VÉ CHẠY THEO (chiêu riêng). Desktop: vé dính cột phải. Mobile: vé thu thành dải đáy.
+// Cuộn qua mốc nào, giờ trên vé lật sang giờ mốc đó, đường đi trên bản đồ nhỏ vẽ tới mốc đó.
+// Tới mốc cuối, cuống vé tách ra theo đường răng cưa và nút giữ chỗ sáng lên.
+import Icon from './Icon.astro';
+import { map, xy, khungTuyen, congTy, chuyenConCho, ngayVN, maChuyen, MAU_TUYEN } from '../lib/data.js';
+interface Props { t: any }
+const { t } = Astro.props;
+const stops = t.lich_trinh;
+const vb = khungTuyen(t, 1.7, 30);
+const [vx, vy, vw] = vb.split(' ').map(Number);
+const k = vw / 400;
+const pts = stops.map((s) => xy(s.toa_do));
+const segs = pts.map((p, i) => (i === 0 ? null : `M${pts[i - 1][0]} ${pts[i - 1][1]}L${p[0]} ${p[1]}`));
+const next = chuyenConCho(t.slug);
+const ma = next ? maChuyen(t.slug, next.ngay) : null;
+const msg = next
+  ? `Chào Gió Nồm, mình muốn giữ chỗ chuyến ${ma} (${t.ten_ngan}, ${ngayVN(next.ngay)}). Số người lớn: …, trẻ em: …`
+  : `Chào Gió Nồm, mình muốn hỏi lịch tour ${t.ten_ngan}.`;
+const gioNgan = (g) => g.replace(/^N(\d)\s/, '');
+const ngay = (g) => (g.match(/^N(\d)/) ? `Ngày ${g.match(/^N(\d)/)[1]}` : '');
+---
+<section class="it section" aria-labelledby="it-h2" style={`--tuyen:${MAU_TUYEN[t.mau]}`}>
+  <div class="wrap it__in">
+    <div class="it__main">
+      <div class="section-head"><h2 id="it-h2">Lịch trình theo giờ</h2></div>
+      <ol class="it__stops">
+        {stops.map((s, i) => (
+          <li class="it__stop" data-i={i} data-gio={gioNgan(s.gio)} data-ten={s.ten}>
+            <span class="it__dot" aria-hidden="true"></span>
+            <p class="it__time num">{ngay(s.gio) && <span class="it__day">{ngay(s.gio)}</span>}{gioNgan(s.gio)}</p>
+            <h3 class="it__name">{s.ten}</h3>
+            <p class="it__desc">{s.mo_ta}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+    <aside class="tk" aria-label="Vé chuyến đi" data-ticket>
+      <div class="tk__body">
+        <div class="tk__top">
+          <span class="tk__brand">VÉ GIÓ NỒM</span>
+          <span class="tk__no num">Nº {ma ?? 'GN-' + t.slug.slice(0, 2).toUpperCase()}</span>
+        </div>
+        <p class="tk__route">Đà Nẵng <Icon name="arrow-right" size={16} /> {t.ten_ngan}</p>
+        <svg class="tk__map" viewBox={vb} aria-hidden="true" preserveAspectRatio="xMidYMid slice">
+          <rect x={vx - 50} y={vy - 50} width={vw + 100} height={vw + 100} fill="var(--tk-sea)" />
+          <path d={map.land} fill="var(--tk-land)" />
+          <path d={map.island} fill="var(--tk-land)" />
+          {segs.map((d, i) => d && <path d={d} class="tk__seg" data-seg={i} stroke-width={4 * k} pathLength="1" />)}
+          {pts.map((p, i) => <circle cx={p[0]} cy={p[1]} r={5 * k} class="tk__pt" data-pt={i} stroke-width={2.5 * k} />)}
+        </svg>
+        <div class="tk__now">
+          <span class="tk__lbl">Giờ</span>
+          <span class="tk__time num" data-tk-time>{gioNgan(stops[0].gio)}</span>
+          <span class="tk__lbl">Điểm <span class="num" data-tk-idx>1</span>/<span class="num">{stops.length}</span></span>
+          <span class="tk__stop" data-tk-stop>{stops[0].ten}</span>
+        </div>
+      </div>
+      <div class="tk__perf" aria-hidden="true"></div>
+      <div class="tk__stub" data-tk-stub>
+        {next ? (
+          <p class="tk__next">Chuyến gần nhất còn chỗ<br /><strong>{ngayVN(next.ngay)}</strong> · còn <strong class="num">{next.con_cho}/12</strong></p>
+        ) : (
+          <p class="tk__next">Chưa có lịch trong mùa này. Nhắn để được báo khi mở lịch.</p>
+        )}
+        <a class="btn btn--dark btn--block tk__btn" href={congTy.zalo} target="_blank" rel="noopener" data-zalo data-msg={msg}><Icon name="chat" />{next ? 'Giữ chỗ chuyến này' : 'Nhắn Zalo hỏi lịch'}</a>
+      </div>
+    </aside>
+  </div>
+  <div class="tkbar" data-tkbar aria-hidden="true">
+    <span class="tkbar__time num" data-tk-time>{gioNgan(stops[0].gio)}</span>
+    <span class="tkbar__stop"><span class="tkbar__idx">Điểm <span data-tk-idx>1</span>/{stops.length}</span><span data-tk-stop>{stops[0].ten}</span></span>
+    <a class="btn tkbar__btn" href={congTy.zalo} target="_blank" rel="noopener" data-zalo data-msg={msg} tabindex="-1">Giữ chỗ</a>
+  </div>
+</section>
+<script>
+  import { gsap, ScrollTrigger, reduce } from '../scripts/motion.js';
+  import { flap } from '../scripts/flap.js';
+  const sec = document.querySelector<HTMLElement>('.it');
+  const tk = document.querySelector<HTMLElement>('[data-ticket]');
+  const bar = document.querySelector<HTMLElement>('[data-tkbar]');
+  if (sec && tk && bar) {
+    const stops = [...sec.querySelectorAll<HTMLElement>('.it__stop')];
+    const segs = [...tk.querySelectorAll<SVGPathElement>('.tk__seg')];
+    const pts = [...tk.querySelectorAll<SVGCircleElement>('.tk__pt')];
+    const times = [...document.querySelectorAll<HTMLElement>('[data-tk-time]')];
+    const names = [...document.querySelectorAll<HTMLElement>('[data-tk-stop]')];
+    const idxs = [...document.querySelectorAll<HTMLElement>('[data-tk-idx]')];
+    let cur = -1;
+    if (!reduce) gsap.set(segs, { strokeDasharray: 1, strokeDashoffset: 1 });
+    const go = (i: number) => {
+      if (i === cur) return;
+      const fwd = i > cur; cur = i;
+      const s = stops[i];
+      stops.forEach((x, j) => { x.classList.toggle('is-past', j < i); x.classList.toggle('is-now', j === i); });
+      times.forEach((el) => (reduce ? (el.textContent = s.dataset.gio!) : flap(el, s.dataset.gio!, { steps: 4 })));
+      names.forEach((el) => {
+        if (reduce) { el.textContent = s.dataset.ten!; return; }
+        gsap.fromTo(el, { opacity: 0, y: fwd ? 8 : -8, filter: 'blur(3px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.24, ease: 'power3.out', overwrite: true, onStart: () => { el.textContent = s.dataset.ten!; } });
+      });
+      idxs.forEach((el) => (el.textContent = String(i + 1)));
+      segs.forEach((p) => {
+        const on = Number(p.dataset.seg) <= i;
+        if (reduce) p.style.opacity = on ? '1' : '0.15';
+        else gsap.to(p, { strokeDashoffset: on ? 0 : 1, duration: 0.45, ease: 'power2.out', overwrite: true });
+      });
+      pts.forEach((c) => c.classList.toggle('is-on', Number(c.dataset.pt) <= i));
+      const last = i === stops.length - 1;
+      tk.classList.toggle('is-torn', last);
+    };
+    stops.forEach((s, i) => ScrollTrigger.create({ trigger: s, start: 'top 58%', end: 'bottom 58%', onToggle: (st) => st.isActive && go(i) }));
+    go(0);
+    // Dải vé trên mobile: hiện khi phần lịch trình trong khung nhìn
+    const ab = document.querySelector<HTMLElement>('[data-actionbar]');
+    ScrollTrigger.create({
+      trigger: sec.querySelector('.it__stops'), start: 'top 85%', end: 'bottom 40%',
+      onToggle: (st) => { bar.classList.toggle('is-on', st.isActive); bar.setAttribute('aria-hidden', String(!st.isActive)); bar.querySelector('a')!.tabIndex = st.isActive ? 0 : -1; ab?.classList.toggle('is-muted', st.isActive); },
+    });
+  }
+</script>
+<style>
+  .it { --tk-sea: var(--c-sign-tint); --tk-land: #fff; }
+  .it__in { display: grid; gap: var(--sp-6); }
+  .it__stops { list-style: none; margin: 0; padding: 0 0 0 1.6rem; position: relative; }
+  .it__stops::before { content: ''; position: absolute; left: 6px; top: 10px; bottom: 10px; width: 4px; background: var(--c-rule); border-radius: 2px; }
+  .it__stop { position: relative; padding: 0 0 2rem 0.75rem; }
+  .it__dot { position: absolute; left: calc(-1.6rem + 1px); top: 0.45rem; width: 14px; height: 14px; border-radius: 50%; background: var(--c-paint); box-shadow: inset 0 0 0 3px var(--c-ink-2); transition: box-shadow 220ms var(--ease-out), transform 220ms var(--ease-out); }
+  .it__stop.is-past .it__dot { box-shadow: inset 0 0 0 7px var(--tuyen); }
+  .it__stop.is-now .it__dot { box-shadow: inset 0 0 0 7px var(--tuyen), 0 0 0 5px color-mix(in srgb, var(--tuyen) 25%, transparent); transform: scale(1.15); }
+  .it__time { font-family: var(--f-display); font-weight: 700; font-size: 1.6rem; line-height: 1; color: var(--c-cap); display: flex; gap: 0.5rem; align-items: baseline; }
+  .it__day { font-size: 0.95rem; color: var(--c-ink-2); text-transform: uppercase; letter-spacing: 0.06em; }
+  .it__name { font-size: 1.45rem; margin-top: 0.3rem; }
+  .it__desc { color: var(--c-ink-2); margin-top: 0.35rem; max-width: 38rem; }
+  /* Vé */
+  .tk { display: none; }
+  .tk__body { background: #fbfbf7; border-radius: 10px 10px 0 0; padding: 1.1rem 1.2rem 1rem; color: var(--c-sign-deep); box-shadow: 0 18px 40px -24px rgba(20,30,60,.55); }
+  .tk__top { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid var(--c-sign-deep); padding-bottom: 0.4rem; }
+  .tk__brand { font-family: var(--f-display); font-weight: 700; letter-spacing: 0.14em; font-size: 1rem; }
+  .tk__no { font-size: 0.85rem; font-weight: 600; }
+  .tk__route { display: flex; align-items: center; gap: 0.35rem; font-family: var(--f-display); font-weight: 700; font-size: 1.15rem; text-transform: uppercase; margin: 0.6rem 0; }
+  .tk__map { width: 100%; aspect-ratio: 1.7; border-radius: 6px; display: block; }
+  .tk__seg { fill: none; stroke: var(--tuyen); stroke-linecap: round; }
+  .tk__pt { fill: #fff; stroke: var(--c-ink-2); transition: fill 200ms var(--ease-out), stroke 200ms var(--ease-out); }
+  .tk__pt.is-on { fill: var(--tuyen); stroke: #fff; }
+  .tk__now { display: grid; grid-template-columns: auto 1fr; column-gap: 1rem; align-items: end; margin-top: 0.8rem; }
+  .tk__lbl { font-size: var(--fs-tiny); text-transform: uppercase; letter-spacing: 0.1em; color: var(--c-ink-2); grid-row: 1; }
+  .tk__time { grid-row: 2; font-family: var(--f-display); font-weight: 700; font-size: 3.4rem; line-height: 0.9; color: var(--c-cap); }
+  .tk__stop { grid-row: 2; font-family: var(--f-display); font-weight: 700; font-size: 1.35rem; line-height: 1.1; align-self: end; padding-bottom: 0.2rem; }
+  .tk__perf { height: 20px; background: radial-gradient(circle at 0 50%, var(--c-paint) 9px, transparent 10px) left / 20px 20px no-repeat, radial-gradient(circle at 100% 50%, var(--c-paint) 9px, transparent 10px) right / 20px 20px no-repeat, linear-gradient(#fbfbf7, #fbfbf7); position: relative; }
+  .tk__perf::after { content: ''; position: absolute; left: 14px; right: 14px; top: 50%; border-top: 2px dashed #b9bfca; }
+  .tk__stub { background: #fbfbf7; border-radius: 0 0 10px 10px; padding: 0.6rem 1.2rem 1.2rem; display: grid; gap: 0.75rem; box-shadow: 0 18px 40px -24px rgba(20,30,60,.55); transition: transform 420ms var(--ease-out), background-color 300ms var(--ease-out); transform-origin: 85% 0; }
+  .tk__next { font-size: var(--fs-small); color: var(--c-ink-2); }
+  .tk__next strong { color: var(--c-ink); }
+  .tk.is-torn .tk__stub { transform: translateY(12px) rotate(-1.6deg); }
+  .tk.is-torn .tk__btn { --bg: var(--c-line); --fg: var(--c-asphalt); }
+  /* Dải vé mobile */
+  .tkbar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 45; display: grid; grid-template-columns: auto 1fr auto; gap: 0.75rem; align-items: center; padding: 0.55rem var(--gutter) calc(0.55rem + env(safe-area-inset-bottom)); background: #fbfbf7; color: var(--c-sign-deep); box-shadow: 0 -1px 0 var(--c-rule), 0 -12px 24px -16px rgba(0,0,0,.35); border-top: 4px solid var(--tuyen); transform: translateY(110%); transition: transform 260ms var(--ease-drawer); }
+  .tkbar.is-on { transform: translateY(0); }
+  .tkbar__time { font-family: var(--f-display); font-weight: 700; font-size: 2rem; line-height: 1; color: var(--c-cap); }
+  .tkbar__stop { display: grid; min-width: 0; font-family: var(--f-display); font-weight: 700; font-size: 1.05rem; line-height: 1.15; }
+  .tkbar__stop > span:last-child { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .tkbar__idx { font-family: var(--f-body); font-weight: 400; font-size: var(--fs-tiny); color: var(--c-ink-2); }
+  .tkbar__btn { min-height: 46px; padding: 0.5rem 1rem; font-size: 1.05rem; }
+  :global(.ab.is-muted) { transform: translateY(110%) !important; }
+  @media (min-width: 960px) {
+    .it__in { grid-template-columns: 1fr 23rem; gap: 4rem; align-items: start; }
+    .tk { display: block; position: sticky; top: calc(var(--hdr) + 1.5rem); }
+    .tkbar { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .tk.is-torn .tk__stub { transform: none; }
+    .tkbar { transition: opacity 200ms; }
+  }
+</style>

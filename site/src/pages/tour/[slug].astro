@@ -1,0 +1,17 @@
+---
+import Base from '../../layouts/Base.astro';
+import TourDetail from '../../components/TourDetail.astro';
+import { tours, congTy, vnd } from '../../lib/data.js';
+export function getStaticPaths() { return tours.map((t) => ({ params: { slug: t.slug }, props: { t } })); }
+const { t } = Astro.props;
+const ld = {
+  '@context': 'https://schema.org', '@type': 'TouristTrip', name: t.ten, description: t.mo_ta_ngan,
+  itinerary: { '@type': 'ItemList', itemListElement: t.lich_trinh.map((s, i) => ({ '@type': 'ListItem', position: i + 1, name: s.ten })) },
+  offers: { '@type': 'Offer', price: t.gia_nguoi_lon, priceCurrency: 'VND', availability: 'https://schema.org/InStock' },
+  provider: { '@type': 'TravelAgency', name: congTy.ten },
+};
+const crumbs = { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Trang chủ', item: '/' }, { '@type': 'ListItem', position: 2, name: 'Tour', item: '/tour/' }, { '@type': 'ListItem', position: 3, name: t.ten_ngan }] };
+---
+<Base title={`${t.ten_ngan}: ${t.thoi_luong}, ${vnd(t.gia_nguoi_lon)}`} description={`${t.mo_ta_ngan} Nhóm tối đa 12 khách, đón tận khách sạn. ${t.lich.mo_ta}.`} jsonld={[ld, crumbs]} current="tour">
+  <TourDetail t={t} />
+</Base>

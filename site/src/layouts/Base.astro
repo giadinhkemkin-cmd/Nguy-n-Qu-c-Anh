@@ -50,6 +50,6 @@ const ld = [org, ...(Array.isArray(jsonld) ? jsonld : jsonld ? [jsonld] : [])];
   .toast { position: fixed; left: 50%; bottom: calc(88px + env(safe-area-inset-bottom)); z-index: 90; transform: translateX(-50%);
     background: var(--c-asphalt); color: #fff; padding: 0.8rem 1.1rem; border-radius: var(--r-small); font-size: var(--fs-small);
     width: max-content; max-width: calc(100vw - 2rem); box-shadow: 0 10px 30px -10px rgba(0,0,0,.5); }
-  .toast[data-show] { animation: toast-in 260ms var(--ease-out) both; }
-  @keyframes toast-in { from { opacity: 0; transform: translate(-50%, 8px); } }
+  .toast { opacity: 0; translate: 0 8px; transition: opacity 220ms var(--ease-out), translate 220ms var(--ease-out); }
+  .toast[data-show] { opacity: 1; translate: 0 0; }
 </style>

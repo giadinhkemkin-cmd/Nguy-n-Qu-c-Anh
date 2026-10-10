@@ -1,0 +1,30 @@
+---
+import Icon from './Icon.astro';
+import { congTy } from '../lib/data.js';
+interface Props { items?: { hoi: string; dap: string }[]; title?: string }
+const { items = congTy.cau_hoi_thuong_gap, title = 'Câu hỏi thường gặp' } = Astro.props;
+---
+<section class="faq section" aria-labelledby="faq-h2">
+  <div class="wrap faq__in">
+    <div class="section-head"><h2 id="faq-h2">{title}</h2></div>
+    <div class="faq__list">
+      {items.map((q) => (
+        <details class="faq__item">
+          <summary><span>{q.hoi}</span><Icon name="chevron" size={22} /></summary>
+          <div class="faq__a"><p>{q.dap}</p></div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+<style>
+  .faq__list { border-top: 3px solid var(--c-ink); }
+  .faq__item { border-bottom: 1px solid var(--c-rule); }
+  .faq__item summary { list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1rem 0; min-height: 56px; cursor: pointer; font-weight: 600; font-size: 1.1rem; }
+  .faq__item summary::-webkit-details-marker { display: none; }
+  .faq__item summary svg { flex: none; color: var(--c-sign); transition: transform 220ms var(--ease-out); }
+  .faq__item[open] summary svg { transform: rotate(180deg); }
+  .faq__a { padding: 0 0 1.1rem; color: var(--c-ink-2); max-width: 44rem; }
+  @media (hover: hover) and (pointer: fine) { .faq__item summary:hover span { text-decoration: underline; } }
+  @media (min-width: 960px) { .faq__in { display: grid; grid-template-columns: 1fr 1.6fr; gap: var(--sp-8); align-items: start; } }
+</style>

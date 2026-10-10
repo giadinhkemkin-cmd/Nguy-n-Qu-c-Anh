@@ -1,0 +1,78 @@
+---
+import RouteMap from './RouteMap.astro';
+import Icon from './Icon.astro';
+import { tuyen } from '../lib/data.js';
+---
+<section class="ms-sec section" aria-labelledby="map-h2">
+  <div class="wrap ms-sec__in">
+    <div class="section-head ms-sec__head">
+      <h2 id="map-h2">Năm tuyến trên bản đồ</h2>
+      <p>Chấm vàng là văn phòng Gió Nồm ở 68 Bạch Đằng, nơi xe xuất phát. Nét đứt là đoạn đi ca nô hoặc thuyền. Tuyến Huế đi tiếp lên phía bắc, ra khỏi khung bản đồ.</p>
+    </div>
+    <div class="sign ms-sec__map" data-map>
+      <RouteMap viewBox="400 360 580 520" />
+    </div>
+    <ul class="ms-sec__legend" aria-label="Chọn tuyến để làm nổi trên bản đồ">
+      {tuyen.map((r) => (
+        <li style={`--tuyen:${r.mau}`}>
+          <button type="button" class="ms-sec__key" data-route-btn={r.slug} aria-pressed="false">
+            <span class="ms-sec__sw" aria-hidden="true"></span>
+            <span class="ms-sec__txt"><strong>{r.ten}</strong><span>{r.diem} · <span class="num">{r.gio}</span></span></span>
+          </button>
+          <a class="ms-sec__go" href={`/tour/${r.slug}/`} aria-label={`Xem tour ${r.ten}`}><Icon name="arrow-right" size={20} /></a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+<script>
+  import { gsap, ScrollTrigger, reduce } from '../scripts/motion.js';
+  const box = document.querySelector<HTMLElement>('[data-map]');
+  if (box) {
+    const lines = box.querySelectorAll<SVGPathElement>('.rmap__line');
+    const rest = box.querySelectorAll<SVGElement>('.rmap__water, .rmap__stop, .rmap__label');
+    if (!reduce) {
+      gsap.set(lines, { strokeDasharray: 1, strokeDashoffset: 1 });
+      gsap.set(rest, { opacity: 0 });
+      ScrollTrigger.create({
+        trigger: box, start: 'top 70%', once: true,
+        onEnter: () => {
+          const tl = gsap.timeline();
+          tl.to(lines, { strokeDashoffset: 0, duration: 1.1, ease: 'power2.inOut', stagger: 0.12 })
+            .to(rest, { opacity: 1, duration: 0.3, ease: 'power1.out', stagger: 0.03 }, '-=0.5');
+        },
+      });
+    }
+    const btns = document.querySelectorAll<HTMLButtonElement>('[data-route-btn]');
+    btns.forEach((b) => b.addEventListener('click', () => {
+      const on = b.getAttribute('aria-pressed') !== 'true';
+      btns.forEach((x) => x.setAttribute('aria-pressed', String(x === b && on)));
+      box.dataset.focus = on ? b.dataset.routeBtn : '';
+      box.querySelectorAll<SVGGElement>('.rmap__route').forEach((g) => g.classList.toggle('is-dim', on && g.dataset.route !== b.dataset.routeBtn));
+    }));
+  }
+</script>
+<style>
+  .ms-sec__in { display: grid; gap: var(--sp-5); }
+  .ms-sec__head { margin-bottom: 0; }
+  .ms-sec__map { padding: 0; overflow: hidden; aspect-ratio: 580 / 520; --map-sea: var(--c-sign); }
+  .ms-sec__map :global(svg) { border-radius: var(--r-sign); }
+  .ms-sec__map :global(.rmap__route) { transition: opacity var(--dur-ui) var(--ease-out); }
+  .ms-sec__map :global(.rmap__route.is-dim) { opacity: 0.18; }
+  .ms-sec__legend { list-style: none; margin: 0; padding: 0; display: grid; }
+  .ms-sec__legend li { display: flex; align-items: stretch; border-bottom: 1px solid var(--c-rule); }
+  .ms-sec__key { flex: 1; display: flex; align-items: center; gap: 0.8rem; text-align: left; background: none; border: 0; padding: 0.6rem 0; min-height: 56px; cursor: pointer; }
+  .ms-sec__txt { display: grid; }
+  .ms-sec__txt strong { font-family: var(--f-display); font-size: 1.2rem; }
+  .ms-sec__txt > span { font-size: var(--fs-small); color: var(--c-ink-2); }
+  .ms-sec__sw { width: 28px; height: 8px; border-radius: 4px; background: var(--tuyen); flex: none; transition: transform var(--dur-ui) var(--ease-out); }
+  .ms-sec__key[aria-pressed='true'] .ms-sec__sw { transform: scaleX(1.4); }
+  .ms-sec__key[aria-pressed='true'] strong { text-decoration: underline; text-decoration-color: var(--tuyen); text-decoration-thickness: 3px; text-underline-offset: 0.2em; }
+  .ms-sec__go { display: grid; place-items: center; width: 48px; color: var(--c-sign); }
+  @media (min-width: 960px) {
+    .ms-sec__in { grid-template-columns: 1.6fr 1fr; grid-template-areas: 'head head' 'map legend'; column-gap: 3rem; align-items: start; }
+    .ms-sec__head { grid-area: head; }
+    .ms-sec__map { grid-area: map; }
+    .ms-sec__legend { grid-area: legend; border-top: 2px solid var(--c-ink); }
+  }
+</style>

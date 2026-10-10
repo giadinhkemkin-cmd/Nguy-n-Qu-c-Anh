@@ -24,14 +24,14 @@ Người dùng yêu cầu: không dừng hỏi ở bước nào; chỗ cần duy
 - [x] giam-khao-web chấm hero (TIEU-CHI.md), chọn bản cao nhất
 
 ### 3. Build khuôn
-- [ ] pick-ui-library
-- [ ] Trang chủ + khuôn danh mục + khuôn chi tiết
-- [ ] impeccable overdrive (hero)
-- [ ] animate (Emil)
-- [ ] apple-design
-- [ ] emil-design-eng
-- [ ] impeccable delight (chiêu riêng: vé chạy theo lịch trình)
-- [ ] break-ui
+- [x] pick-ui-library
+- [x] Trang chủ + khuôn danh mục + khuôn chi tiết
+- [x] impeccable overdrive (hero)
+- [x] animate (Emil)
+- [x] apple-design
+- [x] emil-design-eng
+- [x] impeccable delight (chiêu riêng: vé chạy theo lịch trình)
+- [x] break-ui
 
 ### 4. Nhân ra (checklist từng trang: find-animation-opportunities + impeccable audit)
 - [ ] / (trang chủ)
@@ -70,6 +70,9 @@ Người dùng yêu cầu: không dừng hỏi ở bước nào; chỗ cần duy
 | 10/10/2026 | Duyệt THAM-CHIEU.md | Duyệt 5 web: Vietravel, Saigontourist, Hanoitourist, Intrepid, G Adventures (+ Tours Chanteclerc bổ sung) | Có nguồn "top" cho từng công ty. Hạn chế: không chụp được ảnh tham chiếu (mạng chặn, WebFetch cũng lỗi), STYLE.md phần lớn "không lấy được" màu/font; chấm điểm sẽ dựa trên mô tả + tiêu chí. Lấy các bài học: ô 'Tối đa 12 khách' ngang hàng giá, 'còn x/12' từng ngày, mã chuyến tự điền vào tin Zalo, ghi phương án khi biển động cạnh nút. |
 | 10/10/2026 | Chọn font (/he-thiet-ke) | Font 1: Barlow Condensed (tiêu đề, số giờ) + Barlow (thân) | Barlow dựng từ chữ biển báo giao thông, đúng thế giới đã chọn; bản hẹp giữ tên điểm dài ("Bãi san hô Hòn Dài") trên một dòng ở 390px; OFL 1.1, đủ dấu. Overpass rộng hơn, dấu chồng in hoa dễ chạm dòng trên; Be Vietnam Pro đẹp nhưng không mang chất biển báo. Lưu ý: chữ in hoa tiếng Việt cần line-height ≥ 1.05 để không mất dấu (giám khảo bắt lỗi "VẮNG" thành "VĂNG" ở hero 3). |
 | 10/10/2026 | Chọn hero | Bản 1 – biển chỉ dẫn (21/30 điểm chính) | Cao điểm nhất theo giám khảo mù (qa/cham/hero/KET-QUA.md). Sửa 3 lỗi khi build: (1) ô giờ bớt đỏ, chỉ một nút vàng trong màn đầu; (2) hàng biển trên mobile gọn một dòng; (3) thêm dòng bằng chứng "chuyến gần nhất · còn x/12 chỗ · giá từ". Không thêm dải phong cảnh SVG giám khảo gợi ý vì craft-floor cấm tranh SVG giả cảnh. |
+| 10/10/2026 | pick-ui-library | Không thêm thư viện | Danh sách Emil: Sonner (toast, React), motion (React), NumberFlow (số), base-ui (React). Web Astro không React; toast, lọc, accordion, form đều làm được bằng CSS/JS nhỏ, GSAP lo chuyển động. Thêm React chỉ để có toast thì nặng hơn 40 KB, trái luật 2MB/Lighthouse. Đã ghi trong mục Dùng từ thư viện. |
+| 10/10/2026 | impeccable overdrive | Mũi tên biển xoay về hướng thật + giờ lật số khi vào trang; View Transitions giữa hàng biển trang chủ và đầu trang tour | 3 hướng đã cân nhắc: (A) chọn; (B) mặt đường chạy dưới chân theo cuộn – vui nhưng không thêm thông tin; (C) đồng hồ đếm ngược tới chuyến kế – cần dữ liệu thời gian thực, dễ sai. A kể đúng sự thật (hướng thật, giờ thật), nhẹ, có bản reduced-motion. |
+| 10/10/2026 | impeccable delight | Chấm "đang trực Zalo" theo giờ Đà Nẵng ở khối kêu gọi; trang 404 "Đường cụt" bằng biển báo; dải chắn "8–9 giờ xe đoàn lớn rời Đà Nẵng" trên trục giờ | Delight phải có ích: khách biết lúc nào được trả lời; 404 vẫn dẫn về tour. |
 | 10/10/2026 | Định hướng phần A | Duyệt như BRIEF mục 4 | Câu "phải tin" chỉ dựa trên cam kết vận hành của khách (12 người, giờ đi, ghi rõ giá), không cần số liệu ngoài. Chiêu riêng "vé chạy theo lịch trình" theo đúng gợi ý ngành du lịch trong skill, khả thi bằng GSAP + SVG, không cần ảnh. |
 
 ## Dùng từ thư viện (đã tự duyệt 10/10/2026)
@@ -90,6 +93,36 @@ Trả lời 6 câu: (1) có lý do? (2) có sẵn chưa? (3) nặng bao nhiêu? 
 | React Bits, Magic UI, Aceternity | — | — | — | — | kéo theo React ~45 KB | Không: GSAP làm được hết | — | — | Bỏ |
 | Ảnh Unsplash/Pexels | — | Ảnh tạm | — | Unsplash License | — | Có | — | Có | Không dùng được: mạng chặn (xem Quyết định) |
 | Awwwards, Land-book | https://www.awwwards.com/websites/travel/ | Xem bố cục hero | — | — | — | — | — | — | Không mở được trong sandbox (mạng chặn); hero lấy ý từ biển báo giao thông Việt Nam thay vì web mẫu |
+
+## Báo cáo break-ui (10/10/2026)
+Dữ liệu xấu nhất ở `data/_test/worst-case.json`, đi qua đúng component thật (trang dev `/prototype/break-ui-1`, `-2`, noindex).
+
+| Trường | Giá trị xấu nhất | Hỏng gì | Đã sửa |
+|---|---|---|---|
+| gia_tre_em | thiếu | Build sập (vnd(undefined)) | `vnd()` trả "Hỏi giá", dòng trẻ em chỉ hiện khi có giá |
+| gia_nguoi_lon | 0 | Hiện "0 đ" | Hiện "Hỏi giá" |
+| diem_nhan, chua_gom, nen_mang | mảng rỗng | Tiêu đề mục trơ trọi | Ẩn mục hoặc ghi câu thay thế |
+| luu_y | rỗng / chỉ có nhãn [CẦN XÁC NHẬN] | Hộp cảnh báo rỗng | Ẩn hộp khi không còn chữ |
+| diem_nhan | chuỗi 60 ký tự không dấu cách | Tràn ngang cả trang trên 390px | `overflow-wrap` toàn cục, `anywhere` ở danh sách |
+| lich_trinh | 1 điểm / 2 điểm trùng toạ độ | Bản đồ phóng quá to, chỉ thấy biển | Khung bản đồ tối thiểu 220 đơn vị |
+| ten | 115 ký tự | H1 6 dòng trên mobile | Cỡ chữ nhỏ hơn khi tên > 60 ký tự |
+| tên điểm chính | 55 ký tự | Nhãn "Tới …" 3 dòng | Cắt 2 dòng |
+| mo_ta_ngan | 260 ký tự | Danh sách tour dài | Cắt 4 dòng ở danh sách, đủ ở trang chi tiết |
+| lịch | không có chuyến | — | Đã có trạng thái rỗng + nút "Nhắn để được báo lịch" |
+| tên 1 ký tự "Ơ", emoji | — | Không hỏng | — |
+
+## Soát kiểu Emil (emil-design-eng) + apple-design
+
+| Before | After | Why |
+| --- | --- | --- |
+| Toast dùng @keyframes | transition opacity/translate 220ms | Toast bấm liên tục phải ngắt được giữa chừng |
+| `--ease-out` tự chọn | `cubic-bezier(0.23,1,0.32,1)` của Emil | Đường cong mạnh, phản hồi ngay |
+| Hover không giới hạn thiết bị | `@media (hover:hover) and (pointer:fine)` | Cảm ứng bắn hover giả khi chạm |
+| Giờ lật chồng nhau khi cuộn nhanh | Huỷ lượt lật cũ trước khi lật mới | Interruptible (apple-design §3) |
+| Tên điểm trên vé đổi bằng mờ dần | Thêm blur 3px khi đổi | Blur che chỗ hai trạng thái chồng nhau |
+| Menu mobile hiện tức thì | @starting-style 200ms mờ + trượt 8px | Menu mở thỉnh thoảng, cần biết nó đến từ header |
+| Thẻ mốc giờ đổi độ mờ 300ms | 220ms | UI dưới 300ms |
+| Nút không có trạng thái nhấn | `:active` scale 0.97 trên mọi nút, hàng biển | Phản hồi lúc chạm xuống |
 
 ## Điểm giám khảo
 

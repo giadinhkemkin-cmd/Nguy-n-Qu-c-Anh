@@ -1,0 +1,74 @@
+---
+// Ngày khởi hành sắp tới: mỗi chuyến vẽ 12 ghế (đã có khách / còn trống), nút giữ chỗ điền sẵn mã chuyến.
+import Icon from './Icon.astro';
+import { chuyenSapToi, ngayVN, maChuyen, congTy, dangMua } from '../lib/data.js';
+interface Props { t: any; n?: number }
+const { t, n = 6 } = Astro.props;
+const list = chuyenSapToi(t.slug, n);
+const mua = dangMua(t);
+const het = (c) => !(c.con_cho > 0);
+const sap = (c) => c.con_cho > 0 && !(c.con_cho > 3);
+const ghe = (c) => Array.from({ length: 12 }, (_, i) => 12 - c.con_cho > i); // true = ghế đã có khách
+---
+<section class="dp section" aria-labelledby="dp-h2">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 id="dp-h2">Ngày khởi hành sắp tới</h2>
+      <p>{!mua ? 'Tour nghỉ từ tháng 10 đến tháng 2 vì biển động. Mở lại tháng 3. Nhắn Gió Nồm để được báo khi có lịch.' : t.lich.kieu === 'hang-ngay' ? 'Khởi hành hằng ngày. Dưới đây là các ngày đã có khách ghép; ngày khác vẫn nhận khách.' : `${t.lich.mo_ta} hằng tuần. Số chỗ thay đổi trong ngày, nhắn Zalo để giữ chỗ chắc chắn.`}</p>
+    </div>
+    {mua && list.length > 0 ? (
+      <ul class="dp__list">
+        {list.map((c) => {
+          const ma = maChuyen(t.slug, c.ngay);
+          const full = het(c);
+          return (
+            <li class:list={['dp__row', { 'is-full': full }]}>
+              <div class="dp__date"><strong>{ngayVN(c.ngay)}</strong><span class="num">{ma}</span></div>
+              <div class="dp__seats" role="img" aria-label={full ? 'Hết chỗ' : `Còn ${c.con_cho} trên 12 chỗ`}>
+                {ghe(c).map((taken) => <span class:list={['dp__seat', { 'is-taken': taken }]}></span>)}
+              </div>
+              <p class:list={['dp__left', { 'is-low': sap(c) }]}>{full ? 'Hết chỗ' : sap(c) ? `Sắp hết: còn ${c.con_cho}` : `Còn ${c.con_cho}/12`}</p>
+              {full ? (
+                <span class="dp__btn dp__btn--off">Hết chỗ</span>
+              ) : (
+                <a class="dp__btn" href={congTy.zalo} target="_blank" rel="noopener" data-zalo data-msg={`Chào Gió Nồm, mình muốn giữ chỗ chuyến ${ma} (${t.ten_ngan}, ${ngayVN(c.ngay)}). Số người lớn: …, trẻ em: …`} aria-label={`Giữ chỗ chuyến ${ngayVN(c.ngay)}`}>Giữ chỗ <Icon name="arrow-right" size={18} /></a>
+              )}
+            </li>
+          );
+        })}
+      </ul>
+    ) : (
+      <div class="dp__empty">
+        <Icon name="calendar" size={28} />
+        <p>Chưa có ngày khởi hành mở bán.</p>
+        <a class="btn" href={congTy.zalo} target="_blank" rel="noopener" data-zalo data-msg={`Chào Gió Nồm, báo mình khi tour ${t.ten_ngan} có lịch nhé.`}><Icon name="chat" />Nhắn để được báo lịch</a>
+      </div>
+    )}
+    <p class="dp__more"><a class="link-arrow" href="/lich-khoi-hanh/">Xem lịch cả 5 tour <Icon name="arrow-right" /></a></p>
+  </div>
+</section>
+<style>
+  .dp__list { list-style: none; margin: 0; padding: 0; border-top: 3px solid var(--c-ink); }
+  .dp__row { display: grid; grid-template-columns: 1fr auto; gap: 0.5rem 1rem; align-items: center; padding: 0.9rem 0; border-bottom: 1px solid var(--c-rule); }
+  .dp__date { display: grid; }
+  .dp__date strong { font-family: var(--f-display); font-size: 1.3rem; }
+  .dp__date span { font-size: var(--fs-tiny); color: var(--c-ink-2); letter-spacing: 0.04em; }
+  .dp__seats { grid-column: 1; display: grid; grid-template-columns: repeat(6, 14px); gap: 4px; }
+  .dp__seat { width: 14px; height: 12px; border-radius: 3px 3px 2px 2px; background: #fff; box-shadow: inset 0 0 0 2px var(--c-sign); }
+  .dp__seat.is-taken { background: var(--c-sign); }
+  .dp__left { grid-column: 1; font-size: var(--fs-small); color: var(--c-ink-2); }
+  .dp__left.is-low { color: var(--c-cap); font-weight: 600; }
+  .dp__btn { grid-column: 2; grid-row: 1 / span 3; display: inline-flex; align-items: center; gap: 0.35rem; min-height: 48px; padding: 0 1rem; border-radius: var(--r-small); background: var(--c-sign); color: #fff; font-weight: 600; text-decoration: none; transition: background-color var(--dur-ui) var(--ease-out), transform var(--dur-press) var(--ease-out); }
+  .dp__btn:active { transform: scale(0.97); }
+  @media (hover: hover) and (pointer: fine) { .dp__btn:hover { background: var(--c-sign-deep); } }
+  .dp__btn--off { background: #d6d8d2; color: var(--c-ink-2); }
+  .is-full .dp__date strong { text-decoration: line-through; color: var(--c-ink-2); }
+  .dp__empty { display: grid; justify-items: start; gap: 0.75rem; background: #fff; padding: 1.5rem; border-radius: var(--r-sign); }
+  .dp__more { margin-top: var(--sp-4); }
+  @media (min-width: 760px) {
+    .dp__row { grid-template-columns: 14rem auto 1fr auto; }
+    .dp__seats, .dp__left { grid-column: auto; }
+    .dp__btn { grid-column: auto; grid-row: auto; }
+    .dp__seats { grid-template-columns: repeat(12, 14px); }
+  }
+</style>

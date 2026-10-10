@@ -3,8 +3,8 @@
 // Đoạn đi thuyền/ca nô vẽ nét đứt. Dữ liệu dựng lúc build, trình duyệt chỉ nhận SVG.
 import { map, tours, xy, diemChinh, MAU_TUYEN, congTy } from '../lib/data.js';
 import { line, curveCatmullRom } from 'd3-shape';
-interface Props { viewBox?: string; only?: string; labels?: boolean; class?: string; title?: string; office?: boolean }
-const { viewBox = '60 170 900 700', only, labels = true, class: cls, title = 'Bản đồ năm tuyến tour quanh Đà Nẵng', office = true } = Astro.props;
+interface Props { viewBox?: string; only?: string; labels?: boolean; class?: string; title?: string; office?: boolean; places?: boolean }
+const { viewBox = '60 170 900 700', only, labels = true, class: cls, title = 'Bản đồ năm tuyến tour quanh Đà Nẵng', office = true, places = true } = Astro.props;
 const NUOC = { 'cu-lao-cham': [1, 99], 'my-son-sang-som': [4, 5] }; // đoạn đi trên nước (chỉ số điểm bắt đầu–kết thúc)
 const gen = line().curve(curveCatmullRom.alpha(0.6));
 const list = tours.filter((t) => !only || t.slug === only).map((t) => {
@@ -24,6 +24,18 @@ const list = tours.filter((t) => !only || t.slug === only).map((t) => {
   return { t, landD: land.length > 1 ? gen(land) : null, waterD: water && water.length > 1 ? gen(water) : null, main: xy(d.toa_do), gio: d.gio, diem: d.ten, mau: MAU_TUYEN[t.mau] };
 });
 const off = xy(congTy.toa_do);
+// Tên địa danh (toạ độ gần đúng) – chỉ hiện chữ, không vẽ ranh giới
+const PLACES = [
+  { t: 'ĐÀ NẴNG', c: [16.045, 108.175], s: 1.25, a: 'end' },
+  { t: 'Sơn Trà', c: [16.135, 108.27], s: 0.9, sea: true },
+  { t: 'Hội An', c: [15.862, 108.30], s: 1.05, a: 'end' },
+  { t: 'Bà Nà', c: [15.982, 107.985], s: 0.95, a: 'middle', dy: 26 },
+  { t: 'Mỹ Sơn', c: [15.745, 108.12], s: 0.95, a: 'middle', dy: 26 },
+  { t: 'Cù Lao Chàm', c: [15.99, 108.51], s: 0.95, sea: true, a: 'middle' },
+  { t: 'Đèo Hải Vân', c: [16.205, 108.10], s: 0.9, a: 'end' },
+  { t: 'HUẾ', c: [16.475, 107.60], s: 1.25, a: 'start', dy: -18 },
+  { t: 'Biển Đông', c: [16.24, 108.45], s: 1.1, sea: true, it: true },
+].map((p) => ({ ...p, xy: xy(p.c) }));
 const [vx, vy, vw] = viewBox.split(' ').map(Number);
 const k = vw / 900; // tỉ lệ nét theo độ phóng
 ---
@@ -40,7 +52,7 @@ const k = vw / 900; // tỉ lệ nét theo độ phóng
       <circle cx={r.main[0]} cy={r.main[1]} r={9 * k} class="rmap__stop" />
       {labels && (
         <g class="rmap__label" transform={`translate(${r.main[0]} ${r.main[1]})`}>
-          <g transform={`scale(${k})`}>
+          <g transform={`scale(${k * 1.3})`}>
             <rect x="12" y="-34" width="74" height="30" rx="4" class="rmap__tag" />
             <rect x="12" y="-34" width="74" height="5" class="rmap__tagcap" />
             <text x="49" y="-11" text-anchor="middle" class="rmap__time">{r.gio}</text>
@@ -48,6 +60,9 @@ const k = vw / 900; // tỉ lệ nét theo độ phóng
         </g>
       )}
     </g>
+  ))}
+  {places && PLACES.map((p) => (
+    <text x={p.xy[0]} y={p.xy[1] + (p.dy ?? 0) * k} text-anchor={p.a ?? 'start'} class:list={['rmap__place', { 'rmap__place--sea': p.sea, 'rmap__place--it': p.it }]} style={`font-size:${22 * p.s * k}px`}>{p.t}</text>
   ))}
   {office && (
     <g class="rmap__office" transform={`translate(${off[0]} ${off[1]}) scale(${k})`}>
@@ -67,6 +82,9 @@ const k = vw / 900; // tỉ lệ nét theo độ phóng
   .rmap__tag { fill: #fff; }
   .rmap__tagcap { fill: var(--c-cap); }
   .rmap__time { font-family: var(--f-num); font-weight: 700; font-size: 22px; fill: var(--c-cap); }
+  .rmap__place { font-family: var(--f-display); font-weight: 700; fill: var(--c-ink-2); letter-spacing: 0.04em; paint-order: stroke; stroke: var(--map-land, var(--c-paint)); stroke-width: 3px; stroke-linejoin: round; }
+  .rmap__place--sea { fill: rgba(255,255,255,.75); stroke: none; }
+  .rmap__place--it { font-style: italic; font-weight: 600; letter-spacing: 0.12em; }
   .rmap__office circle { fill: var(--c-line); stroke: var(--c-asphalt); stroke-width: 3; }
   .rmap__office .rmap__office-dot { fill: var(--c-asphalt); stroke: none; }
 </style>

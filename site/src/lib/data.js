@@ -9,7 +9,9 @@ export { tours, congTy, lich, map };
 export const proj = geoMercator().scale(map.scale).translate(map.translate);
 export const xy = ([lat, lon]) => proj([lon, lat]).map((v) => Math.round(v * 10) / 10);
 
-export const vnd = (n) => n.toLocaleString('vi-VN').replace(/,/g, '.') + ' đ';
+// Giá: thiếu hoặc 0 thì hiện 'Hỏi giá' (không bịa giá)
+export const vnd = (n) => (typeof n === 'number' && n > 0 ? n.toLocaleString('vi-VN').replace(/,/g, '.') + ' đ' : 'Hỏi giá');
+export const coGia = (n) => typeof n === 'number' && n > 0;
 export const vndShort = (n) => {
   if (n >= 1e6) return (n / 1e6).toLocaleString('vi-VN', { maximumFractionDigits: 2 }) + ' triệu';
   return Math.round(n / 1000) + ' nghìn';
@@ -82,3 +84,21 @@ export const tuyen = tours.map((t) => {
   const d = diemChinh(t);
   return { slug: t.slug, ten: t.ten_ngan, diem: d.ten, gio: d.gio, km: d.km, huong: huong(congTy.toa_do, d.toa_do), picto: PICTO[t.mau], mau: MAU_TUYEN[t.mau], t };
 }).sort((a, b) => a.gio.localeCompare(b.gio));
+
+// Bỏ nhãn nội bộ [CẦN XÁC NHẬN …] khỏi chữ hiển thị (nhãn vẫn nằm trong data và NOTES.md)
+export const clean = (s = '') => s.replace(/\s*\[CẦN XÁC NHẬN[^\]]*\]/g, '').trim();
+const MA = { 'ba-na-cau-vang': 'BN', 'hoi-an-chieu-toi': 'HA', 'cu-lao-cham': 'CLC', 'my-son-sang-som': 'MS', 'hai-van-hue-2n1d': 'HV' };
+export const maChuyen = (slug, iso) => `GN-${iso.slice(8, 10)}${iso.slice(5, 7)}-${MA[slug] ?? 'X'}`;
+// Khung nhìn bản đồ ôm sát một tuyến, thêm lề, giữ tỉ lệ w/h
+export function khungTuyen(t, ratio = 1.4, pad = 40) {
+  const pts = t.lich_trinh.map((s) => xy(s.toa_do));
+  let x0 = Math.min(...pts.map((p) => p[0])) - pad, x1 = Math.max(...pts.map((p) => p[0])) + pad;
+  let y0 = Math.min(...pts.map((p) => p[1])) - pad, y1 = Math.max(...pts.map((p) => p[1])) + pad;
+  // tour chỉ có 1 điểm hoặc các điểm sát nhau: giữ khung tối thiểu để bản đồ không phóng quá to
+  const MIN = 220;
+  if (x1 - x0 < MIN) { const c = (x0 + x1) / 2; x0 = c - MIN / 2; x1 = c + MIN / 2; }
+  if (y1 - y0 < MIN / ratio) { const c = (y0 + y1) / 2; y0 = c - MIN / ratio / 2; y1 = c + MIN / ratio / 2; }
+  let w = x1 - x0, h = y1 - y0;
+  if (w / h < ratio) { const nw = h * ratio; x0 -= (nw - w) / 2; w = nw; } else { const nh = w / ratio; y0 -= (nh - h) / 2; h = nh; }
+  return [x0, y0, w, h].map((v) => Math.round(v)).join(' ');
+}

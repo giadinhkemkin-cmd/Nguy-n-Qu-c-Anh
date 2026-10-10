@@ -15,7 +15,7 @@ const nav = [
     <a href="/" class="hdr__home" aria-label="Gió Nồm Travel, về trang chủ"><Logo /></a>
     <nav class="hdr__nav" aria-label="Chính">
       {nav.map((n) => <a href={n.href} aria-current={current === n.key ? 'page' : undefined}>{n.label}</a>)}
-      <a class="btn hdr__cta" href={congTy.zalo} target="_blank" rel="noopener" data-zalo data-msg="Chào Gió Nồm, mình muốn hỏi chỗ tour.">
+      <a class="btn btn--ghost hdr__cta" href={congTy.zalo} target="_blank" rel="noopener" data-zalo data-msg="Chào Gió Nồm, mình muốn hỏi chỗ tour.">
         <Icon name="chat" />Nhắn Zalo
       </a>
     </nav>
@@ -51,7 +51,7 @@ const nav = [
   }
 </script>
 <style>
-  .hdr { position: sticky; top: 0; z-index: 50; background: var(--c-sign); color: var(--c-on-sign); box-shadow: 0 1px 0 rgba(0,0,0,.12); }
+  .hdr { position: sticky; isolation: isolate; top: 0; z-index: 50; background: var(--c-sign); color: var(--c-on-sign); box-shadow: 0 1px 0 rgba(0,0,0,.12); }
   .hdr__in { height: var(--hdr); display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
   .hdr__home { text-decoration: none; display: inline-flex; min-height: 44px; align-items: center; }
   .hdr__nav { display: none; align-items: center; gap: 0.25rem; }
@@ -60,7 +60,9 @@ const nav = [
   @media (hover: hover) { .hdr__nav > a:not(.btn):hover { background: rgba(255,255,255,.1); } }
   .hdr__cta { min-height: 42px; padding: 0.5rem 1rem; font-size: 1.05rem; margin-left: 0.5rem; }
   .hdr__menu { width: 48px; height: 48px; margin-right: -8px; display: grid; place-items: center; background: none; border: 0; border-radius: var(--r-small); cursor: pointer; color: inherit; }
-  .menu { background: var(--c-sign); border-top: 1px solid rgba(255,255,255,.18); padding-block: 0.5rem 1.25rem; }
+  .menu { background: var(--c-sign); border-top: 1px solid rgba(255,255,255,.18); padding-block: 0.5rem 1.25rem; transition: opacity 200ms var(--ease-out), transform 200ms var(--ease-out); box-shadow: 0 20px 30px -20px rgba(0,0,0,.5); }
+  @starting-style { .menu:not([hidden]) { opacity: 0; transform: translateY(-8px); } }
+  @media (prefers-reduced-motion: reduce) { @starting-style { .menu:not([hidden]) { transform: none; } } }
   .menu__in { display: grid; gap: 0.25rem; }
   .menu__item { display: flex; align-items: center; gap: 0.85rem; min-height: 56px; text-decoration: none; font-family: var(--f-display); font-weight: 700; font-size: 1.5rem; border-bottom: 1px solid rgba(255,255,255,.14); }
   .menu__item:last-of-type { border-bottom: 0; margin-bottom: 0.75rem; }

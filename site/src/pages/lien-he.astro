@@ -1,0 +1,146 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import RouteMap from '../components/RouteMap.astro';
+import { tours, congTy, HOM_NAY } from '../lib/data.js';
+---
+<Base title="Hỏi chỗ, đặt tour" description="Nhắn Zalo, gọi 0905 000 000 hoặc gửi yêu cầu đặt tour Gió Nồm. Văn phòng 68 Bạch Đằng, Đà Nẵng, mở 7:00 – 21:00 cả tuần." current="lien-he">
+  <header class="lh">
+    <div class="wrap">
+      <div class="sign lh__sign">
+        <h1>Hỏi chỗ, đặt tour</h1>
+        <p>Cách nhanh nhất là nhắn Zalo. Gió Nồm trả lời từ 7:00 đến 21:00, cả tuần.</p>
+        <div class="lh__ways">
+          <a class="btn" href={congTy.zalo} target="_blank" rel="noopener" data-zalo data-msg="Chào Gió Nồm, mình muốn hỏi chỗ tour. Tour: …, ngày đi: …, số người: …"><Icon name="chat" />Nhắn Zalo hỏi chỗ</a>
+          <a class="btn btn--ghost" href={`tel:${congTy.dien_thoai_tel}`}><Icon name="phone" />Gọi {congTy.dien_thoai}</a>
+          <a class="link-arrow lh__mail" href={`mailto:${congTy.email}`}><Icon name="mail" />{congTy.email}</a>
+        </div>
+      </div>
+    </div>
+  </header>
+  <section class="section" aria-labelledby="form-h2">
+    <div class="wrap lh__grid">
+      <form class="fm" novalidate data-form>
+        <h2 id="form-h2">Gửi yêu cầu qua Zalo</h2>
+        <p class="fm__lead">Điền vài dòng, bấm gửi: trang chép sẵn tin nhắn và mở Zalo để bạn dán vào.</p>
+        <div class="fm__f">
+          <label for="f-tour">Tour bạn muốn đi</label>
+          <select id="f-tour" name="tour">{tours.map((t) => <option value={t.ten_ngan}>{t.ten_ngan}</option>)}<option value="Chưa chọn, nhờ gợi ý">Chưa chọn, nhờ Gió Nồm gợi ý</option></select>
+        </div>
+        <div class="fm__row">
+          <div class="fm__f">
+            <label for="f-date">Ngày đi</label>
+            <input id="f-date" name="date" type="date" min={HOM_NAY} required aria-describedby="e-date" />
+            <p class="fm__err" id="e-date" hidden>Chọn ngày đi giúp Gió Nồm.</p>
+          </div>
+          <div class="fm__f fm__f--n">
+            <label for="f-adult">Người lớn</label>
+            <input id="f-adult" name="adult" type="number" inputmode="numeric" min="1" max="12" value="2" required aria-describedby="e-adult" />
+            <p class="fm__err" id="e-adult" hidden>Từ 1 đến 12 người.</p>
+          </div>
+          <div class="fm__f fm__f--n">
+            <label for="f-kid">Trẻ em</label>
+            <input id="f-kid" name="kid" type="number" inputmode="numeric" min="0" max="11" value="0" />
+          </div>
+        </div>
+        <div class="fm__f">
+          <label for="f-name">Tên của bạn</label>
+          <input id="f-name" name="name" type="text" autocomplete="name" maxlength="60" />
+        </div>
+        <div class="fm__f">
+          <label for="f-phone">Số điện thoại hoặc Zalo</label>
+          <input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required aria-describedby="e-phone" placeholder="09xx xxx xxx" />
+          <p class="fm__err" id="e-phone" hidden>Số điện thoại chưa đúng, kiểm tra lại giúp nhé.</p>
+        </div>
+        <div class="fm__f">
+          <label for="f-note">Ghi chú <span>(khách sạn, yêu cầu ăn uống)</span></label>
+          <textarea id="f-note" name="note" rows="3" maxlength="500"></textarea>
+        </div>
+        <button class="btn btn--block" type="submit"><Icon name="chat" />Gửi yêu cầu qua Zalo</button>
+        <p class="fm__done" data-done hidden role="status"></p>
+      </form>
+      <aside class="lh__info">
+        <div class="lh__map sign"><RouteMap viewBox="610 520 120 100" labels={false} places={false} title="Vị trí văn phòng Gió Nồm, 68 Bạch Đằng" /></div>
+        <h2>Văn phòng</h2>
+        <ul>
+          <li><Icon name="pin" />{congTy.dia_chi}</li>
+          <li><Icon name="clock" />{congTy.gio_lam_viec}</li>
+          <li><Icon name="phone" /><a href={`tel:${congTy.dien_thoai_tel}`}>{congTy.dien_thoai}</a></li>
+        </ul>
+        <a class="link-arrow" href={congTy.ban_do} target="_blank" rel="noopener">Mở Google Maps <Icon name="arrow-right" /></a>
+        <h2 class="lh__h2b">Đặt cọc và huỷ</h2>
+        <p>{congTy.chinh_sach.dat_coc}</p>
+        <ul class="lh__pol">{congTy.chinh_sach.huy_tour.map((x) => <li>{x}</li>)}</ul>
+      </aside>
+    </div>
+  </section>
+</Base>
+<script>
+  import { showToast } from '../scripts/zalo.js';
+  const f = document.querySelector<HTMLFormElement>('[data-form]');
+  const ZALO = 'https://zalo.me/0905000000';
+  if (f) {
+    const show = (id: string, bad: boolean, input: HTMLElement) => { const e = document.getElementById(id)!; e.hidden = !bad; input.setAttribute('aria-invalid', String(bad)); };
+    const phoneOk = (v: string) => /^(\+?84|0)\d{9,10}$/.test(v.replace(/[\s.\-]/g, ''));
+    f.querySelectorAll('input').forEach((i) => i.addEventListener('blur', () => { if (i.getAttribute('aria-invalid') === 'true') validate(); }));
+    function validate() {
+      const date = f!.date as HTMLInputElement, adult = f!.adult as HTMLInputElement, phone = f!.phone as HTMLInputElement;
+      const a = Number(adult.value);
+      const okDate = !!date.value, okAdult = a >= 1 && 12 >= a, okPhone = phoneOk(phone.value);
+      show('e-date', !okDate, date); show('e-adult', !okAdult, adult); show('e-phone', !okPhone, phone);
+      return [okDate ? null : date, okAdult ? null : adult, okPhone ? null : phone].filter(Boolean) as HTMLElement[];
+    }
+    f.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const bad = validate();
+      if (bad.length) { bad[0].focus(); return; }
+      const d = new FormData(f);
+      const [y, m, dd] = String(d.get('date')).split('-');
+      const msg = `Chào Gió Nồm, mình muốn đặt tour ${d.get('tour')}, ngày ${dd}/${m}/${y}, ${d.get('adult')} người lớn, ${d.get('kid') || 0} trẻ em.` + (d.get('name') ? ` Tên: ${d.get('name')}.` : '') + ` SĐT: ${d.get('phone')}.` + (d.get('note') ? ` Ghi chú: ${d.get('note')}` : '');
+      let copied = true;
+      try { await navigator.clipboard.writeText(msg); } catch { copied = false; }
+      const done = f.querySelector<HTMLElement>('[data-done]')!;
+      done.hidden = false;
+      done.textContent = copied ? 'Đã chép tin nhắn. Zalo đang mở, dán vào ô chat với Gió Nồm rồi gửi.' : `Chép tin này gửi qua Zalo giúp Gió Nồm: ${msg}`;
+      showToast(copied ? 'Đã chép tin nhắn, dán vào Zalo.' : 'Mở Zalo…');
+      window.open(ZALO, '_blank', 'noopener');
+    });
+  }
+</script>
+<style>
+  .lh { padding-top: var(--sp-5); }
+  .lh__sign { padding: 1.6rem 1.25rem; }
+  .lh__sign h1 { font-size: clamp(2.4rem, 5vw + 1rem, 4.8rem); }
+  .lh__sign p { margin-top: var(--sp-3); color: var(--c-on-sign-2); font-size: var(--fs-lead); }
+  .lh__ways { display: flex; flex-wrap: wrap; gap: 0.75rem 1rem; align-items: center; margin-top: var(--sp-5); }
+  .lh__mail { color: #fff; gap: 0.5rem; }
+  .lh__grid { display: grid; gap: var(--sp-7); }
+  .fm { display: grid; gap: 1rem; background: #fff; border-radius: var(--r-sign); padding: 1.5rem 1.2rem; }
+  .fm h2 { font-size: var(--fs-h3); }
+  .fm__lead { color: var(--c-ink-2); margin-top: -0.5rem; }
+  .fm__row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .fm__row > .fm__f:first-child { grid-column: 1 / -1; }
+  .fm__f { display: grid; gap: 0.35rem; }
+  .fm__f label { font-weight: 600; font-size: var(--fs-small); }
+  .fm__f label span { font-weight: 400; color: var(--c-ink-2); }
+  .fm input, .fm select, .fm textarea { font: inherit; font-size: 16px; min-height: 48px; padding: 0.6rem 0.8rem; border: 2px solid #b8bcc3; border-radius: var(--r-small); background: #fff; color: var(--c-ink); width: 100%; transition: border-color var(--dur-ui) var(--ease-out); }
+  .fm input:focus, .fm select:focus, .fm textarea:focus { outline: none; border-color: var(--c-sign); box-shadow: 0 0 0 3px var(--c-sign-tint); }
+  .fm [aria-invalid='true'] { border-color: var(--c-cap); }
+  .fm__err { color: var(--c-cap); font-size: var(--fs-small); font-weight: 600; }
+  .fm__done { background: var(--c-sign-tint); padding: 0.8rem 1rem; border-radius: var(--r-small); }
+  .lh__info { display: grid; gap: 0.8rem; align-content: start; }
+  .lh__info h2 { font-size: var(--fs-h3); }
+  .lh__h2b { margin-top: var(--sp-5); }
+  .lh__info ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
+  .lh__info li { display: flex; gap: 0.6rem; align-items: flex-start; }
+  .lh__info li svg { flex: none; color: var(--c-sign); margin-top: 0.15rem; }
+  .lh__pol li { padding-bottom: 0.5rem; border-bottom: 1px solid var(--c-rule); }
+  .lh__map { padding: 0; overflow: hidden; aspect-ratio: 1.2; --map-sea: var(--c-sign); }
+  @media (min-width: 960px) {
+    .lh__sign { padding: 3rem; }
+    .lh__grid { grid-template-columns: 1.3fr 1fr; gap: 4rem; align-items: start; }
+    .fm { padding: 2rem; }
+    .fm__row { grid-template-columns: 2fr 1fr 1fr; }
+    .fm__row > .fm__f:first-child { grid-column: auto; }
+  }
+</style>

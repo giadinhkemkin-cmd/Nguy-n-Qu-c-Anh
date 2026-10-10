@@ -1,0 +1,43 @@
+[
+  {
+    "slug": "xau-nhat-1",
+    "ten": "Hành trình Đà Nẵng – Hội An – Mỹ Sơn – Cù Lao Chàm 3 ngày 2 đêm, ghép đoàn cuối tuần cho gia đình có người lớn tuổi",
+    "ten_ngan": "Đà Nẵng – Hội An – Mỹ Sơn – Cù Lao Chàm 3N2Đ",
+    "vung": "Di sản và biển đảo",
+    "thoi_luong": "3 ngày 2 đêm",
+    "gio": "05:30 ngày 1 – 21:30 ngày 3",
+    "gia_nguoi_lon": 12990000,
+    "nhom_toi_da": 12,
+    "lich": { "kieu": "thu", "mo_ta": "Chỉ Chủ nhật", "thu": [7] },
+    "mau": "thap",
+    "mo_ta_ngan": "Ba ngày đi trọn Hội An, Mỹ Sơn và Cù Lao Chàm, ngủ hai đêm trong phố cổ, ăn sáng ở chợ, đi thuyền thúng rừng dừa Bảy Mẫu, thả đèn sông Hoài, lặn ngắm san hô và về lại Đà Nẵng bằng đường ven biển qua bãi Mỹ Khê lúc hoàng hôn.",
+    "diem_nhan": [],
+    "lich_trinh": [
+      { "gio": "N1 05:30", "ten": "Thánh địa Mỹ Sơn (khu tháp B, C, D và nhà trưng bày Chămpa)", "mo_ta": "Rất dài: đi bộ 2 giờ giữa các tháp, nghe kể về vương quốc Chămpa, xem múa Chăm, chụp ảnh ở tháp chính và đi xe điện ra cổng.", "toa_do": [15.7640, 108.1240] }
+    ],
+    "bao_gom": ["Xe"],
+    "chua_gom": [],
+    "nen_mang": [],
+    "luu_y": ""
+  },
+  {
+    "slug": "x",
+    "ten": "Ơ",
+    "ten_ngan": "Ơ",
+    "vung": "Biển",
+    "thoi_luong": "Nửa ngày",
+    "gio": "14:00 – 17:00",
+    "gia_nguoi_lon": 0,
+    "gia_tre_em": 0,
+    "nhom_toi_da": 1,
+    "lich": { "kieu": "mua", "mo_ta": "Tháng 3 – 9", "thang_mo": [3] },
+    "mau": "bien",
+    "mo_ta_ngan": "Ngắn.",
+    "diem_nhan": ["😀 Có emoji trong điểm nhấn 🏝️🌊", "Mộtcụmtừrấtdàikhôngcókhoảngtrắngnàođểxuốngdòngđượcthửxem"],
+    "lich_trinh": [
+      { "gio": "14:00", "ten": "A", "mo_ta": "", "toa_do": [16.07, 108.2245] },
+      { "gio": "14:00", "ten": "A", "mo_ta": "", "toa_do": [16.07, 108.2245] }
+    ],
+    "bao_gom": [], "chua_gom": ["Mọi thứ"], "nen_mang": ["Không"], "luu_y": "[CẦN XÁC NHẬN] toàn bộ"
+  }
+]

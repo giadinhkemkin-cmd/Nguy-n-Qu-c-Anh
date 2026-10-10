@@ -1,0 +1,43 @@
+---
+import Icon from './Icon.astro';
+import { congTy } from '../lib/data.js';
+interface Props { title?: string; body?: string; msg?: string }
+const { title = 'Bạn đi ngày nào?', body = 'Nhắn ngày đi và số người, Gió Nồm báo chỗ trống của cả năm tour cho ngày đó. Trả lời từ 7:00 đến 21:00, cả tuần.', msg = 'Chào Gió Nồm, mình đi Đà Nẵng ngày …, … người. Tour nào còn chỗ?' } = Astro.props;
+---
+<section class="cta section" aria-labelledby="cta-h2">
+  <div class="wrap">
+    <div class="sign cta__panel">
+      <div>
+        <h2 id="cta-h2">{title}</h2>
+        <p>{body}</p>
+        <p class="cta__live" data-live hidden><span class="cta__dot" aria-hidden="true"></span><span data-live-txt></span></p>
+      </div>
+      <div class="cta__btns">
+        <a class="btn" href={congTy.zalo} target="_blank" rel="noopener" data-zalo data-msg={msg}><Icon name="chat" />Nhắn Zalo hỏi chỗ</a>
+        <a class="btn btn--ghost" href={`tel:${congTy.dien_thoai_tel}`}><Icon name="phone" />Gọi {congTy.dien_thoai}</a>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  // Giờ Đà Nẵng (UTC+7): trong 7:00–21:00 báo "đang trực", ngoài giờ báo giờ trả lời
+  const el = document.querySelector<HTMLElement>('[data-live]');
+  if (el) {
+    const h = Number(new Intl.DateTimeFormat('en-GB', { hour: 'numeric', hour12: false, timeZone: 'Asia/Ho_Chi_Minh' }).format(new Date()));
+    const on = h >= 7 && 21 > h;
+    el.querySelector('[data-live-txt]')!.textContent = on ? 'Gió Nồm đang trực Zalo, thường trả lời trong giờ làm việc.' : 'Ngoài giờ trực. Cứ nhắn, 7:00 sáng mai Gió Nồm trả lời.';
+    el.classList.toggle('is-off', !on);
+    el.hidden = false;
+  }
+</script>
+<style>
+  .cta__live { display: flex; align-items: center; gap: 0.6rem; font-size: var(--fs-small) !important; color: #fff !important; }
+  .cta__dot { width: 10px; height: 10px; border-radius: 50%; background: #5fd38d; box-shadow: 0 0 0 4px rgba(95,211,141,.25); flex: none; }
+  .is-off .cta__dot { background: var(--c-line); box-shadow: 0 0 0 4px rgba(243,179,0,.25); }
+  .cta { padding-bottom: 0; }
+  .cta__panel { padding: 2rem 1.4rem; display: grid; gap: var(--sp-5); }
+  .cta h2 { font-size: var(--fs-h2); }
+  .cta p { margin-top: var(--sp-3); color: var(--c-on-sign-2); font-size: var(--fs-lead); max-width: 34rem; }
+  .cta__btns { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+  @media (min-width: 960px) { .cta__panel { grid-template-columns: 1.4fr auto; align-items: end; padding: 3rem; } }
+</style>

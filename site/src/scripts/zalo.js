@@ -5,11 +5,9 @@ export function showToast(msg) {
   if (!toast) return;
   toast.textContent = msg;
   toast.hidden = false;
-  toast.removeAttribute('data-show');
-  void toast.offsetWidth;
-  toast.setAttribute('data-show', '');
+  requestAnimationFrame(() => toast.setAttribute('data-show', ''));
   clearTimeout(timer);
-  timer = setTimeout(() => { toast.hidden = true; }, 4200);
+  timer = setTimeout(() => { toast.removeAttribute('data-show'); setTimeout(() => (toast.hidden = true), 240); }, 4200);
 }
 document.addEventListener('click', async (e) => {
   const a = e.target.closest?.('[data-zalo]');

@@ -14,6 +14,7 @@
   --c-asphalt-2: #3a3e45;
   --c-ink: #1b1e23;
   --c-ink-2: #4a505a;
+  --c-time: #0d3378;        /* số giờ trên ô trắng */
   --c-rule: #c9ccc4;
   --c-brown: #7a4627;       /* biển nâu điểm du lịch */
   /* màu tuyến */
@@ -46,8 +47,9 @@
   --r-small: 6px;
   --hdr: 56px;
 
-  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);      /* Emil: strong ease-out */
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);  /* Emil: on-screen movement */
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
   --dur-press: 120ms;
   --dur-ui: 220ms;
 }
@@ -81,6 +83,8 @@ body {
 img, svg { display: block; max-width: 100%; }
 h1, h2, h3, h4 { font-family: var(--f-display); font-weight: var(--w-display); letter-spacing: var(--track-display); line-height: 1.02; margin: 0; text-wrap: balance; }
 p { margin: 0; text-wrap: pretty; }
+p, li, h1, h2, h3, dd, dt, figcaption, label, strong, span { overflow-wrap: break-word; }
+main li, main p { min-width: 0; }
 a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
 button { font: inherit; color: inherit; }
 ::selection { background: var(--c-line); color: var(--c-asphalt); }
@@ -116,15 +120,15 @@ button { font: inherit; color: inherit; }
 }
 .btn svg { width: 1.25em; height: 1.25em; flex: none; }
 .btn:active { transform: scale(0.97); }
-@media (hover: hover) { .btn:hover { background: var(--c-line-press); } }
+@media (hover: hover) and (pointer: fine) { .btn:hover { background: var(--c-line-press); } }
 .btn--ghost { --bg: transparent; --fg: currentColor; box-shadow: inset 0 0 0 2px currentColor; }
-@media (hover: hover) { .btn--ghost:hover { background: rgba(255,255,255,0.12); } }
+@media (hover: hover) and (pointer: fine) { .btn--ghost:hover { background: rgba(255,255,255,0.12); } }
 .btn--dark { --bg: var(--c-asphalt); --fg: #fff; }
-@media (hover: hover) { .btn--dark:hover { background: #000; } }
+@media (hover: hover) and (pointer: fine) { .btn--dark:hover { background: #000; } }
 .btn--block { width: 100%; }
 .link-arrow { display: inline-flex; align-items: center; gap: 0.4rem; font-weight: 600; text-decoration: none; min-height: 44px; }
 .link-arrow svg { width: 1.1em; height: 1.1em; transition: transform var(--dur-ui) var(--ease-out); }
-@media (hover: hover) { .link-arrow:hover svg { transform: translateX(3px); } .link-arrow:hover { text-decoration: underline; } }
+@media (hover: hover) and (pointer: fine) { .link-arrow:hover svg { transform: translateX(3px); } .link-arrow:hover { text-decoration: underline; } }
 
 /* Vạch kẻ đường */
 .road-line { height: 6px; background: repeating-linear-gradient(90deg, var(--c-line) 0 48px, transparent 48px 84px); }
@@ -137,3 +141,13 @@ button { font: inherit; color: inherit; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
 }
+
+/* Chuyển trang: biển tour trên trang chủ morph sang đầu trang chi tiết (View Transitions giữa hai tài liệu) */
+@view-transition { navigation: auto; }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: 220ms; animation-timing-function: var(--ease-out); }
+@media (prefers-reduced-motion: reduce) { @view-transition { navigation: none; } }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: #9aa0a8; border-radius: 6px; border: 2px solid var(--c-paint); }
+::-webkit-scrollbar-track { background: var(--c-paint); }
+html { scrollbar-color: #9aa0a8 var(--c-paint); }
+input, textarea, select { caret-color: var(--c-sign); accent-color: var(--c-sign); }

@@ -1,0 +1,129 @@
+---
+// Trục giờ trong ngày vẽ thành con đường 05:00 → 18:00. Mốc = giờ đoàn Gió Nồm tới điểm chính.
+// Dải chắn: khung giờ xe đoàn lớn thường rời Đà Nẵng (8–9 giờ, nguồn: blog du lịch, ghi trong BRIEF).
+import Icon from './Icon.astro';
+import { tuyen } from '../lib/data.js';
+const CAU = {
+  'my-son-sang-som': 'Cổng vừa mở, trời còn mát.',
+  'ba-na-cau-vang': 'Lên cáp chuyến 7:30, thường còn sương.',
+  'hai-van-hue-2n1d': 'Dừng ở Hải Vân Quan trước khi nắng gắt.',
+  'cu-lao-cham': 'Lặn trước khi biển nổi gió chiều.',
+  'hoi-an-chieu-toi': 'Nắng đã dịu, đèn lồng sắp lên.',
+};
+const H0 = 5, H1 = 18;
+const toH = (g) => { const [h, m] = g.split(':').map(Number); return h + m / 60; };
+const pos = (g) => (toH(g) - H0) / (H1 - H0);
+const LVL = { 'my-son-sang-som': 0, 'ba-na-cau-vang': 2, 'hai-van-hue-2n1d': 1, 'cu-lao-cham': 0, 'hoi-an-chieu-toi': 0 };
+const items = tuyen.map((r, i) => {
+  const prev = tuyen[i - 1];
+  const gap = prev ? Math.min(140, Math.max(14, (toH(r.gio) - toH(prev.gio)) * 22)) : 0;
+  return { ...r, p: pos(r.gio), lvl: LVL[r.slug] ?? 0, cau: CAU[r.slug], gap };
+});
+const hours = Array.from({ length: H1 - H0 + 1 }, (_, i) => H0 + i);
+---
+<section class="dr section" aria-labelledby="dr-h2">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 id="dr-h2">Mỗi tour xếp quanh một giờ tới nơi</h2>
+      <p>Xe đoàn lớn thường rời Đà Nẵng lúc 8–9 giờ sáng. Lịch của Gió Nồm tránh khung giờ đó.</p>
+    </div>
+    <div class="dr__board">
+      <ol class="dr__items">
+        {items.map((it) => (
+          <li class="dr__item" style={`--p:${it.p};--lvl:${it.lvl};--gap:${it.gap}px;--tuyen:${it.mau}`} data-p={it.p} data-end={it.p > 0.7 ? '' : undefined}>
+            <a href={`/tour/${it.slug}/`} class="dr__card">
+              <span class="dr__time num">{it.gio}</span>
+              <span class="dr__name">{it.diem}</span>
+              <span class="dr__cau">{it.cau}</span>
+              <span class="dr__tour"><Icon name={it.picto} size={16} />{it.ten}</span>
+            </a>
+          </li>
+        ))}
+      </ol>
+      <div class="dr__road" aria-hidden="true">
+        <div class="dr__zone" style={`--a:${pos('08:00')};--b:${pos('09:00')}`}><span>8–9 giờ: xe đoàn lớn rời Đà Nẵng</span></div>
+        <div class="dr__lane"></div>
+        <div class="dr__van"><Icon name="xe" size={30} /></div>
+      </div>
+      <ol class="dr__hours" aria-hidden="true">{hours.map((h) => <li style={`--p:${(h - H0) / (H1 - H0)}`}><span class="num">{String(h).padStart(2, '0')}:00</span></li>)}</ol>
+    </div>
+  </div>
+</section>
+<script>
+  import { gsap, ScrollTrigger, reduce } from '../scripts/motion.js';
+  const board = document.querySelector<HTMLElement>('.dr__board');
+  const van = document.querySelector<HTMLElement>('.dr__van');
+  const items = [...document.querySelectorAll<HTMLElement>('.dr__item')];
+  if (board && van && !reduce) {
+    board.classList.add('is-armed');
+    const mm = gsap.matchMedia();
+    const light = (p: number) => items.forEach((it) => it.classList.toggle('is-on', Number(it.dataset.p) <= p + 0.005));
+    mm.add('(min-width: 960px)', () => {
+      const road = board.querySelector<HTMLElement>('.dr__road')!;
+      const st = ScrollTrigger.create({
+        trigger: board, start: 'top 75%', end: 'bottom 35%', scrub: 0.6,
+        onUpdate: (s) => { gsap.set(van, { x: s.progress * (road.clientWidth - van.offsetWidth) }); light(s.progress); },
+      });
+      return () => st.kill();
+    });
+    mm.add('(max-width: 959.98px)', () => {
+      const list = board.querySelector<HTMLElement>('.dr__items')!;
+      const st = ScrollTrigger.create({
+        trigger: list, start: 'top 70%', end: 'bottom 55%', scrub: 0.6,
+        onUpdate: (s) => {
+          const y = s.progress * (list.clientHeight - van.offsetHeight);
+          gsap.set(van, { y });
+          items.forEach((it) => it.classList.toggle('is-on', it.offsetTop <= y + 24));
+        },
+      });
+      return () => st.kill();
+    });
+  }
+</script>
+<style>
+  .dr__board { position: relative; --road: 40px; }
+  /* Mobile: đường dọc bên trái, mốc xếp theo giờ, khoảng cách tỉ lệ thời gian */
+  .dr__items { list-style: none; margin: 0; padding: 0 0 0 calc(var(--road) + 1rem); position: relative; display: grid; }
+  .dr__item { margin-top: var(--gap); position: relative; }
+  .dr__item::before { content: ''; position: absolute; left: calc(-1rem - var(--road) / 2 - 7px); top: 1.1rem; width: 14px; height: 14px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 4px var(--tuyen); z-index: 2; }
+  .dr__card { display: grid; gap: 0.1rem; text-decoration: none; padding: 0.55rem 0 0.9rem; border-bottom: 1px solid var(--c-rule); }
+  .dr__time { font-family: var(--f-display); font-weight: 700; font-size: 2rem; line-height: 1; color: var(--c-cap); }
+  .dr__name { font-family: var(--f-display); font-weight: 700; font-size: 1.35rem; line-height: 1.1; text-transform: uppercase; }
+  .dr__cau { color: var(--c-ink-2); }
+  .dr__tour { display: inline-flex; align-items: center; gap: 0.4rem; font-size: var(--fs-tiny); font-weight: 600; color: var(--c-sign); margin-top: 0.2rem; }
+  .dr__road { position: absolute; left: 0; top: 0; bottom: 0; width: var(--road); background: var(--c-asphalt); border-radius: 4px; }
+  .dr__lane { position: absolute; left: 50%; top: 8px; bottom: 8px; width: 4px; translate: -50% 0; background: repeating-linear-gradient(180deg, var(--c-line) 0 22px, transparent 22px 38px); }
+  .dr__zone { display: none; }
+  .dr__van { position: absolute; left: 50%; top: 0; translate: -50% 0; width: 34px; height: 34px; border-radius: 6px; background: var(--c-line); color: var(--c-asphalt); display: grid; place-items: center; z-index: 3; box-shadow: 0 4px 10px rgba(0,0,0,.35); }
+  .dr__van svg { width: 24px; height: 24px; rotate: 90deg; }
+  .dr__hours { display: none; }
+  .is-armed .dr__item:not(.is-on) .dr__card { opacity: 0.5; }
+  .is-armed .dr__item .dr__card { transition: opacity 220ms var(--ease-out); }
+  @media (hover: hover) and (pointer: fine) { .dr__card:hover .dr__name { text-decoration: underline; } }
+
+  /* Desktop: đường ngang, mốc treo theo giờ thật */
+  @media (min-width: 960px) {
+    .dr__board { --road: 56px; height: 470px; margin-bottom: 2rem; }
+    .dr__items { position: absolute; inset: 0 0 calc(var(--road) + 34px); padding: 0; display: block; }
+    .dr__item { position: absolute; left: calc(var(--p) * 100%); bottom: calc(var(--lvl) * 118px); margin: 0; width: 12.5rem; padding-left: 14px; border-left: 3px solid var(--tuyen); }
+    .dr__item[data-end] { left: auto; right: calc((1 - var(--p)) * 100%); padding: 0 14px 0 0; border-left: 0; border-right: 3px solid var(--tuyen); text-align: right; }
+    .dr__item[data-end] .dr__card { justify-items: end; }
+    .dr__item::before { left: -9.5px; top: auto; bottom: -34px; }
+    .dr__item[data-end]::before { left: auto; right: -9.5px; }
+    .dr__item::after { content: ''; position: absolute; left: -3px; bottom: -28px; width: 3px; height: 28px; background: var(--tuyen); }
+    .dr__item[data-end]::after { left: auto; right: -3px; }
+    .dr__card { border: 0; padding: 0; background: var(--c-paint); }
+    .dr__cau { font-size: var(--fs-small); }
+    .dr__road { top: auto; left: 0; right: 0; bottom: 34px; width: auto; height: var(--road); }
+    .dr__lane { left: 8px; right: 8px; top: 50%; bottom: auto; width: auto; height: 5px; translate: 0 -50%; background: repeating-linear-gradient(90deg, var(--c-line) 0 40px, transparent 40px 70px); }
+    .dr__zone { display: block; position: absolute; top: -26px; bottom: 0; left: calc(var(--a) * 100%); width: calc((var(--b) - var(--a)) * 100%); background: repeating-linear-gradient(135deg, var(--c-cap) 0 10px, #fff 10px 20px); opacity: .9; }
+    .dr__zone::before { content: ''; position: absolute; inset: 26px 0 0; background: rgba(35,38,43,.55); }
+    .dr__zone span { position: absolute; bottom: -3.6rem; left: 50%; translate: -50% 0; white-space: nowrap; font-size: var(--fs-tiny); font-weight: 600; color: var(--c-cap); }
+    .dr__van { left: 0; top: 50%; translate: 0 -50%; width: 46px; height: 40px; }
+    .dr__van svg { rotate: 0deg; width: 30px; height: 30px; }
+    .dr__hours { display: block; list-style: none; margin: 0; padding: 0; position: absolute; left: 0; right: 0; bottom: 0; height: 28px; }
+    .dr__hours li { position: absolute; left: calc(var(--p) * 100%); translate: -50% 0; font-size: var(--fs-tiny); color: var(--c-ink-2); }
+    .dr__hours li:first-child { translate: 0 0; }
+    .dr__hours li:last-child { translate: -100% 0; }
+  }
+</style>

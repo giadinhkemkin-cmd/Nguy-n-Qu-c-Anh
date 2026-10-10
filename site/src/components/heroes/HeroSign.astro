@@ -1,7 +1,11 @@
 ---
 import SignRows from '../SignRows.astro';
 import Icon from '../Icon.astro';
-import { congTy } from '../../lib/data.js';
+import { congTy, lich, tours, HOM_NAY, ngayVN, vnd } from '../../lib/data.js';
+// Bằng chứng ngay màn đầu: chuyến gần nhất còn chỗ (từ lich.json), giá thấp nhất
+const gan = lich.chuyen.filter((c) => c.ngay >= HOM_NAY && c.con_cho > 0).sort((a, b) => a.ngay.localeCompare(b.ngay) || b.con_cho - a.con_cho)[0];
+const tGan = gan && tours.find((t) => t.slug === gan.tour);
+const giaMin = Math.min(...tours.map((t) => t.gia_nguoi_lon));
 ---
 <section class="hs" aria-labelledby="hs-h1">
   <div class="hs__wrap wrap">
@@ -10,12 +14,18 @@ import { congTy } from '../../lib/data.js';
         <h1 id="hs-h1" class="hs__h1">Đà Nẵng lúc còn vắng</h1>
         <p class="hs__lead">Năm tour quanh Đà Nẵng, Hội An và Huế. Mỗi xe chở tối đa 12 khách, giờ đi được xếp để bạn tới Cầu Vàng, Mỹ Sơn, phố Hội trước hoặc sau lúc xe đoàn lớn đến.</p>
         <div class="hs__cta">
-          <a class="btn" href={congTy.zalo} target="_blank" rel="noopener" data-zalo data-msg="Chào Gió Nồm, mình muốn hỏi chỗ tour. Ngày đi: …, số người: …"><Icon name="chat" />Nhắn Zalo hỏi chỗ</a>
+          <a class="btn" href={congTy.zalo} target="_blank" rel="noopener" data-zalo data-msg="Chào Gió Nồm, mình muốn hỏi chỗ tour. Tour: …, ngày đi: …, số người: …"><Icon name="chat" />Nhắn Zalo hỏi chỗ</a>
           <a class="link-arrow hs__more" href="/tour/">Xem 5 tour và giá <Icon name="arrow-right" /></a>
         </div>
+        {tGan && (
+          <p class="hs__proof">
+            <span class="hs__dot" aria-hidden="true"></span>
+            <span>{ngayVN(gan.ngay)}: <a href={`/tour/${tGan.slug}/`}>{tGan.ten_ngan}</a> còn <strong class="num">{gan.con_cho}/12</strong> chỗ. Giá từ <strong class="num">{vnd(giaMin)}</strong>.</span>
+          </p>
+        )}
       </div>
       <div class="hs__dest">
-        <p class="hs__legend"><span>Điểm chính</span><span>Giờ đoàn tới nơi</span></p>
+        <p class="hs__legend" aria-hidden="true"><span>Điểm chính</span><span>Giờ tới nơi</span></p>
         <SignRows />
       </div>
     </div>
@@ -23,21 +33,40 @@ import { congTy } from '../../lib/data.js';
   </div>
   <div class="hs__road" aria-hidden="true"><div class="road-line"></div></div>
 </section>
+<script>
+  // Mũi tên biển xoay từ hướng "đi thẳng" về đúng hướng thật của điểm đến; giờ lật như bảng giờ bến xe.
+  import { gsap, reduce } from '../../scripts/motion.js';
+  import { flap } from '../../scripts/flap.js';
+  if (!reduce) {
+    const arrows = document.querySelectorAll<HTMLElement>('.hs .row__dir svg');
+    arrows.forEach((svg, i) => {
+      const deg = Number(svg.parentElement?.dataset.huong || 0);
+      svg.style.transform = '';
+      gsap.fromTo(svg, { rotate: 0 }, { rotate: deg > 180 ? deg - 360 : deg, duration: 0.7, ease: 'expo.out', delay: 0.15 + i * 0.06 });
+    });
+    document.querySelectorAll<HTMLElement>('.hs [data-flap]').forEach((el, i) => flap(el, el.dataset.flap!, { delay: 0.1 + i * 0.06, from: '00:00' }));
+  }
+</script>
 <style>
-  .hs { padding-top: var(--sp-4); background: linear-gradient(var(--c-paint) 0 calc(100% - 64px), var(--c-asphalt) 0); }
+  .hs { padding-top: var(--sp-4); }
   .hs__wrap { position: relative; z-index: 1; }
-  .hs__panel { padding: 1.6rem 1.25rem 1.1rem; display: grid; gap: var(--sp-6); }
+  .hs__panel { padding: 1.5rem 1.15rem 1rem; display: grid; gap: var(--sp-6); }
   .hs__h1 { font-size: var(--fs-hero); line-height: 0.95; max-width: 9.5ch; }
   .hs__lead { margin-top: var(--sp-4); font-size: var(--fs-lead); color: var(--c-on-sign-2); max-width: 34rem; line-height: 1.5; }
-  .hs__cta { margin-top: var(--sp-5); display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1.25rem; }
+  .hs__cta { margin-top: var(--sp-5); display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1.25rem; }
   .hs__more { color: #fff; }
-  .hs__legend { display: flex; justify-content: space-between; font-size: var(--fs-tiny); text-transform: uppercase; letter-spacing: 0.1em; color: var(--c-on-sign-2); padding: 0 0.25rem 0.35rem; border-bottom: 2px solid rgba(255,255,255,.5); }
-  .hs__posts { display: flex; justify-content: space-between; padding-inline: 18%; height: 40px; }
-  .hs__posts span { width: 14px; background: linear-gradient(90deg, #9aa0a6, #c9cdd1 45%, #8a9096); }
-  .hs__road { background: var(--c-asphalt); height: 64px; display: grid; align-items: center; }
+  .hs__proof { margin-top: var(--sp-4); display: flex; gap: 0.6rem; align-items: baseline; font-size: var(--fs-small); color: var(--c-on-sign-2); max-width: 34rem; }
+  .hs__proof a { color: #fff; font-weight: 600; }
+  .hs__proof strong { color: #fff; font-weight: 700; font-size: 1.05em; }
+  .hs__dot { flex: none; width: 9px; height: 9px; border-radius: 50%; background: #5fd38d; box-shadow: 0 0 0 3px rgba(95,211,141,.25); translate: 0 -1px; }
+  .hs__legend { display: flex; justify-content: space-between; font-size: var(--fs-tiny); text-transform: uppercase; letter-spacing: 0.1em; color: var(--c-on-sign-2); padding: 0 0.15rem 0.35rem; border-bottom: 2px solid rgba(255,255,255,.5); }
+  .hs__posts { display: flex; justify-content: space-between; padding-inline: 18%; height: 28px; }
+  .hs__posts span { width: 12px; background: linear-gradient(90deg, #8a9096, #c9cdd1 45%, #7d838a); }
+  .hs__road { background: var(--c-asphalt); height: 56px; display: grid; align-items: center; }
   @media (min-width: 960px) {
     .hs { padding-top: var(--sp-6); }
     .hs__panel { grid-template-columns: 1.05fr 1fr; align-items: end; padding: 3rem 3rem 2.4rem; gap: 3.5rem; }
-    .hs__posts { height: 72px; }
+    .hs__posts { height: 64px; }
+    .hs__road { height: 64px; }
   }
 </style>

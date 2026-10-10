@@ -1,0 +1,73 @@
+---
+// Danh sách tour dạng bảng giờ bến xe: mỗi hàng đủ tên, giờ, thời lượng, lịch, giá người lớn/trẻ em.
+import Icon from './Icon.astro';
+import { tours, vnd, coGia, diemChinh, PICTO, MAU_TUYEN, dangMua, LOAI, chuyenConCho, ngayVN } from '../lib/data.js';
+interface Props { list?: typeof tours; heading?: string; level?: 'h2' | 'h3'; full?: boolean }
+const { list = tours, level = 'h3', full = false } = Astro.props;
+const H = level;
+---
+<ol class:list={['tl', { 'tl--full': full }]}>
+  {list.map((t) => {
+    const d = diemChinh(t);
+    const mua = dangMua(t);
+    const next = chuyenConCho(t.slug);
+    return (
+      <li class="tl__row" data-loai={LOAI(t)} style={`--tuyen:${MAU_TUYEN[t.mau]}`}>
+        <a class="tl__link" href={`/tour/${t.slug}/`} aria-label={`${t.ten}, ${vnd(t.gia_nguoi_lon)}`}></a>
+        <span class="tl__pic" aria-hidden="true"><Icon name={PICTO[t.mau]} size={30} /></span>
+        <div class="tl__main">
+          <H class="tl__name">{t.ten_ngan}</H>
+          <p class="tl__desc">{t.mo_ta_ngan}</p>
+          <ul class="tl__meta">
+            <li><Icon name="clock" size={16} />{t.thoi_luong}, <span class="num">{t.gio}</span></li>
+            <li><Icon name="calendar" size={16} />{mua ? t.lich.mo_ta : 'Nghỉ mùa biển động, mở lại tháng 3'}</li>
+            {full && <li><Icon name="users" size={16} />Tối đa {t.nhom_toi_da} khách</li>}
+          </ul>
+        </div>
+        <div class="tl__side">
+          <p class="tl__arrive"><span>Tới {d.ten}</span><strong class="num">{d.gio}</strong></p>
+          <p class="tl__price"><span>Người lớn</span><strong class="num">{vnd(t.gia_nguoi_lon)}</strong></p>
+          {full && coGia(t.gia_tre_em) && <p class="tl__child">Trẻ em 1–1,4 m: <span class="num">{vnd(t.gia_tre_em)}</span></p>}
+          {full && mua && next && <p class="tl__next">Chuyến gần nhất: {ngayVN(next.ngay)}, còn <span class="num">{next.con_cho}/12</span></p>}
+          {!mua && <p class="tl__off">Tạm nghỉ</p>}
+          <span class="tl__cta" aria-hidden="true">Xem lịch trình theo giờ <Icon name="arrow-right" size={18} /></span>
+        </div>
+      </li>
+    );
+  })}
+</ol>
+<style>
+  .tl { list-style: none; margin: 0; padding: 0; border-top: 3px solid var(--c-ink); }
+  .tl__row { position: relative; display: grid; grid-template-columns: auto 1fr; gap: 0.4rem 1rem; padding: 1.25rem 0; border-bottom: 1px solid var(--c-rule); }
+  .tl__link { position: absolute; inset: 0; z-index: 1; border-radius: 4px; }
+  .tl__link:focus-visible { outline-offset: 2px; }
+  .tl__pic { grid-row: span 2; width: 52px; height: 52px; border-radius: 8px; background: var(--c-sign); color: #fff; display: grid; place-items: center; box-shadow: inset 0 -5px 0 var(--tuyen); }
+  .tl__name { font-size: 1.6rem; line-height: 1.05; }
+  .tl__desc { color: var(--c-ink-2); margin-top: 0.35rem; max-width: 38rem; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+  .tl__meta { list-style: none; padding: 0; margin: 0.6rem 0 0; display: flex; flex-wrap: wrap; gap: 0.25rem 1rem; font-size: var(--fs-small); color: var(--c-ink-2); }
+  .tl__meta li { display: inline-flex; align-items: center; gap: 0.35rem; }
+  .tl__meta svg { color: var(--c-sign); }
+  .tl__side { grid-column: 2; display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem 1rem; align-items: end; margin-top: 0.5rem; }
+  .tl__arrive, .tl__price { display: grid; }
+  .tl__arrive span, .tl__price span { font-size: var(--fs-tiny); color: var(--c-ink-2); }
+  .tl__arrive span { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .tl__arrive strong { font-family: var(--f-display); font-size: 1.6rem; color: var(--c-cap); line-height: 1.05; }
+  .tl__price strong { font-family: var(--f-display); font-size: 1.6rem; line-height: 1.05; }
+  .tl__child, .tl__next, .tl__off { grid-column: 1 / -1; font-size: var(--fs-small); color: var(--c-ink-2); }
+  .tl__next { color: var(--c-ink); }
+  .tl__off { color: var(--c-cap); font-weight: 600; }
+  .tl__cta { grid-column: 1 / -1; display: inline-flex; align-items: center; gap: 0.35rem; color: var(--c-sign); font-weight: 600; font-size: var(--fs-small); }
+  .tl__cta svg { transition: transform var(--dur-ui) var(--ease-out); }
+  @media (hover: hover) and (pointer: fine) {
+    .tl__row { transition: background-color var(--dur-ui) var(--ease-out); }
+    .tl__row:hover { background: #fff; }
+    .tl__row:hover .tl__name { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 0.15em; }
+    .tl__row:hover .tl__cta svg { transform: translateX(4px); }
+  }
+  @media (min-width: 760px) {
+    .tl__row { grid-template-columns: auto 1fr 16rem; padding: 1.5rem 1rem; margin-inline: -1rem; border-radius: 4px; }
+    .tl__pic { grid-row: auto; }
+    .tl__side { grid-column: 3; margin-top: 0; align-self: center; }
+    .tl__name { font-size: 2rem; }
+  }
+</style>
