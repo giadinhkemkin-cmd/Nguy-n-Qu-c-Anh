@@ -26,6 +26,7 @@ for (const f of files) {
     const depth = rel.split('/').length - 1;
     const pre = '../'.repeat(depth);
     let s = fs.readFileSync(f, 'utf8');
+    s = s.replace(/(<meta property="og:image" content=)(["'])(\/[^"']*)\2/g, (_, a, q, u) => `${a}${q}${pre}${u.slice(1)}${q}`);
     s = s.replace(/(\s(?:href|src|action|poster)=)(["'])(\/(?!\/)[^"']*)\2/g, (_, a, q, u) => { n++; return `${a}${q}${pre}${mapUrl(u)}${q}`; });
     s = s.replace(/url\((["']?)(\/_astro\/[^)"']+)\1\)/g, (_, q, u) => `url(${q}${pre}${u.slice(1)}${q})`);
     // import trong <script type=module> nội tuyến
