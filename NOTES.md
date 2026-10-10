@@ -56,7 +56,7 @@ Người dùng yêu cầu: không dừng hỏi ở bước nào; chỗ cần duy
 - [x] impeccable harden, adapt, optimize, polish
 - [x] mobile-native, review-animations
 - [x] Lighthouse mobile mọi trang
-- [ ] Build + publish artifact, tự mở kiểm tra
+- [x] Build + publish artifact: https://claude.ai/artifact/RMbsouRGNL8ZuWRrPF9DTr (29 file). Tự kiểm: danh sách file đủ; tải lại file đã publish, mã băm trùng bản build; chạy thử bản tải về: script, font Google, vé chạy theo đều chạy, không request lỗi. Chưa xem được trang live vì trình duyệt sandbox không đăng nhập claude.ai (artifact riêng tư).
 
 ## Quyết định thay cho bước duyệt (lý do)
 

@@ -16,7 +16,8 @@ const keep = [];
 for (const rel of files) {
   if (SKIP.some((r) => r.test(rel))) continue;
   if (/\.(woff2?|ttf)$/.test(rel)) continue; // font tự host không dùng nữa
-  const src = path.join(dist, rel), dst = path.join(out, rel);
+  const outRel = rel.replace(/^prototype\//, 'hero/'); // 'prototype' là tên Artifact cấm dùng
+  const src = path.join(dist, rel), dst = path.join(out, outRel);
   fs.mkdirSync(path.dirname(dst), { recursive: true });
   if (rel.endsWith('.html')) {
     let s = fs.readFileSync(src, 'utf8');
@@ -35,7 +36,7 @@ for (const rel of files) {
   } else if (rel.endsWith('.css')) {
     fs.writeFileSync(dst, fs.readFileSync(src, 'utf8').replace(/@font-face\{[^}]*\}/g, ''));
   } else fs.copyFileSync(src, dst);
-  keep.push(rel);
+  keep.push(outRel);
 }
-fs.writeFileSync(path.join(out, '_files.json'), JSON.stringify(keep.filter((f) => f !== 'index.html'), null, 1));
+fs.writeFileSync(path.join(out, '../site/dist-files.json'), JSON.stringify(keep.filter((f) => f !== 'index.html'), null, 1));
 console.log('artifact:', keep.length, 'file');

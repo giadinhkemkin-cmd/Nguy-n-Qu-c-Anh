@@ -12,7 +12,7 @@ function mapUrl(u) {
   const [pathname, query = ''] = p.split('?');
   let out;
   if (pathname === '/' || pathname === '') out = 'index.html';
-  else if (pathname.startsWith('/_astro/') || /\.[a-z0-9]+$/i.test(pathname)) out = pathname.slice(1);
+  else if (pathname.startsWith('/assets/') || /\.[a-z0-9]+$/i.test(pathname)) out = pathname.slice(1);
   else {
     const clean = pathname.replace(/^\/|\/$/g, '');
     out = pages.has(clean + '.html') ? clean + '.html' : pages.has(clean + '/index.html') ? clean + '/index.html' : clean + '.html';
@@ -28,17 +28,17 @@ for (const f of files) {
     let s = fs.readFileSync(f, 'utf8');
     s = s.replace(/(<meta property="og:image" content=)(["'])(\/[^"']*)\2/g, (_, a, q, u) => `${a}${q}${pre}${u.slice(1)}${q}`);
     s = s.replace(/(\s(?:href|src|action|poster)=)(["'])(\/(?!\/)[^"']*)\2/g, (_, a, q, u) => { n++; return `${a}${q}${pre}${mapUrl(u)}${q}`; });
-    s = s.replace(/url\((["']?)(\/_astro\/[^)"']+)\1\)/g, (_, q, u) => `url(${q}${pre}${u.slice(1)}${q})`);
+    s = s.replace(/url\((["']?)(\/assets\/[^)"']+)\1\)/g, (_, q, u) => `url(${q}${pre}${u.slice(1)}${q})`);
     // import trong <script type=module> nội tuyến
-    s = s.replace(/(from\s*|import\s*\(?\s*)(["'])(\/_astro\/[^"']+)\2/g, (_, a, q, u) => `${a}${q}./${pre}${u.slice(1)}${q}`.replace('./../', '../'));
+    s = s.replace(/(from\s*|import\s*\(?\s*)(["'])(\/assets\/[^"']+)\2/g, (_, a, q, u) => `${a}${q}./${pre}${u.slice(1)}${q}`.replace('./../', '../'));
     fs.writeFileSync(f, s);
   } else if (f.endsWith('.css')) {
     let s = fs.readFileSync(f, 'utf8');
-    s = s.replace(/url\((["']?)\/_astro\/([^)"']+)\1\)/g, (_, q, u) => `url(${q}./${u}${q})`);
+    s = s.replace(/url\((["']?)\/assets\/([^)"']+)\1\)/g, (_, q, u) => `url(${q}./${u}${q})`);
     fs.writeFileSync(f, s);
   } else if (f.endsWith('.js')) {
     let s = fs.readFileSync(f, 'utf8');
-    if (s.includes('"/_astro/')) { s = s.replace(/"\/_astro\//g, '"./'); fs.writeFileSync(f, s); }
+    if (s.includes('"/assets/')) { s = s.replace(/"\/assets\//g, '"./'); fs.writeFileSync(f, s); }
   }
 }
 console.log(`relativize: ${n} đường dẫn trong ${pages.size} trang`);
