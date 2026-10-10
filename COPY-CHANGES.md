@@ -12,6 +12,7 @@ Không có web cũ, nên đây là các chỗ sửa trên bản nháp đầu.
 | Nút form | Gửi qua Zalo | Gửi yêu cầu qua Zalo | Rõ hành động |
 | Dải giờ | "Mỹ Sơn — Cổng vừa mở" (gạch ngang nối) | Tách cột giờ / điểm / câu | Bỏ gạch ngang làm chỗ nối (humanizer §8); trên web hiển thị thành 3 cột |
 | Dải giờ – Cầu Vàng | sương chưa tan | thường còn sương | Không chắc ngày nào cũng có sương |
+| Hero – nhãn nhỏ trên H1 | Tour ghép nhóm nhỏ · Đà Nẵng | Bỏ | impeccable craft-floor cấm nhãn nhỏ (eyebrow) trên tiêu đề; ý "tour ghép nhóm nhỏ" đã có trong câu dẫn |
 | Tour Mỹ Sơn | Mỹ Sơn lúc bình minh | Mỹ Sơn sáng sớm | Thường không thấy mặt trời mọc ở Mỹ Sơn (nguồn ở BRIEF) |
 
 Còn chờ khách: [CẦN XÁC NHẬN] giấy phép lữ hành, tên/ảnh đội ngũ, giá vé cáp Bà Nà 2026, cam kết không ghé điểm mua sắm, form gửi về đâu.

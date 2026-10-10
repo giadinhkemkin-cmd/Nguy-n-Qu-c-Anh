@@ -68,9 +68,9 @@ Web công ty lữ hành phải ghi tên doanh nghiệp, số giấy phép kinh d
 
 | Tài nguyên | Dùng ở | Nguồn | Ghi chú |
 |---|---|---|---|
-| Ảnh thật từng tour (Cầu Vàng, phố Hội An đêm, san hô, tháp Chăm, Đại Nội) | Thẻ tour, trang chi tiết | **Cần khách chụp/cung cấp** | Bản test: chưa có. Mạng sandbox chặn Unsplash/Pexels/Wikimedia nên không lấy được ảnh tạm. Chỗ ảnh dùng minh hoạ (dòng dưới). |
+| Ảnh thật từng tour (Cầu Vàng, phố Hội An đêm, san hô, tháp Chăm, Đại Nội) | Thẻ tour, trang chi tiết | **Cần khách chụp/cung cấp** | Bản test: chưa có. Mạng sandbox chặn Unsplash/Pexels/Wikimedia nên không lấy được ảnh tạm. Chỗ ảnh để khung sẵn, tạm dùng hình học biển báo (dòng dưới). |
 | Ảnh hướng dẫn viên, đội ngũ | Phần "Ai dẫn bạn đi" | **Cần khách chụp** | Không dùng AI cho người. Bản test: dùng chữ cái đầu tên, không có ảnh. |
-| Minh hoạ phong cảnh từng tour (kiểu tranh in lụa, mảng màu phẳng) | Hero, thẻ tour, đầu trang chi tiết | Claude vẽ SVG | Được phép: "minh hoạ phong cách vẽ". Không vẽ người, không giống ảnh thật. Ghi "minh hoạ" khi cần. |
+| Hình học kiểu biển báo: biển chỉ dẫn, cột cây số, pictogram điểm đến (cáp treo, đèn lồng, mặt nạ lặn, tháp Chăm, cổng thành) | Hero, thẻ tour, đầu trang chi tiết | Claude vẽ SVG hình học | Được phép (icon, đồ hoạ). Không vẽ tranh phong cảnh giả ảnh (craft-floor của impeccable). Chỗ ảnh thật để khung sẵn. |
 | Bản đồ bờ biển Đà Nẵng – Quảng Nam – Huế | Hero, trang chi tiết | Vẽ từ dữ liệu bản đồ mở (gói npm), Claude dựng SVG | Ghi nguồn dữ liệu, giấy phép trong NOTES.md |
 | Tem, vé, icon | Vé lịch trình, nhãn, icon | Claude vẽ SVG | |
 | Animation đường đi, giờ lật | Trang chi tiết, hero | GSAP + SVG | Nhẹ, không cần ảnh |

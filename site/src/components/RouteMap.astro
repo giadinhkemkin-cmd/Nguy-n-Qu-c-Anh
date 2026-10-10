@@ -1,0 +1,72 @@
+---
+// Bản đồ tuyến: bờ biển Natural Earth 10m (public domain) + tuyến vẽ qua các điểm trong lịch trình.
+// Đoạn đi thuyền/ca nô vẽ nét đứt. Dữ liệu dựng lúc build, trình duyệt chỉ nhận SVG.
+import { map, tours, xy, diemChinh, MAU_TUYEN, congTy } from '../lib/data.js';
+import { line, curveCatmullRom } from 'd3-shape';
+interface Props { viewBox?: string; only?: string; labels?: boolean; class?: string; title?: string; office?: boolean }
+const { viewBox = '60 170 900 700', only, labels = true, class: cls, title = 'Bản đồ năm tuyến tour quanh Đà Nẵng', office = true } = Astro.props;
+const NUOC = { 'cu-lao-cham': [1, 99], 'my-son-sang-som': [4, 5] }; // đoạn đi trên nước (chỉ số điểm bắt đầu–kết thúc)
+const gen = line().curve(curveCatmullRom.alpha(0.6));
+const list = tours.filter((t) => !only || t.slug === only).map((t) => {
+  const pts = t.lich_trinh.slice(0, -1).map((s) => xy(s.toa_do));
+  // gộp điểm quá gần nhau
+  const uniq = pts.filter((p, i) => i === 0 || Math.hypot(p[0] - pts[i - 1][0], p[1] - pts[i - 1][1]) > 6);
+  const idx = t.lich_trinh.slice(0, -1).map((s) => xy(s.toa_do)).reduce((acc, p, i, arr) => { if (i === 0 || Math.hypot(p[0] - arr[i - 1][0], p[1] - arr[i - 1][1]) > 6) acc.push(i); return acc; }, []);
+  const w = NUOC[t.slug];
+  let land = uniq, water = null;
+  if (w) {
+    const a = idx.findIndex((i) => i >= w[0]);
+    const b = Math.min(uniq.length - 1, idx.findIndex((i) => i >= w[1]) === -1 ? uniq.length - 1 : idx.findIndex((i) => i >= w[1]));
+    land = uniq.slice(0, a + 1);
+    water = uniq.slice(a, b + 1);
+  }
+  const d = diemChinh(t);
+  return { t, landD: land.length > 1 ? gen(land) : null, waterD: water && water.length > 1 ? gen(water) : null, main: xy(d.toa_do), gio: d.gio, diem: d.ten, mau: MAU_TUYEN[t.mau] };
+});
+const off = xy(congTy.toa_do);
+const [vx, vy, vw] = viewBox.split(' ').map(Number);
+const k = vw / 900; // tỉ lệ nét theo độ phóng
+---
+<svg class:list={['rmap', cls]} viewBox={viewBox} role="img" aria-label={title} preserveAspectRatio="xMidYMid slice">
+  <title>{title}</title>
+  <rect x="-40" y="-40" width="1080" height="1080" class="rmap__sea" />
+  <path d={map.land} class="rmap__land" />
+  <path d={map.island} class="rmap__land" />
+  {list.map((r) => (
+    <g class="rmap__route" data-route={r.t.slug} style={`--tuyen:${r.mau}`}>
+      {r.landD && <path d={r.landD} class="rmap__casing" stroke-width={9 * k} />}
+      {r.landD && <path d={r.landD} class="rmap__line" stroke-width={5 * k} pathLength="1" />}
+      {r.waterD && <path d={r.waterD} class="rmap__water" stroke-width={4 * k} stroke-dasharray={`${7 * k} ${6 * k}`} />}
+      <circle cx={r.main[0]} cy={r.main[1]} r={9 * k} class="rmap__stop" />
+      {labels && (
+        <g class="rmap__label" transform={`translate(${r.main[0]} ${r.main[1]})`}>
+          <g transform={`scale(${k})`}>
+            <rect x="12" y="-34" width="74" height="30" rx="4" class="rmap__tag" />
+            <rect x="12" y="-34" width="74" height="5" class="rmap__tagcap" />
+            <text x="49" y="-11" text-anchor="middle" class="rmap__time">{r.gio}</text>
+          </g>
+        </g>
+      )}
+    </g>
+  ))}
+  {office && (
+    <g class="rmap__office" transform={`translate(${off[0]} ${off[1]}) scale(${k})`}>
+      <circle r="13" />
+      <circle r="5.5" class="rmap__office-dot" />
+    </g>
+  )}
+</svg>
+<style>
+  .rmap { width: 100%; height: 100%; }
+  .rmap__sea { fill: var(--map-sea, var(--c-sign)); }
+  .rmap__land { fill: var(--map-land, var(--c-paint)); }
+  .rmap__casing { fill: none; stroke: var(--map-land, var(--c-paint)); stroke-linecap: round; stroke-linejoin: round; }
+  .rmap__line { fill: none; stroke: var(--tuyen); stroke-linecap: round; stroke-linejoin: round; }
+  .rmap__water { fill: none; stroke: var(--tuyen); stroke-linecap: round; }
+  .rmap__stop { fill: #fff; stroke: var(--tuyen); stroke-width: 4; }
+  .rmap__tag { fill: #fff; }
+  .rmap__tagcap { fill: var(--c-cap); }
+  .rmap__time { font-family: var(--f-num); font-weight: 700; font-size: 22px; fill: var(--c-cap); }
+  .rmap__office circle { fill: var(--c-line); stroke: var(--c-asphalt); stroke-width: 3; }
+  .rmap__office .rmap__office-dot { fill: var(--c-asphalt); stroke: none; }
+</style>

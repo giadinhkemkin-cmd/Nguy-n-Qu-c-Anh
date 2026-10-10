@@ -1,0 +1,40 @@
+---
+import RouteMap from '../RouteMap.astro';
+import Icon from '../Icon.astro';
+import { congTy, tuyen } from '../../lib/data.js';
+---
+<section class="hm" aria-labelledby="hm-h1">
+  <div class="hm__map"><RouteMap viewBox="80 190 880 680" /></div>
+  <div class="hm__panel wrap">
+    <div class="hm__copy">
+      <h1 id="hm-h1" class="hm__h1">Đà Nẵng lúc còn vắng</h1>
+      <p class="hm__lead">Năm tour quanh Đà Nẵng, Hội An và Huế. Mỗi xe chở tối đa 12 khách, giờ đi được xếp để bạn tới Cầu Vàng, Mỹ Sơn, phố Hội trước hoặc sau lúc xe đoàn lớn đến.</p>
+      <div class="hm__cta">
+        <a class="btn" href={congTy.zalo} target="_blank" rel="noopener" data-zalo data-msg="Chào Gió Nồm, mình muốn hỏi chỗ tour. Ngày đi: …, số người: …"><Icon name="chat" />Nhắn Zalo hỏi chỗ</a>
+        <a class="link-arrow" href="/tour/">Xem 5 tour và giá <Icon name="arrow-right" /></a>
+      </div>
+      <ul class="hm__keys">
+        {tuyen.map((r) => <li style={`--tuyen:${r.mau}`}><a href={`/tour/${r.slug}/`}><span class="hm__sw"></span>{r.ten}<span class="num">{r.gio}</span></a></li>)}
+      </ul>
+      <p class="hm__note">Giờ trên bản đồ là giờ đoàn tới điểm chính. Chấm vàng: văn phòng Gió Nồm.</p>
+    </div>
+  </div>
+</section>
+<style>
+  .hm { position: relative; background: var(--c-sign); color: #fff; overflow: hidden; }
+  .hm__map { height: 58svh; min-height: 320px; --map-land: var(--c-paint); }
+  .hm__panel { padding-block: var(--sp-6) var(--sp-7); }
+  .hm__h1 { font-size: var(--fs-hero); line-height: 0.95; max-width: 9ch; }
+  .hm__lead { margin-top: var(--sp-4); font-size: var(--fs-lead); color: var(--c-on-sign-2); max-width: 32rem; line-height: 1.5; }
+  .hm__cta { margin-top: var(--sp-5); display: flex; flex-wrap: wrap; gap: 0.75rem 1.25rem; align-items: center; }
+  .hm__keys { list-style: none; padding: 0; margin: var(--sp-6) 0 0; display: grid; gap: 0; max-width: 26rem; }
+  .hm__keys a { display: grid; grid-template-columns: auto 1fr auto; gap: 0.75rem; align-items: center; min-height: 44px; text-decoration: none; border-top: 1px solid rgba(255,255,255,.2); font-weight: 600; }
+  .hm__keys .num { font-weight: 700; font-size: 1.2rem; color: var(--c-line); }
+  .hm__sw { width: 22px; height: 6px; border-radius: 3px; background: var(--tuyen); box-shadow: 0 0 0 2px #fff; }
+  .hm__note { margin-top: var(--sp-4); font-size: var(--fs-tiny); color: var(--c-on-sign-2); }
+  @media (min-width: 960px) {
+    .hm { display: grid; grid-template-columns: minmax(26rem, 0.8fr) 1.2fr; min-height: calc(100svh - var(--hdr)); }
+    .hm__map { order: 2; height: auto; }
+    .hm__panel { order: 1; width: auto; margin: 0; padding: var(--sp-7) var(--sp-6) var(--sp-7) max(var(--gutter), calc((100vw - var(--maxw)) / 2)); display: flex; align-items: center; }
+  }
+</style>

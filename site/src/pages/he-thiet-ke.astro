@@ -1,0 +1,139 @@
+---
+import '@fontsource/overpass/400.css';
+import '@fontsource/overpass/700.css';
+import '@fontsource/overpass/800.css';
+import '@fontsource/be-vietnam-pro/400.css';
+import '@fontsource/be-vietnam-pro/600.css';
+import '@fontsource/be-vietnam-pro/700.css';
+import Base from '../layouts/Base.astro';
+import SignRows from '../components/SignRows.astro';
+import Milestone from '../components/Milestone.astro';
+import Icon from '../components/Icon.astro';
+import { tours, vnd } from '../lib/data.js';
+const colors = [
+  ['--c-sign', '#1446a0', 'Xanh biển chỉ dẫn', 'Mảng lớn: header, hero, khối kêu gọi. Chữ trắng 8,5:1'],
+  ['--c-paint', '#edeee9', 'Sơn trắng cột mốc', 'Nền trang'],
+  ['--c-panel', '#ffffff', 'Trắng tấm biển', 'Thẻ, ô giờ'],
+  ['--c-cap', '#c42b1f', 'Đỏ đỉnh cột cây số', 'Giờ tới nơi, mốc. Trên trắng 5,6:1'],
+  ['--c-line', '#f3b300', 'Vàng vạch kẻ đường', 'Nút hành động chính, chữ than 9,6:1'],
+  ['--c-asphalt', '#23262b', 'Than nhựa đường', 'Chân trang, vé, chữ trên vàng'],
+  ['--c-ink', '#1b1e23', 'Mực', 'Chữ chính trên nền sáng 15:1'],
+  ['--c-ink-2', '#4a505a', 'Mực phụ', 'Chữ phụ 7,2:1'],
+  ['--c-brown', '#7a4627', 'Nâu biển du lịch', 'Tuyến Huế, nhãn di sản'],
+];
+const routes = [['--t-nui','Bà Nà'],['--t-den','Hội An'],['--t-bien','Cù Lao Chàm'],['--t-thap','Mỹ Sơn'],['--t-co-do','Huế']];
+const fonts = [
+  ['1', 'Barlow Condensed + Barlow', 'Dựng theo chữ biển báo giao thông (California), có bản hẹp cho tên điểm dài. OFL 1.1, Google Fonts, đủ dấu tiếng Việt.'],
+  ['2', 'Overpass', 'Dựng theo Highway Gothic (chữ biển cao tốc Mỹ). OFL 1.1, đủ dấu tiếng Việt.'],
+  ['3', 'Be Vietnam Pro', 'Do nhóm người Việt thiết kế, dấu cân. OFL 1.1.'],
+];
+const t = tours[0];
+---
+<Base title="Hệ thiết kế" description="Trang nội bộ: màu, chữ, nút của Gió Nồm" noindex font="1">
+  <div class="ht wrap">
+    <header class="ht__head">
+      <h1>Hệ thiết kế Gió Nồm</h1>
+      <p>Trang nội bộ để duyệt màu, chữ, nút. Không có trong menu, gắn noindex, bỏ trước khi lên chính thức.</p>
+      <div class="ht__fonts" role="radiogroup" aria-label="Chọn font">
+        {fonts.map(([k, n, why]) => (
+          <button type="button" role="radio" aria-checked={k === '1' ? 'true' : 'false'} data-font-pick={k}>
+            <strong>Font {k}: {n}</strong><span>{why}</span>
+          </button>
+        ))}
+      </div>
+    </header>
+
+    <section class="ht__sec">
+      <h2>Màu</h2>
+      <ul class="ht__sw">
+        {colors.map(([v, hex, name, role]) => <li><span class="ht__chip" style={`background:var(${v})`}></span><strong>{name}</strong><code>{hex}</code><span>{role}</span></li>)}
+      </ul>
+      <h3>Màu tuyến</h3>
+      <ul class="ht__routes">{routes.map(([v, n]) => <li><span style={`background:var(${v})`}></span>{n}</li>)}</ul>
+    </section>
+
+    <section class="ht__sec">
+      <h2>Chữ</h2>
+      <div class="ht__type">
+        <p class="ht__lbl">Hero</p><p class="t-hero">Đà Nẵng lúc còn vắng</p>
+        <p class="ht__lbl">H2</p><p class="t-h2">Mỗi tour xếp quanh một giờ tới nơi</p>
+        <p class="ht__lbl">H3</p><p class="t-h3">Huỷ miễn phí trước 24 giờ</p>
+        <p class="ht__lbl">Dẫn</p><p class="t-lead">Xe đoàn lớn thường rời Đà Nẵng lúc 8–9 giờ sáng. Lịch của Gió Nồm tránh khung giờ đó.</p>
+        <p class="ht__lbl">Thân</p><p>{t.lich_trinh[2].mo_ta} Giá {vnd(t.gia_nguoi_lon)} cho người lớn, đã gồm vé cáp treo và buffet trưa. Ỷ, Ữ, Ặ, Ộ, Ỡ, Ẹ, Ỳ: thử dấu chồng.</p>
+        <p class="ht__lbl">Số giờ</p><p class="t-num num">06:00 · 08:15 · 16:30 · 1.490.000 đ</p>
+      </div>
+    </section>
+
+    <section class="ht__sec">
+      <h2>Nút</h2>
+      <div class="ht__btns">
+        <a class="btn" href="#"><Icon name="chat" />Nhắn Zalo hỏi chỗ</a>
+        <a class="btn btn--dark" href="#"><Icon name="phone" />Gọi 0905 000 000</a>
+        <button class="btn" disabled style="opacity:.45;cursor:not-allowed">Hết chỗ</button>
+        <a class="link-arrow" href="#">Xem lịch trình theo giờ <Icon name="arrow-right" /></a>
+      </div>
+      <div class="sign ht__onsign">
+        <a class="btn" href="#"><Icon name="chat" />Nhắn Zalo hỏi chỗ</a>
+        <a class="btn btn--ghost" href="#">Xem 5 tour và giá</a>
+      </div>
+    </section>
+
+    <section class="ht__sec">
+      <h2>Biển chỉ dẫn, cột cây số</h2>
+      <div class="sign ht__sign"><SignRows /></div>
+      <div class="ht__ms">
+        <Milestone top="BÀ NÀ" name="Cầu Vàng" km="35 km" time="08:15" color="var(--t-nui)" />
+        <Milestone top="MỸ SƠN" name="Cổng Mỹ Sơn" km="45 km" time="06:00" color="var(--t-thap)" />
+      </div>
+    </section>
+
+    <section class="ht__sec">
+      <h2>Khoảng cách, bo góc</h2>
+      <ul class="ht__space">{[1,2,3,4,5,6,7,8].map((n) => <li><span style={`width:var(--sp-${n})`}></span>--sp-{n}</li>)}</ul>
+      <p>Bo góc tấm biển 10px, nút 6px. Viền trắng chìm 2px cách mép 7px trên mọi tấm biển xanh.</p>
+    </section>
+  </div>
+</Base>
+<script>
+  const root = document.documentElement;
+  document.querySelectorAll<HTMLButtonElement>('[data-font-pick]').forEach((b) => {
+    b.addEventListener('click', () => {
+      root.dataset.font = b.dataset.fontPick;
+      document.querySelectorAll('[data-font-pick]').forEach((x) => x.setAttribute('aria-checked', String(x === b)));
+    });
+  });
+  const q = new URLSearchParams(location.search).get('font');
+  if (q) (document.querySelector(`[data-font-pick="${q}"]`) as HTMLButtonElement | null)?.click();
+</script>
+<style>
+  .ht { padding-block: var(--sp-6) var(--sp-8); }
+  .ht__head h1 { font-size: var(--fs-h2); }
+  .ht__head > p { margin-top: var(--sp-3); color: var(--c-ink-2); }
+  .ht__fonts { display: grid; gap: 0.5rem; margin-top: var(--sp-5); }
+  .ht__fonts button { text-align: left; display: grid; gap: 0.2rem; padding: 0.9rem 1rem; border: 2px solid var(--c-rule); border-radius: var(--r-small); background: #fff; cursor: pointer; min-height: 44px; }
+  .ht__fonts button[aria-checked='true'] { border-color: var(--c-sign); box-shadow: inset 0 0 0 1px var(--c-sign); }
+  .ht__fonts span { font-size: var(--fs-small); color: var(--c-ink-2); }
+  .ht__sec { padding-top: var(--sp-7); display: grid; gap: var(--sp-4); }
+  .ht__sec h2 { font-size: var(--fs-h3); border-bottom: 2px solid var(--c-ink); padding-bottom: 0.4rem; }
+  .ht__sw { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(10.5rem, 1fr)); gap: 0.75rem; }
+  .ht__sw li { display: grid; gap: 0.15rem; font-size: var(--fs-small); }
+  .ht__sw li > span:last-child { color: var(--c-ink-2); font-size: var(--fs-tiny); }
+  .ht__chip { height: 64px; border-radius: var(--r-small); box-shadow: inset 0 0 0 1px rgba(0,0,0,.12); }
+  .ht__routes { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 1rem; }
+  .ht__routes li { display: flex; align-items: center; gap: 0.5rem; }
+  .ht__routes span { width: 28px; height: 8px; border-radius: 4px; }
+  .ht__type { display: grid; grid-template-columns: 4rem 1fr; gap: 0.6rem 1rem; align-items: baseline; }
+  .ht__lbl { font-size: var(--fs-tiny); color: var(--c-ink-2); }
+  .t-hero { font-family: var(--f-display); font-weight: var(--w-display); letter-spacing: var(--track-display); font-size: var(--fs-hero); line-height: .95; }
+  .t-h2 { font-family: var(--f-display); font-weight: var(--w-display); letter-spacing: var(--track-display); font-size: var(--fs-h2); line-height: 1.02; }
+  .t-h3 { font-family: var(--f-display); font-weight: var(--w-display); font-size: var(--fs-h3); }
+  .t-lead { font-size: var(--fs-lead); }
+  .t-num { font-size: 1.8rem; font-weight: 700; color: var(--c-cap); }
+  .ht__btns { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
+  .ht__onsign { padding: 1.5rem; display: flex; flex-wrap: wrap; gap: 0.75rem; }
+  .ht__sign { padding: 1rem 1.25rem; }
+  .ht__ms { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .ht__space { list-style: none; padding: 0; display: grid; gap: 0.35rem; font-size: var(--fs-tiny); }
+  .ht__space li { display: flex; gap: 0.75rem; align-items: center; }
+  .ht__space span { height: 12px; background: var(--c-sign); }
+</style>

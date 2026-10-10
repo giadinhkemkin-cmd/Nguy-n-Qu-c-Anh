@@ -1,0 +1,71 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import { congTy } from '../lib/data.js';
+interface Props { current?: string }
+const { current = '' } = Astro.props;
+const nav = [
+  { href: '/tour/', label: 'Tour', key: 'tour' },
+  { href: '/lich-khoi-hanh/', label: 'Lịch khởi hành', key: 'lich' },
+  { href: '/lien-he/', label: 'Liên hệ', key: 'lien-he' },
+];
+---
+<header class="hdr">
+  <div class="hdr__in wrap">
+    <a href="/" class="hdr__home" aria-label="Gió Nồm Travel, về trang chủ"><Logo /></a>
+    <nav class="hdr__nav" aria-label="Chính">
+      {nav.map((n) => <a href={n.href} aria-current={current === n.key ? 'page' : undefined}>{n.label}</a>)}
+      <a class="btn hdr__cta" href={congTy.zalo} target="_blank" rel="noopener" data-zalo data-msg="Chào Gió Nồm, mình muốn hỏi chỗ tour.">
+        <Icon name="chat" />Nhắn Zalo
+      </a>
+    </nav>
+    <button class="hdr__menu" type="button" aria-expanded="false" aria-controls="menu-mobile" aria-label="Mở menu">
+      <Icon name="menu" size={26} />
+    </button>
+  </div>
+  <div id="menu-mobile" class="menu" hidden>
+    <nav class="menu__in wrap" aria-label="Menu">
+      {nav.map((n) => (
+        <a class="menu__item" href={n.href} aria-current={current === n.key ? 'page' : undefined}>
+          <Icon name="mui-ten" size={22} rotate={90} />{n.label}
+        </a>
+      ))}
+      <a class="menu__item" href={`tel:${congTy.dien_thoai_tel}`}><Icon name="phone" size={22} />Gọi {congTy.dien_thoai}</a>
+      <a class="btn btn--block" href={congTy.zalo} target="_blank" rel="noopener" data-zalo data-msg="Chào Gió Nồm, mình muốn hỏi chỗ tour."><Icon name="chat" />Nhắn Zalo hỏi chỗ</a>
+    </nav>
+  </div>
+</header>
+<script>
+  const btn = document.querySelector<HTMLButtonElement>('.hdr__menu');
+  const menu = document.getElementById('menu-mobile');
+  if (btn && menu) {
+    const set = (open: boolean) => {
+      btn.setAttribute('aria-expanded', String(open));
+      btn.setAttribute('aria-label', open ? 'Đóng menu' : 'Mở menu');
+      menu.hidden = !open;
+      document.documentElement.classList.toggle('menu-open', open);
+    };
+    btn.addEventListener('click', () => set(btn.getAttribute('aria-expanded') !== 'true'));
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') set(false); });
+    menu.addEventListener('click', (e) => { if ((e.target as HTMLElement).closest('a')) set(false); });
+  }
+</script>
+<style>
+  .hdr { position: sticky; top: 0; z-index: 50; background: var(--c-sign); color: var(--c-on-sign); box-shadow: 0 1px 0 rgba(0,0,0,.12); }
+  .hdr__in { height: var(--hdr); display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+  .hdr__home { text-decoration: none; display: inline-flex; min-height: 44px; align-items: center; }
+  .hdr__nav { display: none; align-items: center; gap: 0.25rem; }
+  .hdr__nav > a:not(.btn) { text-decoration: none; font-weight: 600; padding: 0.6rem 0.85rem; border-radius: var(--r-small); min-height: 44px; display: inline-flex; align-items: center; transition: background-color var(--dur-ui) var(--ease-out); }
+  .hdr__nav > a[aria-current='page'] { box-shadow: inset 0 -3px 0 var(--c-line); border-radius: 0; }
+  @media (hover: hover) { .hdr__nav > a:not(.btn):hover { background: rgba(255,255,255,.1); } }
+  .hdr__cta { min-height: 42px; padding: 0.5rem 1rem; font-size: 1.05rem; margin-left: 0.5rem; }
+  .hdr__menu { width: 48px; height: 48px; margin-right: -8px; display: grid; place-items: center; background: none; border: 0; border-radius: var(--r-small); cursor: pointer; color: inherit; }
+  .menu { background: var(--c-sign); border-top: 1px solid rgba(255,255,255,.18); padding-block: 0.5rem 1.25rem; }
+  .menu__in { display: grid; gap: 0.25rem; }
+  .menu__item { display: flex; align-items: center; gap: 0.85rem; min-height: 56px; text-decoration: none; font-family: var(--f-display); font-weight: 700; font-size: 1.5rem; border-bottom: 1px solid rgba(255,255,255,.14); }
+  .menu__item:last-of-type { border-bottom: 0; margin-bottom: 0.75rem; }
+  @media (min-width: 960px) {
+    .hdr__nav { display: flex; }
+    .hdr__menu, .menu { display: none !important; }
+  }
+</style>

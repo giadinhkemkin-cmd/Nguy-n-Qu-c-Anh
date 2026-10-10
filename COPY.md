@@ -9,7 +9,6 @@ Nút chính toàn web: **Nhắn Zalo hỏi chỗ** (mở Zalo với tin soạn s
 ## Trang chủ
 
 ### Hero
-- Nhãn nhỏ: Tour ghép nhóm nhỏ · Đà Nẵng
 - H1: **Đà Nẵng lúc còn vắng**
 - Câu dẫn: Năm tour quanh Đà Nẵng, Hội An và Huế. Mỗi xe chở tối đa 12 khách, giờ đi được xếp để bạn tới Cầu Vàng, Mỹ Sơn, phố Hội trước hoặc sau lúc xe đoàn lớn đến.
 - Nút chính: Nhắn Zalo hỏi chỗ

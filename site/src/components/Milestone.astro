@@ -1,0 +1,29 @@
+---
+// Cột cây số: thân trắng, đỉnh đỏ, chữ khắc. size: 'lg' (hero) | 'sm'
+interface Props { top?: string; name: string; km?: string; time?: string; size?: 'lg' | 'sm'; href?: string; class?: string; color?: string }
+const { top = 'QL', name, km, time, size = 'sm', href, class: cls, color } = Astro.props;
+const Tag = href ? 'a' : 'div';
+---
+<Tag class:list={['ms', `ms--${size}`, cls]} href={href} style={color ? `--tuyen:${color}` : undefined}>
+  <span class="ms__cap"><span>{top}</span></span>
+  <span class="ms__body">
+    <span class="ms__name">{name}</span>
+    {km && <span class="ms__km num">{km}</span>}
+    {time && <span class="ms__time num">{time}</span>}
+    <slot />
+  </span>
+</Tag>
+<style>
+  .ms { --w: 9.5rem; display: inline-grid; grid-template-rows: auto 1fr; width: var(--w); text-decoration: none; color: var(--c-ink); filter: drop-shadow(0 10px 14px rgba(20,30,50,.18)); }
+  .ms__cap { background: var(--c-cap); color: #fff; border-radius: calc(var(--w) / 2) calc(var(--w) / 2) 0 0; aspect-ratio: 2 / 1; display: grid; place-items: end center; padding-bottom: 0.35rem; font-family: var(--f-display); font-weight: 700; letter-spacing: 0.06em; font-size: 0.95rem; }
+  .ms__body { background: #fff; display: grid; justify-items: center; align-content: start; gap: 0.15rem; padding: 0.6rem 0.5rem 1rem; border-radius: 0 0 3px 3px; box-shadow: inset 0 -10px 0 #d9dbd5; text-align: center; }
+  .ms__name { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; line-height: 1.02; font-size: 1.15rem; letter-spacing: 0.01em; }
+  .ms__km { font-family: var(--f-display); font-weight: 700; font-size: 1.8rem; line-height: 1; }
+  .ms__time { font-family: var(--f-display); font-weight: 700; color: var(--c-cap); font-size: 1.15rem; line-height: 1; padding-top: 0.25rem; border-top: 3px solid var(--tuyen, var(--c-cap)); }
+  .ms--lg { --w: min(78vw, 22rem); }
+  .ms--lg .ms__cap { font-size: clamp(1.1rem, 2vw + 0.6rem, 1.6rem); padding-bottom: 0.8rem; }
+  .ms--lg .ms__body { padding: 1.2rem 1rem 2.2rem; gap: 0.6rem; box-shadow: inset 0 -22px 0 #d9dbd5; }
+  a.ms { transition: transform var(--dur-ui) var(--ease-out); }
+  @media (hover: hover) { a.ms:hover { transform: translateY(-4px); } }
+  a.ms:active { transform: scale(0.98); }
+</style>
