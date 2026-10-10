@@ -92,7 +92,7 @@ const others = tours.filter((x) => x.slug !== t.slug).slice(0, 3);
     </div>
   </section>
   <CtaBand title={`Giữ chỗ ${t.ten_ngan}`} body="Nhắn ngày đi và số người. Gió Nồm trả lời từ 7:00 đến 21:00, cả tuần." msg={msg} />
-  <ActionBar msg={msg} />
+  <ActionBar msg={msg} always />
 
 <style>
   .th { padding-top: var(--sp-4); }
@@ -125,9 +125,10 @@ const others = tours.filter((x) => x.slug !== t.slug).slice(0, 3);
   .hl__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.2rem; border-top: 3px solid var(--c-ink); }
   .hl__list li { overflow-wrap: anywhere; display: flex; gap: 0.75rem; padding: 0.8rem 0; border-bottom: 1px solid var(--c-rule); font-size: 1.1rem; }
   .hl__list svg { flex: none; color: var(--tuyen, var(--c-sign)); margin-top: 0.2rem; }
-  .hl__map { margin: 0; padding: 0; overflow: hidden; --map-sea: var(--c-sign); }
-  .hl__map :global(svg) { aspect-ratio: 1.25; height: auto; }
-  .hl__map figcaption { position: absolute; left: 1rem; bottom: 0.9rem; font-size: var(--fs-tiny); color: #fff; background: rgba(13,51,120,.85); padding: 0.3rem 0.6rem; border-radius: 4px; z-index: 1; }
+  .hl__map { margin: 0; padding: 10px; overflow: hidden; --map-sea: var(--c-sign); --map-land: #f6f6f2; }
+  .hl__map::after { display: none; }
+  .hl__map :global(svg) { aspect-ratio: 1.25; height: auto; border-radius: 5px; box-shadow: 0 0 0 2px #fff; }
+  .hl__map figcaption { position: absolute; left: 1.4rem; bottom: 1.3rem; font-size: var(--fs-tiny); color: #fff; background: rgba(13,51,120,.85); padding: 0.3rem 0.6rem; border-radius: 4px; z-index: 1; }
   .inc__grid { display: grid; gap: var(--sp-5); }
   .inc__col h3, .inc__note h3 { font-size: var(--fs-h3); margin-bottom: 0.5rem; }
   .inc__none { color: var(--c-ink-2); padding: 0.45rem 0; border-bottom: 1px solid var(--c-rule); }

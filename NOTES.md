@@ -153,6 +153,8 @@ Lighthouse mobile (lan-2, sau khi sửa): / 98 · /tour/ 96 · Bà Nà 96 · H�
 
 | Lần | Ngày | Trang | Style | Bố cục | Màu | Chữ | Chuyển động | 3 lỗi lớn nhất |
 |---|---|---|---|---|---|---|---|---|
+| Vòng 1 | 10/10/2026 | Toàn site (chủ / danh mục / chi tiết) | 7 (7/6/7) | 6 (6/5,5/6,5) | 6,5 (7/7/6) | 7 | 7 | (1) khoảng trống dọc quá lớn, 3 khối xanh cùng khuôn; (2) danh mục: dòng 'không có tour' hiện sai, cột giá gãy dòng, nửa phải khối đầu trống; (3) nút giữ chỗ 4 màu, đỏ vừa là giờ vừa là cảnh báo, mobile chi tiết không có nút ở màn đầu |
+| Vòng 2 | 10/10/2026 | Toàn site (chủ / danh mục / chi tiết) | 7 (8/6/8) | 7 (7/6/7) | 7 (7/7/7) | 7 | 7 | (1) danh mục như bảng tính, cột trống, không có nút vàng; (2) trục giờ: chấm lơ lửng, nhãn dồn trái, vùng sọc 8–9 giờ dễ hiểu nhầm; (3) mobile là desktop co lại (icon thụt, chữ gãy, giá dưới màn đầu) |
 | Hero | 10/10/2026 | Hero 1 / 2 / 3 | 7 / 7 / 6 | 7 / 6 / 5 | 7 / 6 / 6 | 7 / 7 / 4 | – | (H1) hai màu nhấn tranh nhau; mobile co lại từ desktop; thiếu giá/ngày/chỗ trong màn đầu |
 
 ## Nguồn, giấy phép

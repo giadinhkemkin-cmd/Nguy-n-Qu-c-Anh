@@ -55,8 +55,10 @@ import { tuyen } from '../lib/data.js';
 <style>
   .ms-sec__in { display: grid; gap: var(--sp-5); }
   .ms-sec__head { margin-bottom: 0; }
-  .ms-sec__map { padding: 0; overflow: hidden; aspect-ratio: 580 / 520; --map-sea: var(--c-sign); }
-  .ms-sec__map :global(svg) { border-radius: var(--r-sign); }
+  .ms-sec__map { padding: 10px; overflow: hidden; --map-sea: var(--c-sign); --map-land: #f6f6f2; }
+  .ms-sec__map::after { display: none; }
+  .ms-sec__map :global(svg) { aspect-ratio: 580 / 520; height: auto; box-shadow: 0 0 0 2px #fff; }
+  .ms-sec__map :global(svg) { border-radius: 5px; }
   .ms-sec__map :global(.rmap__route) { transition: opacity var(--dur-ui) var(--ease-out); }
   .ms-sec__map :global(.rmap__route.is-dim) { opacity: 0.18; }
   .ms-sec__legend { list-style: none; margin: 0; padding: 0; display: grid; }

@@ -58,9 +58,9 @@ const ghe = (c) => Array.from({ length: 12 }, (_, i) => 12 - c.con_cho > i); // 
   .dp__seat.is-taken { background: var(--c-sign); }
   .dp__left { grid-column: 1; font-size: var(--fs-small); color: var(--c-ink-2); }
   .dp__left.is-low { color: var(--c-cap); font-weight: 600; }
-  .dp__btn { grid-column: 2; grid-row: 1 / span 3; display: inline-flex; align-items: center; gap: 0.35rem; min-height: 48px; padding: 0 1rem; border-radius: var(--r-small); background: var(--c-sign); color: #fff; font-weight: 600; text-decoration: none; transition: background-color var(--dur-ui) var(--ease-out), transform var(--dur-press) var(--ease-out); }
+  .dp__btn { grid-column: 2; grid-row: 1 / span 3; display: inline-flex; align-items: center; gap: 0.35rem; min-height: 48px; padding: 0 1rem; border-radius: var(--r-small); background: var(--c-line); color: var(--c-asphalt); font-family: var(--f-display); font-size: 1.1rem; font-weight: 600; text-decoration: none; transition: background-color var(--dur-ui) var(--ease-out), transform var(--dur-press) var(--ease-out); }
   .dp__btn:active { transform: scale(0.97); }
-  @media (hover: hover) and (pointer: fine) { .dp__btn:hover { background: var(--c-sign-deep); } }
+  @media (hover: hover) and (pointer: fine) { .dp__btn:hover { background: var(--c-line-press); } }
   .dp__btn--off { background: #d6d8d2; color: var(--c-ink-2); }
   .is-full .dp__date strong { text-decoration: line-through; color: var(--c-ink-2); }
   .dp__empty { display: grid; justify-items: start; gap: 0.75rem; background: #fff; padding: 1.5rem; border-radius: var(--r-sign); }

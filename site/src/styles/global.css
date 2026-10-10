@@ -1,5 +1,6 @@
 /* Gió Nồm – hệ biển báo đường bộ. Token màu, chữ, khoảng cách. */
 :root {
+  color-scheme: light; /* một thế giới sáng có chủ đích (biển báo ban ngày) */
   --c-sign: #1446a0;        /* xanh biển chỉ dẫn */
   --c-sign-deep: #0d3378;
   --c-sign-tint: #dbe4f3;
@@ -13,7 +14,7 @@
   --c-asphalt: #23262b;     /* nhựa đường: chân trang, vé */
   --c-asphalt-2: #3a3e45;
   --c-ink: #1b1e23;
-  --c-ink-2: #4a505a;
+  --c-ink-2: #41464f;
   --c-time: #0d3378;        /* số giờ trên ô trắng */
   --c-rule: #c9ccc4;
   --c-brown: #7a4627;       /* biển nâu điểm du lịch */
@@ -70,7 +71,7 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-padding-top: calc(var(--hdr) + 1rem); }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; -webkit-tap-highlight-color: transparent; scroll-padding-top: calc(var(--hdr) + 1rem); }
 html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
 body {
@@ -86,7 +87,9 @@ p { margin: 0; }
 p, li, h1, h2, h3, dd, dt, figcaption, label, strong, span { overflow-wrap: break-word; }
 main li, main p { min-width: 0; }
 a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
-button { font: inherit; color: inherit; }
+button { font: inherit; color: inherit; touch-action: manipulation; }
+a { touch-action: manipulation; }
+.btn, .row, .fc__chip, .dp__btn, .lk__btn, .ms-sec__key { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
 ::selection { background: var(--c-line); color: var(--c-asphalt); }
 :focus-visible { outline: 3px solid var(--c-line); outline-offset: 3px; border-radius: 4px; }
 .on-sign :focus-visible, .sign :focus-visible { outline-color: var(--c-line); }
@@ -128,6 +131,8 @@ button { font: inherit; color: inherit; }
 .btn--block { width: 100%; }
 .link-arrow { display: inline-flex; align-items: center; gap: 0.4rem; font-weight: 600; text-decoration: none; min-height: 44px; }
 .link-arrow svg { width: 1.1em; height: 1.1em; transition: transform var(--dur-ui) var(--ease-out); }
+/* Ô giờ: nền trắng, nắp đỏ, chữ xanh đậm (đỏ chỉ dành cho cột km và cảnh báo) */
+.tile { display: inline-block; background: #fff; color: var(--c-time); border-radius: 4px; padding: 0.22em 0.4em 0.05em; box-shadow: inset 0 3px 0 var(--c-cap), 0 1px 0 rgba(13,51,120,.12); line-height: 1; }
 /* Mũi tên đặt trong tấm biển nhỏ (nút phụ trên nền xanh) */
 .link-plate svg { box-sizing: content-box; width: 0.95em; height: 0.95em; padding: 0.3em; border-radius: 4px; background: #fff; color: var(--c-sign); }
 @media (hover: hover) and (pointer: fine) { .link-arrow:hover svg { transform: translateX(3px); } .link-arrow:hover { text-decoration: underline; } }
@@ -135,8 +140,9 @@ button { font: inherit; color: inherit; }
 /* Vạch kẻ đường */
 .road-line { height: 6px; background: repeating-linear-gradient(90deg, var(--c-line) 0 48px, transparent 48px 84px); }
 
-.section { padding-block: var(--sp-8) calc(var(--sp-8) + 0.5rem); }
-@media (min-width: 960px) { .section { padding-block: var(--sp-9) calc(var(--sp-9) + 1rem); } .section--tight { padding-block: var(--sp-7) var(--sp-8); } }
+[hidden] { display: none !important; }
+.section { padding-block: 1.75rem 2.25rem; }
+@media (min-width: 960px) { .section { padding-block: 3.25rem 3.75rem; } }
 .section-head { display: grid; gap: var(--sp-3); margin-bottom: var(--sp-6); max-width: 46rem; }
 .section-head p { max-width: 38rem; }
 .section-head h2 { font-size: var(--fs-h2); }

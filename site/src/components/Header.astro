@@ -51,7 +51,7 @@ const nav = [
   }
 </script>
 <style>
-  .hdr { position: sticky; isolation: isolate; top: 0; z-index: 50; background: var(--c-sign); color: var(--c-on-sign); box-shadow: 0 1px 0 rgba(0,0,0,.12); }
+  .hdr { position: sticky; isolation: isolate; top: env(safe-area-inset-top, 0px); z-index: 50; background: var(--c-sign); color: var(--c-on-sign); box-shadow: 0 1px 0 rgba(0,0,0,.12); }
   .hdr__in { height: var(--hdr); display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
   .hdr__home { text-decoration: none; display: inline-flex; min-height: 44px; align-items: center; }
   .hdr__nav { display: none; align-items: center; gap: 0.25rem; }

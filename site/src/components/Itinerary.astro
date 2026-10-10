@@ -28,7 +28,7 @@ const ngay = (g) => (g.match(/^N(\d)/) ? `Ngày ${g.match(/^N(\d)/)[1]}` : '');
         {stops.map((s, i) => (
           <li class="it__stop" data-i={i} data-gio={gioNgan(s.gio)} data-ten={s.ten}>
             <span class="it__dot" aria-hidden="true"></span>
-            <p class="it__time num">{ngay(s.gio) && <span class="it__day">{ngay(s.gio)}</span>}{gioNgan(s.gio)}</p>
+            <p class="it__time num">{ngay(s.gio) && <span class="it__day">{ngay(s.gio)}</span>}<span class="tile">{gioNgan(s.gio)}</span></p>
             <h3 class="it__name">{s.ten}</h3>
             <p class="it__desc">{s.mo_ta}</p>
           </li>
@@ -63,7 +63,7 @@ const ngay = (g) => (g.match(/^N(\d)/) ? `Ngày ${g.match(/^N(\d)/)[1]}` : '');
         ) : (
           <p class="tk__next">Chưa có lịch trong mùa này. Nhắn để được báo khi mở lịch.</p>
         )}
-        <a class="btn btn--dark btn--block tk__btn" href={congTy.zalo} target="_blank" rel="noopener" data-zalo data-msg={msg}><Icon name="chat" />{next ? 'Giữ chỗ chuyến này' : 'Nhắn Zalo hỏi lịch'}</a>
+        <a class="btn btn--block tk__btn" href={congTy.zalo} target="_blank" rel="noopener" data-zalo data-msg={msg}><Icon name="chat" />{next ? 'Giữ chỗ chuyến này' : 'Nhắn Zalo hỏi lịch'}</a>
       </div>
     </aside>
   </div>
@@ -127,7 +127,7 @@ const ngay = (g) => (g.match(/^N(\d)/) ? `Ngày ${g.match(/^N(\d)/)[1]}` : '');
   .it__dot { position: absolute; left: calc(-1.6rem + 1px); top: 0.45rem; width: 14px; height: 14px; border-radius: 50%; background: var(--c-paint); box-shadow: inset 0 0 0 3px var(--c-ink-2); transition: box-shadow 220ms var(--ease-out), transform 220ms var(--ease-out); }
   .it__stop.is-past .it__dot { box-shadow: inset 0 0 0 7px var(--tuyen); }
   .it__stop.is-now .it__dot { box-shadow: inset 0 0 0 7px var(--tuyen), 0 0 0 5px color-mix(in srgb, var(--tuyen) 25%, transparent); transform: scale(1.15); }
-  .it__time { font-family: var(--f-display); font-weight: 700; font-size: 1.6rem; line-height: 1; color: var(--c-cap); display: flex; gap: 0.5rem; align-items: baseline; }
+  .it__time { font-family: var(--f-display); font-weight: 700; font-size: 1.45rem; line-height: 1; display: flex; gap: 0.5rem; align-items: baseline; }
   .it__day { font-size: 0.95rem; color: var(--c-ink-2); text-transform: uppercase; letter-spacing: 0.06em; }
   .it__name { font-size: 1.45rem; margin-top: 0.3rem; }
   .it__desc { color: var(--c-ink-2); margin-top: 0.35rem; max-width: 38rem; }
@@ -144,7 +144,7 @@ const ngay = (g) => (g.match(/^N(\d)/) ? `Ngày ${g.match(/^N(\d)/)[1]}` : '');
   .tk__pt.is-on { fill: var(--tuyen); stroke: #fff; }
   .tk__now { display: grid; grid-template-columns: auto 1fr; column-gap: 1rem; align-items: end; margin-top: 0.8rem; }
   .tk__lbl { font-size: var(--fs-tiny); text-transform: uppercase; letter-spacing: 0.1em; color: var(--c-ink-2); grid-row: 1; }
-  .tk__time { grid-row: 2; font-family: var(--f-display); font-weight: 700; font-size: 3.4rem; line-height: 0.9; color: var(--c-cap); }
+  .tk__time { grid-row: 2; font-family: var(--f-display); font-weight: 700; font-size: 3.2rem; line-height: 0.9; color: var(--c-time); background: #fff; padding: 0.12em 0.18em 0.02em; border-radius: 5px; box-shadow: inset 0 5px 0 var(--c-cap), 0 0 0 1px #dfe3ea; }
   .tk__stop { grid-row: 2; font-family: var(--f-display); font-weight: 700; font-size: 1.35rem; line-height: 1.1; align-self: end; padding-bottom: 0.2rem; }
   .tk__perf { height: 20px; background: radial-gradient(circle at 0 50%, var(--c-paint) 9px, transparent 10px) left / 20px 20px no-repeat, radial-gradient(circle at 100% 50%, var(--c-paint) 9px, transparent 10px) right / 20px 20px no-repeat, linear-gradient(#fbfbf7, #fbfbf7); position: relative; }
   .tk__perf::after { content: ''; position: absolute; left: 14px; right: 14px; top: 50%; border-top: 2px dashed #b9bfca; }
@@ -152,11 +152,10 @@ const ngay = (g) => (g.match(/^N(\d)/) ? `Ngày ${g.match(/^N(\d)/)[1]}` : '');
   .tk__next { font-size: var(--fs-small); color: var(--c-ink-2); }
   .tk__next strong { color: var(--c-ink); }
   .tk.is-torn .tk__stub { transform: translateY(12px) rotate(-1.6deg); }
-  .tk.is-torn .tk__btn { --bg: var(--c-line); --fg: var(--c-asphalt); }
   /* Dải vé mobile */
   .tkbar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 45; display: grid; grid-template-columns: auto 1fr auto; gap: 0.75rem; align-items: center; padding: 0.55rem var(--gutter) calc(0.55rem + env(safe-area-inset-bottom)); background: #fbfbf7; color: var(--c-sign-deep); box-shadow: 0 -1px 0 var(--c-rule), 0 -12px 24px -16px rgba(0,0,0,.35); border-top: 4px solid var(--tuyen); transform: translateY(110%); transition: transform 260ms var(--ease-drawer); }
   .tkbar.is-on { transform: translateY(0); }
-  .tkbar__time { font-family: var(--f-display); font-weight: 700; font-size: 2rem; line-height: 1; color: var(--c-cap); }
+  .tkbar__time { font-family: var(--f-display); font-weight: 700; font-size: 1.8rem; line-height: 1; color: var(--c-time); background: #fff; padding: 0.15em 0.25em 0.02em; border-radius: 4px; box-shadow: inset 0 4px 0 var(--c-cap), 0 0 0 1px #dfe3ea; }
   .tkbar__stop { display: grid; min-width: 0; font-family: var(--f-display); font-weight: 700; font-size: 1.05rem; line-height: 1.15; }
   .tkbar__stop > span:last-child { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .tkbar__idx { font-family: var(--f-body); font-weight: 400; font-size: var(--fs-tiny); color: var(--c-ink-2); }

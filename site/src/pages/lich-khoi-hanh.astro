@@ -58,7 +58,7 @@ const sap = (c) => c.con_cho > 0 && !(c.con_cho > 3);
     </div>
   </section>
   <CtaBand title="Không thấy ngày bạn cần?" body="Bà Nà và Hội An chạy hằng ngày, kể cả ngày chưa có khách ghép. Nhắn ngày đi, Gió Nồm mở chuyến." msg="Chào Gió Nồm, mình cần tour … ngày …, … người." />
-  <ActionBar />
+  <ActionBar always />
 </Base>
 <script>
   import { wireFilter } from '../scripts/filter.js';
@@ -85,9 +85,9 @@ const sap = (c) => c.con_cho > 0 && !(c.con_cho > 3);
   .lk__ma { font-size: var(--fs-tiny); color: var(--c-ink-2); }
   .lk__left { grid-area: left; font-size: var(--fs-small); color: var(--c-ink-2); }
   .lk__left.is-low { color: var(--c-cap); font-weight: 600; }
-  .lk__btn { grid-area: btn; display: inline-flex; align-items: center; min-height: 44px; padding: 0 0.95rem; border-radius: var(--r-small); background: var(--c-sign); color: #fff; font-weight: 600; text-decoration: none; transition: background-color var(--dur-ui) var(--ease-out), transform var(--dur-press) var(--ease-out); }
+  .lk__btn { grid-area: btn; display: inline-flex; align-items: center; min-height: 44px; padding: 0 0.95rem; border-radius: var(--r-small); background: var(--c-line); color: var(--c-asphalt); font-family: var(--f-display); font-weight: 700; font-size: 1.05rem; text-decoration: none; transition: background-color var(--dur-ui) var(--ease-out), transform var(--dur-press) var(--ease-out); }
   .lk__btn:active { transform: scale(0.97); }
-  @media (hover: hover) and (pointer: fine) { .lk__btn:hover { background: var(--c-sign-deep); } }
+  @media (hover: hover) and (pointer: fine) { .lk__btn:hover { background: var(--c-line-press); } }
   .lk__btn.is-off { background: #d6d8d2; color: var(--c-ink-2); }
   .is-full .lk__date { color: var(--c-ink-2); text-decoration: line-through; }
   @media (min-width: 760px) {

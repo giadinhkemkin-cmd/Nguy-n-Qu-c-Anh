@@ -25,7 +25,7 @@ const H = level;
           </ul>
         </div>
         <div class="tl__side">
-          <p class="tl__arrive"><span>Tới {d.ten}</span><strong class="num">{d.gio}</strong></p>
+          <p class="tl__arrive"><span>Tới {d.ten}</span><strong class="num tile">{d.gio}</strong></p>
           <p class="tl__price"><span>Người lớn</span><strong class="num">{vnd(t.gia_nguoi_lon)}</strong></p>
           {full && coGia(t.gia_tre_em) && <p class="tl__child">Trẻ em 1–1,4 m: <span class="num">{vnd(t.gia_tre_em)}</span></p>}
           {full && mua && next && <p class="tl__next">Chuyến gần nhất: {ngayVN(next.ngay)}, còn <span class="num">{next.con_cho}/12</span></p>}
@@ -51,9 +51,10 @@ const H = level;
   .tl__arrive, .tl__price { display: grid; }
   .tl__arrive span, .tl__price span { font-size: var(--fs-tiny); color: var(--c-ink-2); }
   .tl__arrive span { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-  .tl__arrive strong { font-family: var(--f-display); font-size: 1.6rem; color: var(--c-cap); line-height: 1.05; }
+  .tl__arrive strong { font-family: var(--f-display); font-size: 1.5rem; justify-self: start; margin-top: 0.2rem; }
   .tl__price strong { font-family: var(--f-display); font-size: 1.6rem; line-height: 1.05; }
   .tl__child, .tl__next, .tl__off { grid-column: 1 / -1; font-size: var(--fs-small); color: var(--c-ink-2); }
+  .tl__next .num { white-space: nowrap; }
   .tl__next { color: var(--c-ink); }
   .tl__off { color: var(--c-cap); font-weight: 600; }
   .tl__cta { grid-column: 1 / -1; display: inline-flex; align-items: center; gap: 0.35rem; color: var(--c-sign); font-weight: 600; font-size: var(--fs-small); }
@@ -66,17 +67,18 @@ const H = level;
   }
   /* Bảng giờ xanh (trang chủ): chữ trắng trên nền biển chỉ dẫn */
   .tl--board { border-top: 0; }
-  .tl--board .tl__row { border-bottom-color: rgba(255,255,255,.2); color: #fff; }
+  .tl--board .tl__row { border-bottom-color: rgba(255,255,255,.16); color: #fff; }
   .tl--board .tl__row:last-child { border-bottom: 0; }
-  .tl--board .tl__pic { background: #fff; color: var(--c-sign); }
-  .tl--board .tl__desc, .tl--board .tl__meta, .tl--board .tl__arrive span, .tl--board .tl__price span { color: var(--c-on-sign-2); }
+  .tl--board .tl__pic { background: var(--c-sign); color: #fff; }
+  .tl--board .tl__desc, .tl--board .tl__meta, .tl--board .tl__arrive span, .tl--board .tl__price span { color: #c4c7cc; }
   .tl--board .tl__meta svg { color: #fff; }
-  .tl--board .tl__arrive strong { color: var(--c-time); background: #fff; padding: 0.15rem 0.4rem 0; border-radius: 4px; box-shadow: inset 0 3px 0 var(--c-cap); justify-self: start; }
+  
   .tl--board .tl__cta { color: var(--c-line); }
   .tl--board .tl__off { color: #ffb4ab; }
   @media (hover: hover) and (pointer: fine) { .tl--board .tl__row:hover { background: rgba(255,255,255,.07); } }
   @media (min-width: 760px) {
-    .tl__row { grid-template-columns: auto 1fr 16rem; padding: 1.5rem 1rem; margin-inline: -1rem; border-radius: 4px; }
+    .tl__row { grid-template-columns: auto minmax(0, 1fr) 21rem; column-gap: 2rem; padding: 1.5rem 1rem; margin-inline: -1rem; border-radius: 4px; }
+    .tl__side { grid-template-columns: 1.25fr 1fr; align-items: start; }
     .tl__pic { grid-row: auto; }
     .tl__side { grid-column: 3; margin-top: 0; align-self: center; }
     .tl__name { font-size: 2rem; }

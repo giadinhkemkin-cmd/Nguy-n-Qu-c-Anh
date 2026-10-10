@@ -15,9 +15,9 @@ const faqLd = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity
 <Base title="Gió Nồm Travel – Tour ghép nhóm nhỏ ở Đà Nẵng" description="Năm tour ghép quanh Đà Nẵng, Hội An, Huế. Mỗi xe tối đa 12 khách, giờ đi lệch giờ đoàn đông. Giá đã gồm vé, đón tận khách sạn." jsonld={faqLd}>
   <Hero />
   <DayRoad />
-  <section class="section section--tight board-sec" aria-labelledby="tours-h2">
+  <section class="section board-sec" aria-labelledby="tours-h2">
     <div class="wrap">
-      <div class="sign board">
+      <div class="board">
         <div class="section-head board__head">
           <h2 id="tours-h2">Năm tour, giá đã gồm vé</h2>
           <p>Giá ghi cho một người lớn, đã gồm xe đón tận khách sạn, vé tham quan, bữa ăn trong lịch trình và hướng dẫn viên.</p>
@@ -34,7 +34,9 @@ const faqLd = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity
   <ActionBar />
 </Base>
 <style>
-  .board { padding: 1.6rem 1.15rem 0.6rem; }
-  .board__head p { color: var(--c-on-sign-2); }
+  /* Bảng giờ bến xe: nền nhựa đường, khác khuôn các tấm biển xanh */
+  .board { background: var(--c-asphalt); color: #fff; border-radius: var(--r-sign); padding: 1.6rem 1.15rem 0.6rem; box-shadow: inset 0 6px 0 var(--c-line); }
+  .board::after { display: none; }
+  .board__head p { color: #c4c7cc; }
   @media (min-width: 960px) { .board { padding: 3rem 3rem 1.5rem; } }
 </style>

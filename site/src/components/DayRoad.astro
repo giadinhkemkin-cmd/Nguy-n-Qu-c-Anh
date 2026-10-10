@@ -32,7 +32,7 @@ const hours = Array.from({ length: H1 - H0 + 1 }, (_, i) => H0 + i);
         {items.map((it) => (
           <li class="dr__item" style={`--p:${it.p};--lvl:${it.lvl};--gap:${it.gap}px;--tuyen:${it.mau}`} data-p={it.p} data-end={it.p > 0.7 ? '' : undefined}>
             <a href={`/tour/${it.slug}/`} class="dr__card">
-              <span class="dr__time num">{it.gio}</span>
+              <span class="dr__time num"><span class="tile">{it.gio}</span></span>
               <span class="dr__name">{it.diem}</span>
               <span class="dr__cau">{it.cau}</span>
               <span class="dr__tour"><Icon name={it.picto} size={16} />{it.ten}</span>
@@ -91,7 +91,7 @@ const hours = Array.from({ length: H1 - H0 + 1 }, (_, i) => H0 + i);
   .dr__item { margin-top: var(--gap); position: relative; }
   .dr__item::before { content: ''; position: absolute; left: calc(-1rem - var(--road) / 2 - 7px); top: 1.1rem; width: 14px; height: 14px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 4px var(--tuyen); z-index: 2; }
   .dr__card { display: grid; gap: 0.1rem; text-decoration: none; padding: 0.55rem 0 0.9rem; border-bottom: 1px solid var(--c-rule); }
-  .dr__time { font-family: var(--f-display); font-weight: 700; font-size: 2rem; line-height: 1; color: var(--c-cap); }
+  .dr__time { font-family: var(--f-display); font-weight: 700; font-size: 1.75rem; line-height: 1; margin-bottom: 0.3rem; }
   .dr__name { font-family: var(--f-display); font-weight: 700; font-size: 1.35rem; line-height: 1.1; text-transform: uppercase; }
   .dr__cau { color: var(--c-ink-2); }
   .dr__tour { display: inline-flex; align-items: center; gap: 0.4rem; font-size: var(--fs-tiny); font-weight: 600; color: var(--c-sign); margin-top: 0.2rem; }
@@ -101,9 +101,9 @@ const hours = Array.from({ length: H1 - H0 + 1 }, (_, i) => H0 + i);
   .dr__van { position: absolute; left: 50%; top: 0; translate: -50% 0; width: 34px; height: 34px; border-radius: 6px; background: var(--c-line); color: var(--c-asphalt); display: grid; place-items: center; z-index: 3; box-shadow: 0 4px 10px rgba(0,0,0,.35); }
   .dr__van svg { width: 24px; height: 24px; rotate: 90deg; }
   .dr__hours { display: none; }
-  .is-armed .dr__item:not(.is-on) .dr__time { color: var(--c-ink-2); }
+  .is-armed .dr__item:not(.is-on) .dr__time .tile { color: var(--c-ink-2); box-shadow: inset 0 3px 0 #b8bcc3; }
   .is-armed .dr__item:not(.is-on)::before { box-shadow: 0 0 0 4px #b8bcc3; }
-  .is-armed .dr__item .dr__time { transition: color 220ms var(--ease-out); }
+  .is-armed .dr__item .dr__time .tile { transition: color 220ms var(--ease-out), box-shadow 220ms var(--ease-out); }
   .is-armed .dr__item::before { transition: box-shadow 220ms var(--ease-out); }
   @media (hover: hover) and (pointer: fine) { .dr__card:hover .dr__name { text-decoration: underline; } }
 
