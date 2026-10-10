@@ -8,7 +8,7 @@ interface Props { list?: typeof tours }
 const { list = tours } = Astro.props;
 const ghe = (c) => Array.from({ length: 12 }, (_, i) => 12 - c.con_cho > i);
 ---
-<ol class="rc">
+<ol class="rc" data-rc>
   {list.map((t) => {
     const d = diemChinh(t); const mua = dangMua(t); const next = mua ? chuyenConCho(t.slug) : null;
     const msg = next ? `Chào Gió Nồm, mình muốn giữ chỗ chuyến ${maChuyen(t.slug, next.ngay)} (${t.ten_ngan}, ${ngayVN(next.ngay)}). Số người lớn: …, trẻ em: …` : `Chào Gió Nồm, báo mình khi tour ${t.ten_ngan} có lịch nhé.`;
@@ -27,7 +27,7 @@ const ghe = (c) => Array.from({ length: 12 }, (_, i) => 12 - c.con_cho > i);
               <li><Icon name="calendar" size={16} />{mua ? t.lich.mo_ta : 'Nghỉ mùa biển động, mở lại tháng 3'}</li>
               <li><Icon name="users" size={16} />Tối đa {t.nhom_toi_da} khách</li>
             </ul>
-            <div class="rc__map"><RouteMap viewBox={khungTuyen(t, 3.2, 30)} only={t.slug} labels={false} places={false} title={`Bản đồ tuyến ${t.ten_ngan}`} /></div>
+            <div class="rc__map"><RouteMap viewBox={khungTuyen(t, 3.2, 30)} only={t.slug} labels={true} places={true} title={`Bản đồ tuyến ${t.ten_ngan}`} /></div>
           </div>
           <div class="rc__deal">
             <p class="rc__arrive"><span>Tới {d.ten}</span><strong class="num tile">{d.gio}</strong></p>
@@ -50,28 +50,38 @@ const ghe = (c) => Array.from({ length: 12 }, (_, i) => 12 - c.con_cho > i);
     );
   })}
 </ol>
+<script>
+  // Tuyến trên bản đồ mini vẽ ra khi thẻ vào màn hình (một lần). Reduced-motion: hiện sẵn.
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+    const maps = document.querySelectorAll<HTMLElement>('[data-rc] .rc__map');
+    const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.remove('is-wait'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -15% 0px' });
+    maps.forEach((m) => { if (m.getBoundingClientRect().top > innerHeight * 0.85) { m.classList.add('is-wait'); io.observe(m); } });
+  }
+</script>
 <style>
   .rc { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--sp-5); }
   .rc__item { background: #fff; border-radius: var(--r-sign); overflow: hidden; box-shadow: 0 1px 0 rgba(13,51,120,.08), 0 18px 36px -28px rgba(13,51,120,.45); }
-  .rc__head { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 0.8rem; background: var(--c-sign); color: #fff; padding: 0.8rem 1rem; box-shadow: inset 0 -5px 0 var(--tuyen); }
-  .rc__pic { width: 44px; height: 44px; border-radius: 6px; background: #fff; color: var(--c-sign); display: grid; place-items: center; }
+  .rc__head { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 0.8rem; background: var(--c-sign-tint); color: var(--c-sign-deep); padding: 0.8rem 1rem; box-shadow: inset 0 -4px 0 var(--tuyen); }
+  .rc__pic { width: 44px; height: 44px; border-radius: 6px; background: var(--c-sign); color: #fff; display: grid; place-items: center; }
   .rc__name { font-size: clamp(1.5rem, 1.2vw + 1.1rem, 2.1rem); line-height: 1.05; }
   .rc__name a { text-decoration: none; }
   .rc__name a::after { content: ''; }
   @media (hover: hover) and (pointer: fine) { .rc__name a:hover { text-decoration: underline; text-decoration-thickness: 2px; } }
-  .rc__dur { font-size: var(--fs-small); color: var(--c-on-sign-2); white-space: nowrap; }
+  .rc__dur { font-size: var(--fs-small); color: var(--c-ink-2); white-space: nowrap; }
   .rc__body { display: grid; gap: 1rem; padding: 1rem; }
   .rc__desc { color: var(--c-ink-2); }
   .rc__meta { list-style: none; margin: 0.6rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.3rem 1rem; font-size: var(--fs-small); color: var(--c-ink-2); }
   .rc__meta li { display: inline-flex; gap: 0.35rem; align-items: center; }
   .rc__meta svg { color: var(--c-sign); }
   .rc__map { margin-top: 0.9rem; border-radius: 6px; overflow: hidden; --map-sea: var(--c-sign); --map-land: #eef0eb; aspect-ratio: 3.2; }
-  .rc__map :global(svg) { aspect-ratio: 3.2; height: auto; }
+  .rc__map :global(svg) { width: 100%; aspect-ratio: 3.2; height: auto; display: block; }
+  .rc__map :global(.rmap__line) { transition: stroke-dashoffset 900ms var(--ease-in-out); }
+  .rc__map.is-wait :global(.rmap__line) { stroke-dasharray: 1; stroke-dashoffset: 1; }
   .rc__deal { display: grid; grid-template-columns: auto 1fr; gap: 0.8rem 1.2rem; align-content: start; }
   .rc__arrive, .rc__price { display: grid; gap: 0.2rem; align-content: start; }
   .rc__arrive span, .rc__price > span { font-size: var(--fs-tiny); color: var(--c-ink-2); }
-  .rc__arrive strong { font-family: var(--f-display); font-size: 2.1rem; justify-self: start; }
-  .rc__price strong { font-family: var(--f-display); font-size: 1.9rem; line-height: 1.05; }
+  .rc__arrive strong { font-family: var(--f-display); font-size: 1.9rem; justify-self: start; }
+  .rc__price strong { font-family: var(--f-display); font-size: 1.9rem; line-height: 1; padding-top: 0.22em; }
   .rc__price small { font-size: var(--fs-tiny); color: var(--c-ink-2); }
   .rc__seats, .rc__off, .rc__act { grid-column: 1 / -1; }
   .rc__seats { display: flex; align-items: center; gap: 0.7rem; flex-wrap: wrap; font-size: var(--fs-small); }
@@ -83,7 +93,7 @@ const ghe = (c) => Array.from({ length: 12 }, (_, i) => 12 - c.con_cho > i);
   .rc__btn { min-height: 48px; }
   .rc__act .link-arrow { color: var(--c-sign); }
   @media (min-width: 760px) {
-    .rc__body { grid-template-columns: 7fr 5fr; gap: 2rem; padding: 1.4rem 1.6rem 1.6rem; }
+    .rc__body { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 2rem; padding: 1.4rem 1.6rem 1.6rem; }
     .rc__head { padding: 0.9rem 1.6rem; }
   }
 </style>

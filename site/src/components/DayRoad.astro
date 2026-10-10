@@ -15,7 +15,7 @@ const toH = (g) => { const [h, m] = g.split(':').map(Number); return h + m / 60;
 const pos = (g) => (toH(g) - H0) / (H1 - H0);
 // Desktop: nhãn so le trên/dưới đường để không chồng nhau (up = trên đường, down = dưới)
 const LVL = { 'my-son-sang-som': 0, 'ba-na-cau-vang': 1, 'hai-van-hue-2n1d': 0, 'cu-lao-cham': 0, 'hoi-an-chieu-toi': 0 };
-const SIDE = { 'my-son-sang-som': 'up', 'ba-na-cau-vang': 'up', 'hai-van-hue-2n1d': 'down', 'cu-lao-cham': 'up', 'hoi-an-chieu-toi': 'down' };
+const SIDE = { 'my-son-sang-som': 'up', 'ba-na-cau-vang': 'up', 'hai-van-hue-2n1d': 'up', 'cu-lao-cham': 'down', 'hoi-an-chieu-toi': 'down' };
 const items = tuyen.map((r, i) => {
   const prev = tuyen[i - 1];
   const gap = prev ? Math.min(140, Math.max(14, (toH(r.gio) - toH(prev.gio)) * 22)) : 0;

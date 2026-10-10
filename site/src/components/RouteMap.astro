@@ -27,7 +27,7 @@ const off = xy(congTy.toa_do);
 // Tên địa danh (toạ độ gần đúng) – chỉ hiện chữ, không vẽ ranh giới
 const PLACES = [
   { t: 'ĐÀ NẴNG', c: [16.045, 108.175], s: 1.25, a: 'end' },
-  { t: 'Sơn Trà', c: [16.14, 108.255], s: 0.9, sea: true, a: 'end' },
+  { t: 'Sơn Trà', c: [16.118, 108.262], s: 0.9, a: 'middle' },
   { t: 'Hội An', c: [15.862, 108.30], s: 1.05, a: 'end' },
   { t: 'Bà Nà', c: [15.982, 107.985], s: 0.95, a: 'middle', dy: 26 },
   { t: 'Mỹ Sơn', c: [15.745, 108.12], s: 0.95, a: 'middle', dy: 26 },
@@ -41,7 +41,7 @@ const k = vw / 900; // tỉ lệ nét theo độ phóng
 ---
 <svg class:list={['rmap', cls]} viewBox={viewBox} role="img" aria-label={title} preserveAspectRatio="xMidYMid slice">
   <title>{title}</title>
-  <rect x="-40" y="-40" width="1080" height="1080" class="rmap__sea" />
+  <rect x="-1500" y="-1500" width="4000" height="4000" class="rmap__sea" />
   <path d={map.land} class="rmap__land" />
   <path d={map.island} class="rmap__land" />
   {list.map((r) => (
@@ -81,7 +81,7 @@ const k = vw / 900; // tỉ lệ nét theo độ phóng
   .rmap__stop { fill: #fff; stroke: var(--tuyen); stroke-width: 4; }
   .rmap__tag { fill: #fff; }
   .rmap__tagcap { fill: var(--c-cap); }
-  .rmap__time { font-family: var(--f-num); font-weight: 700; font-size: 22px; fill: var(--c-cap); }
+  .rmap__time { font-family: var(--f-num); font-weight: 700; font-size: 22px; fill: var(--c-time); }
   .rmap__place { font-family: var(--f-display); font-weight: 700; fill: var(--c-ink-2); letter-spacing: 0.04em; paint-order: stroke; stroke: var(--map-land, var(--c-paint)); stroke-width: 3px; stroke-linejoin: round; }
   .rmap__place--sea { fill: rgba(255,255,255,.75); stroke: none; }
   .rmap__place--it { font-style: italic; font-weight: 600; letter-spacing: 0.12em; }

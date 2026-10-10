@@ -3,7 +3,6 @@ import Base from '../layouts/Base.astro';
 import FilterChips from '../components/FilterChips.astro';
 import Icon from '../components/Icon.astro';
 import CtaBand from '../components/CtaBand.astro';
-import ActionBar from '../components/ActionBar.astro';
 import { tours, lich, HOM_NAY, ngayVN, maChuyen, congTy, PICTO, MAU_TUYEN } from '../lib/data.js';
 const end = new Date(HOM_NAY + 'T00:00:00'); end.setDate(end.getDate() + 27);
 const endIso = end.toISOString().slice(0, 10);
@@ -58,7 +57,6 @@ const sap = (c) => c.con_cho > 0 && !(c.con_cho > 3);
     </div>
   </section>
   <CtaBand title="Không thấy ngày bạn cần?" body="Bà Nà và Hội An chạy hằng ngày, kể cả ngày chưa có khách ghép. Nhắn ngày đi, Gió Nồm mở chuyến." msg="Chào Gió Nồm, mình cần tour … ngày …, … người." />
-  <ActionBar always />
 </Base>
 <script>
   import { wireFilter } from '../scripts/filter.js';
@@ -79,7 +77,7 @@ const sap = (c) => c.con_cho > 0 && !(c.con_cho > 3);
   .lk__row { display: grid; grid-template-columns: 4.6rem 1fr auto; grid-template-areas: 'date tour btn' 'date left btn'; gap: 0.1rem 0.75rem; align-items: center; padding: 0.7rem 0; border-bottom: 1px solid var(--c-rule); }
   .lk__date { grid-area: date; font-family: var(--f-display); font-size: 1.15rem; line-height: 1.1; }
   .lk__tour { grid-area: tour; display: flex; align-items: center; gap: 0.5rem; min-width: 0; flex-wrap: wrap; }
-  .lk__tour a { font-weight: 600; text-decoration: none; }
+  .lk__tour a { font-weight: 600; text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
   @media (hover: hover) and (pointer: fine) { .lk__tour a:hover { text-decoration: underline; } }
   .lk__pic { width: 26px; height: 26px; border-radius: 4px; background: var(--c-sign); color: #fff; display: grid; place-items: center; box-shadow: inset 0 -3px 0 var(--tuyen); flex: none; }
   .lk__ma { font-size: var(--fs-tiny); color: var(--c-ink-2); }

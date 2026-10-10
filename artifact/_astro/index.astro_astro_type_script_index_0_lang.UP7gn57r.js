@@ -1,0 +1,1 @@
+import{w as r}from"./filter.uG-nvDi_.js";const t=document.querySelector("[data-count]"),o=document.querySelector("[data-empty]");r("loai",".rc__item","loai",e=>{t&&(t.textContent=String(e)),o&&(o.hidden=e>0)});document.querySelector("[data-reset]")?.addEventListener("click",()=>document.querySelector('[data-filter-group="loai"] [data-key="all"]')?.click());

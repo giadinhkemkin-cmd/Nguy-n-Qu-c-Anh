@@ -45,17 +45,17 @@ Người dùng yêu cầu: không dừng hỏi ở bước nào; chỗ cần duy
 - [x] /lien-he/
 
 ### 5. Nâng design
-- [ ] redesign-existing-projects
-- [ ] high-end-visual-design
-- [ ] impeccable typeset, layout, colorize
-- [ ] improve-animations (+ làm theo kế hoạch)
-- [ ] giam-khao-web chấm (tối đa 3 vòng)
+- [x] redesign-existing-projects
+- [x] high-end-visual-design
+- [x] impeccable typeset, layout, colorize
+- [x] improve-animations (+ làm theo kế hoạch)
+- [x] giam-khao-web chấm (tối đa 3 vòng)
 
 ### 6. Kiểm tra
-- [ ] playwright-cli chụp mọi trang
-- [ ] impeccable harden, adapt, optimize, polish
-- [ ] mobile-native, review-animations
-- [ ] Lighthouse mobile mọi trang
+- [x] playwright-cli chụp mọi trang
+- [x] impeccable harden, adapt, optimize, polish
+- [x] mobile-native, review-animations
+- [x] Lighthouse mobile mọi trang
 - [ ] Build + publish artifact, tự mở kiểm tra
 
 ## Quyết định thay cho bước duyệt (lý do)
@@ -73,6 +73,8 @@ Người dùng yêu cầu: không dừng hỏi ở bước nào; chỗ cần duy
 | 10/10/2026 | pick-ui-library | Không thêm thư viện | Danh sách Emil: Sonner (toast, React), motion (React), NumberFlow (số), base-ui (React). Web Astro không React; toast, lọc, accordion, form đều làm được bằng CSS/JS nhỏ, GSAP lo chuyển động. Thêm React chỉ để có toast thì nặng hơn 40 KB, trái luật 2MB/Lighthouse. Đã ghi trong mục Dùng từ thư viện. |
 | 10/10/2026 | impeccable overdrive | Mũi tên biển xoay về hướng thật + giờ lật số khi vào trang; View Transitions giữa hàng biển trang chủ và đầu trang tour | 3 hướng đã cân nhắc: (A) chọn; (B) mặt đường chạy dưới chân theo cuộn – vui nhưng không thêm thông tin; (C) đồng hồ đếm ngược tới chuyến kế – cần dữ liệu thời gian thực, dễ sai. A kể đúng sự thật (hướng thật, giờ thật), nhẹ, có bản reduced-motion. |
 | 10/10/2026 | impeccable delight | Chấm "đang trực Zalo" theo giờ Đà Nẵng ở khối kêu gọi; trang 404 "Đường cụt" bằng biển báo; dải chắn "8–9 giờ xe đoàn lớn rời Đà Nẵng" trên trục giờ | Delight phải có ích: khách biết lúc nào được trả lời; 404 vẫn dẫn về tour. |
+| 10/10/2026 | redesign-existing-projects / high-end-visual-design | Chỉ lấy phần hợp: khoảng trắng lệch nhịp, bóng nhuộm xanh, mũi tên trong tấm biển nhỏ, avatar vuông. Bỏ: nhãn nhỏ trên tiêu đề, kính mờ, nút bo tròn hết cỡ, header nổi kiểu viên thuốc, mọi phần hiện dần khi cuộn, ảnh picsum | Giai đoạn 8 phải giữ font, màu, hero, phong cách đã duyệt; impeccable craft-floor cấm eyebrow và glass trang trí; Emil cấm động cho vui; luật dự án cấm ảnh không rõ nguồn. |
+| 10/10/2026 | Publish artifact | Đóng gói riêng (`site/scripts/artifact.mjs` → `artifact/`): trang chính bỏ khung html/head/body, font chuyển sang Google Fonts, bỏ trang thử break-ui và og | Luật Artifact: trang chính được bọc khung; font chỉ chắc chắn tải được từ Google Fonts. Đổi lại Lighthouse bản này 85 thay vì 95–98. |
 | 10/10/2026 | Định hướng phần A | Duyệt như BRIEF mục 4 | Câu "phải tin" chỉ dựa trên cam kết vận hành của khách (12 người, giờ đi, ghi rõ giá), không cần số liệu ngoài. Chiêu riêng "vé chạy theo lịch trình" theo đúng gợi ý ngành du lịch trong skill, khả thi bằng GSAP + SVG, không cần ảnh. |
 
 ## Dùng từ thư viện (đã tự duyệt 10/10/2026)
@@ -155,6 +157,8 @@ Lighthouse mobile (lan-2, sau khi sửa): / 98 · /tour/ 96 · Bà Nà 96 · H�
 |---|---|---|---|---|---|---|---|---|
 | Vòng 1 | 10/10/2026 | Toàn site (chủ / danh mục / chi tiết) | 7 (7/6/7) | 6 (6/5,5/6,5) | 6,5 (7/7/6) | 7 | 7 | (1) khoảng trống dọc quá lớn, 3 khối xanh cùng khuôn; (2) danh mục: dòng 'không có tour' hiện sai, cột giá gãy dòng, nửa phải khối đầu trống; (3) nút giữ chỗ 4 màu, đỏ vừa là giờ vừa là cảnh báo, mobile chi tiết không có nút ở màn đầu |
 | Vòng 2 | 10/10/2026 | Toàn site (chủ / danh mục / chi tiết) | 7 (8/6/8) | 7 (7/6/7) | 7 (7/7/7) | 7 | 7 | (1) danh mục như bảng tính, cột trống, không có nút vàng; (2) trục giờ: chấm lơ lửng, nhãn dồn trái, vùng sọc 8–9 giờ dễ hiểu nhầm; (3) mobile là desktop co lại (icon thụt, chữ gãy, giá dưới màn đầu) |
+| Vòng 3 | 10/10/2026 | Toàn site (chủ / danh mục / chi tiết) | 7,5 (8/7/8) | 6,5 (7/5,5/7) | 7,5 (8/7/7,5) | 8 | 7 | (1) bản đồ mini danh mục lệch, rộng khác nhau, không tên địa danh; (2) xanh lấn, 2–3 nút vàng một màn mobile, nhãn Sơn Trà chìm; (3) lưới: hero chi tiết hụt đáy, giá lặp, nhãn lệch chân chữ, cọc cắt chữ đỏ, danh mục không có chuyển động |
+| Kết luận | 10/10/2026 | | | | | | | Hết 3 vòng, chưa đạt ≥ 8 cả 3 tiêu chính (Bố cục 6,5 thấp nhất, kéo xuống bởi trang danh mục). Theo giam-khao-web: dừng, gửi người dùng điểm + ảnh để quyết. Không có ảnh tham chiếu để đặt cạnh (mạng chặn). Lỗi kỹ thuật vòng 3 vẫn sửa ở bước hoàn thiện, không chấm lại. |
 | Hero | 10/10/2026 | Hero 1 / 2 / 3 | 7 / 7 / 6 | 7 / 6 / 5 | 7 / 6 / 6 | 7 / 7 / 4 | – | (H1) hai màu nhấn tranh nhau; mobile co lại từ desktop; thiếu giá/ngày/chỗ trong màn đầu |
 
 ## Nguồn, giấy phép

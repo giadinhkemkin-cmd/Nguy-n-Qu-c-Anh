@@ -23,7 +23,7 @@ console.log('polygons',polys.length);
 const W=1000,H=1000;
 const bbox={type:'MultiPoint',coordinates:[[107.42,15.68],[108.62,16.62]]};
 const proj=geoMercator().fitExtent([[0,0],[W,H]],bbox);
-proj.clipExtent([[-20,-20],[W+20,H+20]]);
+proj.clipExtent([[-700,-700],[W+700,H+700]]);
 const path=geoPath(proj).digits(1);
 const d=path(land);
 // Cù Lao Chàm (Hòn Lao) không có trong dữ liệu 10m: vẽ tay theo toạ độ gần đúng
