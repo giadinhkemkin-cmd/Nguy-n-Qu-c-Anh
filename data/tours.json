@@ -1,0 +1,555 @@
+[
+  {
+    "slug": "ba-na-cau-vang",
+    "ten": "Bà Nà – Cầu Vàng, lên cáp chuyến sớm",
+    "ten_ngan": "Bà Nà – Cầu Vàng",
+    "vung": "Núi",
+    "thoi_luong": "1 ngày",
+    "gio": "07:00 – 17:00",
+    "gia_nguoi_lon": 1490000,
+    "gia_tre_em": 1190000,
+    "nhom_toi_da": 12,
+    "lich": {
+      "kieu": "hang-ngay",
+      "mo_ta": "Khởi hành hằng ngày"
+    },
+    "mau": "nui",
+    "mo_ta_ngan": "Lên cáp treo Bà Nà chuyến đầu ngày, tới Cầu Vàng lúc sương còn trên núi và chưa đông khách.",
+    "diem_nhan": [
+      "Lên cáp chuyến 7:30, tới Cầu Vàng trước các đoàn lớn",
+      "Vườn hoa Le Jardin d'Amour, hầm rượu Debay",
+      "Buffet trưa trên đỉnh núi",
+      "Làng Pháp và khu vui chơi Fantasy Park"
+    ],
+    "lich_trinh": [
+      {
+        "gio": "07:00",
+        "ten": "Đón tại khách sạn",
+        "mo_ta": "Xe 16 chỗ đón trong nội thành Đà Nẵng. Hướng dẫn viên gọi trước 15 phút.",
+        "toa_do": [
+          16.07,
+          108.2245
+        ]
+      },
+      {
+        "gio": "07:30",
+        "ten": "Ga cáp treo Suối Mơ",
+        "mo_ta": "Lên cáp chuyến sớm. Tuyến cáp dài gần 6 km, đi khoảng 20 phút.",
+        "toa_do": [
+          15.9977,
+          107.9967
+        ]
+      },
+      {
+        "gio": "08:15",
+        "ten": "Cầu Vàng",
+        "mo_ta": "Dừng 45 phút ở cầu lúc còn vắng để chụp ảnh. Sáng sớm thường có sương, nên mang áo khoác mỏng.",
+        "toa_do": [
+          15.9951,
+          107.9966
+        ]
+      },
+      {
+        "gio": "09:30",
+        "ten": "Vườn hoa và hầm rượu Debay",
+        "mo_ta": "Đi bộ qua vườn hoa Le Jardin d'Amour, xuống hầm rượu do người Pháp đào năm 1923.",
+        "toa_do": [
+          15.999,
+          107.993
+        ]
+      },
+      {
+        "gio": "11:30",
+        "ten": "Buffet trưa",
+        "mo_ta": "Buffet Á – Âu tại nhà hàng trên đỉnh núi.",
+        "toa_do": [
+          16.0005,
+          107.989
+        ]
+      },
+      {
+        "gio": "13:00",
+        "ten": "Làng Pháp, Fantasy Park",
+        "mo_ta": "Tự do dạo làng Pháp, chơi trò trong nhà ở Fantasy Park (đã gồm trong vé).",
+        "toa_do": [
+          16.001,
+          107.988
+        ]
+      },
+      {
+        "gio": "16:00",
+        "ten": "Xuống cáp, về khách sạn",
+        "mo_ta": "Về tới nội thành khoảng 17:00.",
+        "toa_do": [
+          16.07,
+          108.2245
+        ]
+      }
+    ],
+    "bao_gom": [
+      "Xe đưa đón 16 chỗ có máy lạnh",
+      "Vé cáp treo và vé vào cổng Bà Nà Hills",
+      "Buffet trưa",
+      "Hướng dẫn viên tiếng Việt",
+      "Nước suối, khăn lạnh",
+      "Bảo hiểm du lịch"
+    ],
+    "chua_gom": [
+      "Bảo tàng sáp (khoảng 100.000 đ)",
+      "Đồ uống ngoài buffet",
+      "Tip cho hướng dẫn viên (tuỳ ý)"
+    ],
+    "nen_mang": [
+      "Áo khoác mỏng (trên núi lạnh hơn dưới phố 5–7 °C)",
+      "Giày đi bộ",
+      "Kem chống nắng"
+    ],
+    "luu_y": "Giá vé cáp treo Bà Nà có thể đổi theo mùa. Gió Nồm báo lại nếu giá vé đổi trước ngày đi. [CẦN XÁC NHẬN giá vé 2026]"
+  },
+  {
+    "slug": "hoi-an-chieu-toi",
+    "ten": "Hội An chiều tối: phố cổ, sông Hoài, đèn hoa đăng",
+    "ten_ngan": "Hội An chiều tối",
+    "vung": "Phố cổ",
+    "thoi_luong": "Nửa ngày",
+    "gio": "14:30 – 21:00",
+    "gia_nguoi_lon": 650000,
+    "gia_tre_em": 450000,
+    "nhom_toi_da": 12,
+    "lich": {
+      "kieu": "hang-ngay",
+      "mo_ta": "Khởi hành hằng ngày"
+    },
+    "mau": "den",
+    "mo_ta_ngan": "Tới Hội An lúc nắng đã dịu, đi bộ phố cổ với người dẫn sinh ra ở Hội An, ăn tối rồi xuống thuyền thả đèn trên sông Hoài.",
+    "diem_nhan": [
+      "Dừng chân ở Ngũ Hành Sơn trên đường đi",
+      "Đi bộ phố cổ: chùa Cầu, nhà cổ Tấn Ký, hội quán Phúc Kiến",
+      "Ăn tối cao lầu, bánh xèo, hoành thánh",
+      "Thuyền trên sông Hoài, thả đèn hoa đăng"
+    ],
+    "lich_trinh": [
+      {
+        "gio": "14:30",
+        "ten": "Đón tại khách sạn",
+        "mo_ta": "Xe đón trong nội thành Đà Nẵng.",
+        "toa_do": [
+          16.07,
+          108.2245
+        ]
+      },
+      {
+        "gio": "15:00",
+        "ten": "Ngũ Hành Sơn",
+        "mo_ta": "Leo núi Thuỷ Sơn khoảng 40 phút, xem động Huyền Không.",
+        "toa_do": [
+          16.0036,
+          108.2639
+        ]
+      },
+      {
+        "gio": "16:30",
+        "ten": "Phố cổ Hội An",
+        "mo_ta": "Đi bộ qua chùa Cầu, nhà cổ Tấn Ký, hội quán Phúc Kiến. Vé tham quan phố cổ đã gồm.",
+        "toa_do": [
+          15.8771,
+          108.326
+        ]
+      },
+      {
+        "gio": "18:15",
+        "ten": "Ăn tối",
+        "mo_ta": "Cao lầu, bánh xèo, hoành thánh chiên ở một quán gia đình trên đường Trần Phú.",
+        "toa_do": [
+          15.8775,
+          108.3285
+        ]
+      },
+      {
+        "gio": "19:30",
+        "ten": "Thuyền sông Hoài",
+        "mo_ta": "Thuyền 20 phút, mỗi khách một đèn hoa đăng.",
+        "toa_do": [
+          15.876,
+          108.327
+        ]
+      },
+      {
+        "gio": "20:15",
+        "ten": "Về Đà Nẵng",
+        "mo_ta": "Về tới khách sạn khoảng 21:00.",
+        "toa_do": [
+          16.07,
+          108.2245
+        ]
+      }
+    ],
+    "bao_gom": [
+      "Xe đưa đón",
+      "Vé tham quan phố cổ Hội An",
+      "Vé Ngũ Hành Sơn",
+      "Bữa tối",
+      "Thuyền và đèn hoa đăng",
+      "Hướng dẫn viên",
+      "Bảo hiểm du lịch"
+    ],
+    "chua_gom": [
+      "Thang máy Ngũ Hành Sơn (15.000 đ)",
+      "Đồ uống",
+      "Mua sắm cá nhân"
+    ],
+    "nen_mang": [
+      "Giày đế bằng",
+      "Thuốc chống muỗi khi xuống thuyền"
+    ],
+    "luu_y": "Mùa nước lên (tháng 10 – 11) phố cổ có thể ngập. Khi đó lịch trình đổi sang đi thuyền trong phố, giá không đổi."
+  },
+  {
+    "slug": "cu-lao-cham",
+    "ten": "Cù Lao Chàm: ca nô, lặn ngắm san hô, ăn hải sản ở Bãi Ông",
+    "ten_ngan": "Cù Lao Chàm",
+    "vung": "Biển",
+    "thoi_luong": "1 ngày",
+    "gio": "07:30 – 16:00",
+    "gia_nguoi_lon": 790000,
+    "gia_tre_em": 590000,
+    "nhom_toi_da": 12,
+    "lich": {
+      "kieu": "mua",
+      "mo_ta": "Hằng ngày, từ tháng 3 đến hết tháng 9",
+      "thang_mo": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    "mau": "bien",
+    "mo_ta_ngan": "Ca nô 20 phút từ Cửa Đại ra đảo, lặn ống thở ở bãi san hô, ăn trưa hải sản trên bãi cát rồi về trước khi biển nổi gió chiều.",
+    "diem_nhan": [
+      "Ca nô cao tốc từ cảng Cửa Đại",
+      "Lặn ống thở ngắm san hô, có áo phao và kính",
+      "Làng chài Bãi Làng, chùa Hải Tạng",
+      "Ăn trưa hải sản ở Bãi Ông"
+    ],
+    "lich_trinh": [
+      {
+        "gio": "07:30",
+        "ten": "Đón tại khách sạn",
+        "mo_ta": "Xe đón trong nội thành Đà Nẵng.",
+        "toa_do": [
+          16.07,
+          108.2245
+        ]
+      },
+      {
+        "gio": "08:30",
+        "ten": "Cảng Cửa Đại",
+        "mo_ta": "Làm thủ tục, nhận áo phao. Ca nô chạy khoảng 20 phút.",
+        "toa_do": [
+          15.885,
+          108.38
+        ]
+      },
+      {
+        "gio": "09:00",
+        "ten": "Bãi Làng",
+        "mo_ta": "Thăm làng chài, chùa Hải Tạng, giếng cổ Chăm.",
+        "toa_do": [
+          15.955,
+          108.515
+        ]
+      },
+      {
+        "gio": "10:15",
+        "ten": "Bãi san hô Hòn Dài",
+        "mo_ta": "Lặn ống thở 45 phút. Có kính, ống thở, áo phao. Không biết bơi vẫn lặn được nhờ áo phao.",
+        "toa_do": [
+          15.94,
+          108.505
+        ]
+      },
+      {
+        "gio": "12:00",
+        "ten": "Bãi Ông",
+        "mo_ta": "Ăn trưa hải sản, nghỉ võng, tắm biển tự do.",
+        "toa_do": [
+          15.948,
+          108.522
+        ]
+      },
+      {
+        "gio": "14:30",
+        "ten": "Ca nô về Cửa Đại",
+        "mo_ta": "Về đất liền trước khi biển nổi gió chiều.",
+        "toa_do": [
+          15.885,
+          108.38
+        ]
+      },
+      {
+        "gio": "16:00",
+        "ten": "Về khách sạn",
+        "mo_ta": "Trả khách tại khách sạn.",
+        "toa_do": [
+          16.07,
+          108.2245
+        ]
+      }
+    ],
+    "bao_gom": [
+      "Xe đưa đón",
+      "Ca nô cao tốc hai chiều",
+      "Phí tham quan khu bảo tồn biển",
+      "Dụng cụ lặn ống thở, áo phao",
+      "Ăn trưa hải sản",
+      "Hướng dẫn viên",
+      "Bảo hiểm du lịch"
+    ],
+    "chua_gom": [
+      "Lặn bình khí (hỏi riêng)",
+      "Đồ uống",
+      "Thuê ghế, phòng tắm nước ngọt"
+    ],
+    "nen_mang": [
+      "Đồ bơi, khăn",
+      "Thuốc say sóng (uống trước 30 phút)",
+      "Túi chống nước cho điện thoại"
+    ],
+    "luu_y": "Tour phụ thuộc lệnh xuất bến của biên phòng. Biển động thì tour huỷ, hoàn 100% hoặc đổi ngày. Người có bệnh tim mạch, cột sống, đang mang thai không nên đi ca nô."
+  },
+  {
+    "slug": "my-son-sang-som",
+    "ten": "Mỹ Sơn sáng sớm, về Hội An bằng thuyền sông Thu Bồn",
+    "ten_ngan": "Mỹ Sơn sáng sớm",
+    "vung": "Di sản",
+    "thoi_luong": "Nửa ngày",
+    "gio": "04:45 – 12:30",
+    "gia_nguoi_lon": 890000,
+    "gia_tre_em": 650000,
+    "nhom_toi_da": 12,
+    "lich": {
+      "kieu": "thu",
+      "mo_ta": "Thứ Hai, Thứ Tư, Thứ Sáu",
+      "thu": [
+        1,
+        3,
+        5
+      ]
+    },
+    "mau": "thap",
+    "mo_ta_ngan": "Vào thánh địa Mỹ Sơn lúc cổng vừa mở, đi giữa các tháp Chăm khi trời còn mát, rồi xuôi sông Thu Bồn về Hội An.",
+    "diem_nhan": [
+      "Vào cổng lúc 6:00, trước các đoàn lớn khoảng hai giờ",
+      "Xem múa Chăm ở nhà trưng bày",
+      "Ăn sáng ở Mỹ Sơn",
+      "Xuôi thuyền sông Thu Bồn, ghé làng mộc Kim Bồng"
+    ],
+    "lich_trinh": [
+      {
+        "gio": "04:45",
+        "ten": "Đón tại khách sạn",
+        "mo_ta": "Xe đón trong nội thành Đà Nẵng, có bánh mì và cà phê mang theo.",
+        "toa_do": [
+          16.07,
+          108.2245
+        ]
+      },
+      {
+        "gio": "06:00",
+        "ten": "Cổng Mỹ Sơn",
+        "mo_ta": "Xe điện từ cổng vào khu tháp. Trời sáng dần sau núi Mỹ Sơn (núi Răng Mèo).",
+        "toa_do": [
+          15.764,
+          108.124
+        ]
+      },
+      {
+        "gio": "06:20",
+        "ten": "Khu tháp B, C, D",
+        "mo_ta": "Đi bộ 90 phút giữa các tháp Chăm xây từ thế kỷ 4 đến 13, nghe kể về vương quốc Chămpa.",
+        "toa_do": [
+          15.763,
+          108.123
+        ]
+      },
+      {
+        "gio": "08:30",
+        "ten": "Múa Chăm, ăn sáng",
+        "mo_ta": "Xem múa Chăm ở nhà trưng bày, ăn sáng tại nhà hàng gần cổng.",
+        "toa_do": [
+          15.77,
+          108.13
+        ]
+      },
+      {
+        "gio": "10:00",
+        "ten": "Bến thuyền Thu Bồn",
+        "mo_ta": "Xuôi sông khoảng 75 phút, ghé làng mộc Kim Bồng.",
+        "toa_do": [
+          15.833,
+          108.255
+        ]
+      },
+      {
+        "gio": "11:30",
+        "ten": "Hội An",
+        "mo_ta": "Lên bờ ở Hội An. Khách có thể ở lại phố cổ hoặc theo xe về Đà Nẵng.",
+        "toa_do": [
+          15.8771,
+          108.326
+        ]
+      },
+      {
+        "gio": "12:30",
+        "ten": "Về Đà Nẵng",
+        "mo_ta": "Trả khách tại khách sạn.",
+        "toa_do": [
+          16.07,
+          108.2245
+        ]
+      }
+    ],
+    "bao_gom": [
+      "Xe đưa đón",
+      "Vé tham quan Mỹ Sơn và xe điện",
+      "Ăn sáng",
+      "Thuyền sông Thu Bồn",
+      "Hướng dẫn viên",
+      "Bảo hiểm du lịch"
+    ],
+    "chua_gom": [
+      "Đồ uống",
+      "Vé phố cổ Hội An nếu ở lại tham quan"
+    ],
+    "nen_mang": [
+      "Mũ, nước",
+      "Giày đi bộ",
+      "Thuốc chống muỗi"
+    ],
+    "luu_y": "Ở lại Hội An thì tự về Đà Nẵng hoặc Gió Nồm đặt xe giúp (phụ thu). Thung lũng Mỹ Sơn bị núi che phía đông nên thường không thấy mặt trời mọc rõ; đi sớm là để mát và vắng."
+  },
+  {
+    "slug": "hai-van-hue-2n1d",
+    "ten": "Qua đèo Hải Vân về Huế, 2 ngày 1 đêm",
+    "ten_ngan": "Hải Vân – Huế 2N1Đ",
+    "vung": "Cố đô",
+    "thoi_luong": "2 ngày 1 đêm",
+    "gio": "07:30 ngày 1 – 18:00 ngày 2",
+    "gia_nguoi_lon": 3290000,
+    "gia_tre_em": 2490000,
+    "phu_thu_phong_don": 600000,
+    "nhom_toi_da": 12,
+    "lich": {
+      "kieu": "thu",
+      "mo_ta": "Thứ Ba và Thứ Sáu",
+      "thu": [
+        2,
+        5
+      ]
+    },
+    "mau": "co-do",
+    "mo_ta_ngan": "Đi đường đèo Hải Vân thay vì hầm, dừng ở đỉnh đèo và đầm Lập An, một đêm ở Huế với bữa tối cơm cung đình, sáng hôm sau đi Đại Nội và lăng Khải Định.",
+    "diem_nhan": [
+      "Dừng ở đỉnh đèo Hải Vân và Hải Vân Quan",
+      "Ăn trưa hải sản ở đầm Lập An, Lăng Cô",
+      "Một đêm khách sạn 3 sao ở trung tâm Huế",
+      "Đại Nội, chùa Thiên Mụ, lăng Khải Định"
+    ],
+    "lich_trinh": [
+      {
+        "gio": "N1 07:30",
+        "ten": "Đón tại khách sạn",
+        "mo_ta": "Xe đón trong nội thành Đà Nẵng.",
+        "toa_do": [
+          16.07,
+          108.2245
+        ]
+      },
+      {
+        "gio": "N1 08:30",
+        "ten": "Đỉnh đèo Hải Vân",
+        "mo_ta": "Dừng 30 phút ở Hải Vân Quan. Trời quang nhìn thấy cả vịnh Đà Nẵng.",
+        "toa_do": [
+          16.1956,
+          108.131
+        ]
+      },
+      {
+        "gio": "N1 11:30",
+        "ten": "Đầm Lập An",
+        "mo_ta": "Ăn trưa hàu, cá đầm bên mép nước.",
+        "toa_do": [
+          16.25,
+          108.07
+        ]
+      },
+      {
+        "gio": "N1 15:00",
+        "ten": "Chùa Thiên Mụ",
+        "mo_ta": "Ngôi chùa bên sông Hương, tháp Phước Duyên bảy tầng.",
+        "toa_do": [
+          16.4537,
+          107.5447
+        ]
+      },
+      {
+        "gio": "N1 19:00",
+        "ten": "Ăn tối cơm cung đình, nghỉ đêm",
+        "mo_ta": "Bữa tối món Huế, nghỉ khách sạn 3 sao gần sông Hương.",
+        "toa_do": [
+          16.4637,
+          107.5909
+        ]
+      },
+      {
+        "gio": "N2 08:00",
+        "ten": "Đại Nội Huế",
+        "mo_ta": "Ngọ Môn, điện Thái Hoà, Tử Cấm Thành. Đi bộ khoảng 2 giờ.",
+        "toa_do": [
+          16.4693,
+          107.5779
+        ]
+      },
+      {
+        "gio": "N2 13:30",
+        "ten": "Lăng Khải Định",
+        "mo_ta": "Lăng trên sườn đồi, nội thất ghép sành sứ.",
+        "toa_do": [
+          16.399,
+          107.5904
+        ]
+      },
+      {
+        "gio": "N2 18:00",
+        "ten": "Về Đà Nẵng qua hầm Hải Vân",
+        "mo_ta": "Trả khách tại khách sạn.",
+        "toa_do": [
+          16.07,
+          108.2245
+        ]
+      }
+    ],
+    "bao_gom": [
+      "Xe đưa đón 2 ngày",
+      "1 đêm khách sạn 3 sao (phòng đôi hoặc hai giường)",
+      "3 bữa chính, 1 bữa sáng",
+      "Vé tham quan các điểm trong lịch trình",
+      "Hướng dẫn viên",
+      "Bảo hiểm du lịch"
+    ],
+    "chua_gom": [
+      "Phụ thu phòng đơn 600.000 đ",
+      "Thuyền rồng sông Hương (tuỳ chọn)",
+      "Đồ uống"
+    ],
+    "nen_mang": [
+      "Quần áo che vai, gối khi vào chùa và Đại Nội",
+      "Ô hoặc áo mưa (Huế mưa nhiều tháng 9 – 12)"
+    ],
+    "luu_y": "Mưa bão làm đèo Hải Vân đóng thì xe đi hầm, lịch trình giữ nguyên các điểm còn lại."
+  }
+]

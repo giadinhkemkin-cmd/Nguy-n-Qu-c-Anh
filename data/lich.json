@@ -1,0 +1,1106 @@
+{
+ "_ghi_chu": "DỮ LIỆU TEST. Số chỗ còn lại là giả. Tour hằng ngày chỉ liệt kê ngày có đoàn ghép đã mở.",
+ "cap_nhat": "2026-10-10",
+ "chuyen": [
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-10-12",
+   "con_cho": 4
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-10-12",
+   "con_cho": 9
+  },
+  {
+   "tour": "my-son-sang-som",
+   "ngay": "2026-10-12",
+   "con_cho": 3
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-10-13",
+   "con_cho": 12
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-10-13",
+   "con_cho": 10
+  },
+  {
+   "tour": "hai-van-hue-2n1d",
+   "ngay": "2026-10-13",
+   "con_cho": 1
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-10-14",
+   "con_cho": 10
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-10-14",
+   "con_cho": 4
+  },
+  {
+   "tour": "my-son-sang-som",
+   "ngay": "2026-10-14",
+   "con_cho": 0
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-10-15",
+   "con_cho": 12
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-10-15",
+   "con_cho": 1
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-10-16",
+   "con_cho": 7
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-10-16",
+   "con_cho": 12
+  },
+  {
+   "tour": "my-son-sang-som",
+   "ngay": "2026-10-16",
+   "con_cho": 10
+  },
+  {
+   "tour": "hai-van-hue-2n1d",
+   "ngay": "2026-10-16",
+   "con_cho": 3
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-10-17",
+   "con_cho": 3
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-10-17",
+   "con_cho": 10
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-10-18",
+   "con_cho": 7
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-10-18",
+   "con_cho": 10
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-10-19",
+   "con_cho": 1
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-10-19",
+   "con_cho": 3
+  },
+  {
+   "tour": "my-son-sang-som",
+   "ngay": "2026-10-19",
+   "con_cho": 12
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-10-20",
+   "con_cho": 0
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-10-20",
+   "con_cho": 10
+  },
+  {
+   "tour": "hai-van-hue-2n1d",
+   "ngay": "2026-10-20",
+   "con_cho": 7
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-10-21",
+   "con_cho": 0
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-10-21",
+   "con_cho": 12
+  },
+  {
+   "tour": "my-son-sang-som",
+   "ngay": "2026-10-21",
+   "con_cho": 0
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-10-22",
+   "con_cho": 0
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-10-22",
+   "con_cho": 3
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-10-23",
+   "con_cho": 12
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-10-23",
+   "con_cho": 7
+  },
+  {
+   "tour": "my-son-sang-som",
+   "ngay": "2026-10-23",
+   "con_cho": 12
+  },
+  {
+   "tour": "hai-van-hue-2n1d",
+   "ngay": "2026-10-23",
+   "con_cho": 1
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-10-24",
+   "con_cho": 9
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-10-24",
+   "con_cho": 6
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-10-25",
+   "con_cho": 3
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-10-25",
+   "con_cho": 9
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-10-26",
+   "con_cho": 1
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-10-26",
+   "con_cho": 10
+  },
+  {
+   "tour": "my-son-sang-som",
+   "ngay": "2026-10-26",
+   "con_cho": 0
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-10-27",
+   "con_cho": 6
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-10-27",
+   "con_cho": 1
+  },
+  {
+   "tour": "hai-van-hue-2n1d",
+   "ngay": "2026-10-27",
+   "con_cho": 9
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-10-28",
+   "con_cho": 10
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-10-28",
+   "con_cho": 0
+  },
+  {
+   "tour": "my-son-sang-som",
+   "ngay": "2026-10-28",
+   "con_cho": 0
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-10-29",
+   "con_cho": 7
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-10-29",
+   "con_cho": 4
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-10-30",
+   "con_cho": 10
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-10-30",
+   "con_cho": 1
+  },
+  {
+   "tour": "my-son-sang-som",
+   "ngay": "2026-10-30",
+   "con_cho": 10
+  },
+  {
+   "tour": "hai-van-hue-2n1d",
+   "ngay": "2026-10-30",
+   "con_cho": 0
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-10-31",
+   "con_cho": 12
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-10-31",
+   "con_cho": 0
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-11-01",
+   "con_cho": 12
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-11-01",
+   "con_cho": 9
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-11-02",
+   "con_cho": 6
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-11-02",
+   "con_cho": 8
+  },
+  {
+   "tour": "my-son-sang-som",
+   "ngay": "2026-11-02",
+   "con_cho": 9
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-11-03",
+   "con_cho": 10
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-11-03",
+   "con_cho": 9
+  },
+  {
+   "tour": "hai-van-hue-2n1d",
+   "ngay": "2026-11-03",
+   "con_cho": 8
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-11-04",
+   "con_cho": 9
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-11-04",
+   "con_cho": 10
+  },
+  {
+   "tour": "my-son-sang-som",
+   "ngay": "2026-11-04",
+   "con_cho": 10
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-11-05",
+   "con_cho": 12
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-11-05",
+   "con_cho": 12
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-11-06",
+   "con_cho": 6
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-11-06",
+   "con_cho": 12
+  },
+  {
+   "tour": "my-son-sang-som",
+   "ngay": "2026-11-06",
+   "con_cho": 12
+  },
+  {
+   "tour": "hai-van-hue-2n1d",
+   "ngay": "2026-11-06",
+   "con_cho": 8
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-11-07",
+   "con_cho": 10
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-11-07",
+   "con_cho": 8
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-11-08",
+   "con_cho": 9
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-11-08",
+   "con_cho": 10
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-11-09",
+   "con_cho": 6
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-11-09",
+   "con_cho": 9
+  },
+  {
+   "tour": "my-son-sang-som",
+   "ngay": "2026-11-09",
+   "con_cho": 10
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-11-10",
+   "con_cho": 8
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-11-10",
+   "con_cho": 12
+  },
+  {
+   "tour": "hai-van-hue-2n1d",
+   "ngay": "2026-11-10",
+   "con_cho": 12
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-11-11",
+   "con_cho": 8
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-11-11",
+   "con_cho": 9
+  },
+  {
+   "tour": "my-son-sang-som",
+   "ngay": "2026-11-11",
+   "con_cho": 12
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-11-12",
+   "con_cho": 10
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-11-12",
+   "con_cho": 12
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-11-13",
+   "con_cho": 9
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-11-13",
+   "con_cho": 9
+  },
+  {
+   "tour": "my-son-sang-som",
+   "ngay": "2026-11-13",
+   "con_cho": 12
+  },
+  {
+   "tour": "hai-van-hue-2n1d",
+   "ngay": "2026-11-13",
+   "con_cho": 6
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-11-14",
+   "con_cho": 12
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-11-14",
+   "con_cho": 8
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-11-15",
+   "con_cho": 8
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-11-15",
+   "con_cho": 10
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-11-16",
+   "con_cho": 10
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-11-16",
+   "con_cho": 6
+  },
+  {
+   "tour": "my-son-sang-som",
+   "ngay": "2026-11-16",
+   "con_cho": 10
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-11-17",
+   "con_cho": 8
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-11-17",
+   "con_cho": 9
+  },
+  {
+   "tour": "hai-van-hue-2n1d",
+   "ngay": "2026-11-17",
+   "con_cho": 8
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-11-18",
+   "con_cho": 9
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-11-18",
+   "con_cho": 12
+  },
+  {
+   "tour": "my-son-sang-som",
+   "ngay": "2026-11-18",
+   "con_cho": 12
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-11-19",
+   "con_cho": 10
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-11-19",
+   "con_cho": 9
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-11-20",
+   "con_cho": 6
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-11-20",
+   "con_cho": 6
+  },
+  {
+   "tour": "my-son-sang-som",
+   "ngay": "2026-11-20",
+   "con_cho": 12
+  },
+  {
+   "tour": "hai-van-hue-2n1d",
+   "ngay": "2026-11-20",
+   "con_cho": 12
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-11-21",
+   "con_cho": 6
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-11-21",
+   "con_cho": 6
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-11-22",
+   "con_cho": 10
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-11-22",
+   "con_cho": 6
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-11-23",
+   "con_cho": 8
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-11-23",
+   "con_cho": 6
+  },
+  {
+   "tour": "my-son-sang-som",
+   "ngay": "2026-11-23",
+   "con_cho": 9
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-11-24",
+   "con_cho": 10
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-11-24",
+   "con_cho": 6
+  },
+  {
+   "tour": "hai-van-hue-2n1d",
+   "ngay": "2026-11-24",
+   "con_cho": 9
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-11-25",
+   "con_cho": 6
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-11-25",
+   "con_cho": 10
+  },
+  {
+   "tour": "my-son-sang-som",
+   "ngay": "2026-11-25",
+   "con_cho": 12
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-11-26",
+   "con_cho": 9
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-11-26",
+   "con_cho": 10
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-11-27",
+   "con_cho": 12
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-11-27",
+   "con_cho": 8
+  },
+  {
+   "tour": "my-son-sang-som",
+   "ngay": "2026-11-27",
+   "con_cho": 12
+  },
+  {
+   "tour": "hai-van-hue-2n1d",
+   "ngay": "2026-11-27",
+   "con_cho": 9
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-11-28",
+   "con_cho": 12
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-11-28",
+   "con_cho": 12
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-11-29",
+   "con_cho": 10
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-11-29",
+   "con_cho": 12
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-11-30",
+   "con_cho": 6
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-11-30",
+   "con_cho": 12
+  },
+  {
+   "tour": "my-son-sang-som",
+   "ngay": "2026-11-30",
+   "con_cho": 9
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-12-01",
+   "con_cho": 9
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-12-01",
+   "con_cho": 9
+  },
+  {
+   "tour": "hai-van-hue-2n1d",
+   "ngay": "2026-12-01",
+   "con_cho": 12
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-12-02",
+   "con_cho": 12
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-12-02",
+   "con_cho": 9
+  },
+  {
+   "tour": "my-son-sang-som",
+   "ngay": "2026-12-02",
+   "con_cho": 9
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-12-03",
+   "con_cho": 8
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-12-03",
+   "con_cho": 10
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-12-04",
+   "con_cho": 12
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-12-04",
+   "con_cho": 9
+  },
+  {
+   "tour": "my-son-sang-som",
+   "ngay": "2026-12-04",
+   "con_cho": 8
+  },
+  {
+   "tour": "hai-van-hue-2n1d",
+   "ngay": "2026-12-04",
+   "con_cho": 10
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-12-05",
+   "con_cho": 6
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-12-05",
+   "con_cho": 9
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-12-06",
+   "con_cho": 10
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-12-06",
+   "con_cho": 6
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-12-07",
+   "con_cho": 9
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-12-07",
+   "con_cho": 12
+  },
+  {
+   "tour": "my-son-sang-som",
+   "ngay": "2026-12-07",
+   "con_cho": 12
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-12-08",
+   "con_cho": 12
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-12-08",
+   "con_cho": 12
+  },
+  {
+   "tour": "hai-van-hue-2n1d",
+   "ngay": "2026-12-08",
+   "con_cho": 12
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-12-09",
+   "con_cho": 12
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-12-09",
+   "con_cho": 6
+  },
+  {
+   "tour": "my-son-sang-som",
+   "ngay": "2026-12-09",
+   "con_cho": 12
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-12-10",
+   "con_cho": 12
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-12-10",
+   "con_cho": 9
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-12-11",
+   "con_cho": 8
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-12-11",
+   "con_cho": 12
+  },
+  {
+   "tour": "my-son-sang-som",
+   "ngay": "2026-12-11",
+   "con_cho": 10
+  },
+  {
+   "tour": "hai-van-hue-2n1d",
+   "ngay": "2026-12-11",
+   "con_cho": 10
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-12-12",
+   "con_cho": 12
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-12-12",
+   "con_cho": 12
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-12-13",
+   "con_cho": 9
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-12-13",
+   "con_cho": 8
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-12-14",
+   "con_cho": 10
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-12-14",
+   "con_cho": 8
+  },
+  {
+   "tour": "my-son-sang-som",
+   "ngay": "2026-12-14",
+   "con_cho": 8
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-12-15",
+   "con_cho": 10
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-12-15",
+   "con_cho": 12
+  },
+  {
+   "tour": "hai-van-hue-2n1d",
+   "ngay": "2026-12-15",
+   "con_cho": 6
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-12-16",
+   "con_cho": 8
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-12-16",
+   "con_cho": 8
+  },
+  {
+   "tour": "my-son-sang-som",
+   "ngay": "2026-12-16",
+   "con_cho": 6
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-12-17",
+   "con_cho": 6
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-12-17",
+   "con_cho": 6
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-12-18",
+   "con_cho": 12
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-12-18",
+   "con_cho": 9
+  },
+  {
+   "tour": "my-son-sang-som",
+   "ngay": "2026-12-18",
+   "con_cho": 6
+  },
+  {
+   "tour": "hai-van-hue-2n1d",
+   "ngay": "2026-12-18",
+   "con_cho": 8
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-12-19",
+   "con_cho": 9
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-12-19",
+   "con_cho": 9
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-12-20",
+   "con_cho": 9
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-12-20",
+   "con_cho": 9
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-12-21",
+   "con_cho": 12
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-12-21",
+   "con_cho": 9
+  },
+  {
+   "tour": "my-son-sang-som",
+   "ngay": "2026-12-21",
+   "con_cho": 6
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-12-22",
+   "con_cho": 9
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-12-22",
+   "con_cho": 12
+  },
+  {
+   "tour": "hai-van-hue-2n1d",
+   "ngay": "2026-12-22",
+   "con_cho": 12
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-12-23",
+   "con_cho": 12
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-12-23",
+   "con_cho": 12
+  },
+  {
+   "tour": "my-son-sang-som",
+   "ngay": "2026-12-23",
+   "con_cho": 9
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-12-24",
+   "con_cho": 12
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-12-24",
+   "con_cho": 12
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-12-25",
+   "con_cho": 10
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-12-25",
+   "con_cho": 8
+  },
+  {
+   "tour": "my-son-sang-som",
+   "ngay": "2026-12-25",
+   "con_cho": 12
+  },
+  {
+   "tour": "hai-van-hue-2n1d",
+   "ngay": "2026-12-25",
+   "con_cho": 12
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-12-26",
+   "con_cho": 12
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-12-26",
+   "con_cho": 8
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-12-27",
+   "con_cho": 12
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-12-27",
+   "con_cho": 8
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-12-28",
+   "con_cho": 12
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-12-28",
+   "con_cho": 10
+  },
+  {
+   "tour": "my-son-sang-som",
+   "ngay": "2026-12-28",
+   "con_cho": 8
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-12-29",
+   "con_cho": 12
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-12-29",
+   "con_cho": 12
+  },
+  {
+   "tour": "hai-van-hue-2n1d",
+   "ngay": "2026-12-29",
+   "con_cho": 12
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-12-30",
+   "con_cho": 8
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-12-30",
+   "con_cho": 9
+  },
+  {
+   "tour": "my-son-sang-som",
+   "ngay": "2026-12-30",
+   "con_cho": 12
+  },
+  {
+   "tour": "ba-na-cau-vang",
+   "ngay": "2026-12-31",
+   "con_cho": 6
+  },
+  {
+   "tour": "hoi-an-chieu-toi",
+   "ngay": "2026-12-31",
+   "con_cho": 10
+  }
+ ]
+}
