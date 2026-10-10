@@ -1,0 +1,213 @@
+{
+  "slug": "ba-na-cau-vang",
+  "ten": "Bà Nà – Cầu Vàng, lên cáp chuyến sớm",
+  "ten_ngan": "Bà Nà – Cầu Vàng",
+  "vung": "Núi",
+  "thoi_luong": "1 ngày",
+  "gio": "07:00 – 17:00",
+  "gia_nguoi_lon": 1490000,
+  "gia_tre_em": 1190000,
+  "nhom_toi_da": 12,
+  "lich": "Khởi hành hằng ngày",
+  "dang_mo_ban": true,
+  "diem_chinh": {
+    "ten": "Cầu Vàng",
+    "gio": "08:15"
+  },
+  "url": "/tour/ba-na-cau-vang/",
+  "api": "/api/tours/ba-na-cau-vang.json",
+  "mo_ta_ngan": "Lên cáp treo Bà Nà chuyến đầu ngày, tới Cầu Vàng lúc sương còn trên núi và chưa đông khách.",
+  "diem_nhan": [
+    "Lên cáp chuyến 7:30, tới Cầu Vàng trước các đoàn lớn",
+    "Vườn hoa Le Jardin d'Amour, hầm rượu Debay",
+    "Buffet trưa trên đỉnh núi",
+    "Làng Pháp và khu vui chơi Fantasy Park"
+  ],
+  "lich_trinh": [
+    {
+      "gio": "07:00",
+      "ten": "Đón tại khách sạn",
+      "mo_ta": "Xe 16 chỗ đón trong nội thành Đà Nẵng. Hướng dẫn viên gọi trước 15 phút.",
+      "toa_do": [
+        16.07,
+        108.2245
+      ]
+    },
+    {
+      "gio": "07:30",
+      "ten": "Ga cáp treo Suối Mơ",
+      "mo_ta": "Lên cáp chuyến sớm. Tuyến cáp dài gần 6 km, đi khoảng 20 phút.",
+      "toa_do": [
+        15.9977,
+        107.9967
+      ]
+    },
+    {
+      "gio": "08:15",
+      "ten": "Cầu Vàng",
+      "mo_ta": "Dừng 45 phút ở cầu lúc còn vắng để chụp ảnh. Sáng sớm thường có sương, nên mang áo khoác mỏng.",
+      "toa_do": [
+        15.9951,
+        107.9966
+      ]
+    },
+    {
+      "gio": "09:30",
+      "ten": "Vườn hoa và hầm rượu Debay",
+      "mo_ta": "Đi bộ qua vườn hoa Le Jardin d'Amour, xuống hầm rượu do người Pháp đào năm 1923.",
+      "toa_do": [
+        15.999,
+        107.993
+      ]
+    },
+    {
+      "gio": "11:30",
+      "ten": "Buffet trưa",
+      "mo_ta": "Buffet Á – Âu tại nhà hàng trên đỉnh núi.",
+      "toa_do": [
+        16.0005,
+        107.989
+      ]
+    },
+    {
+      "gio": "13:00",
+      "ten": "Làng Pháp, Fantasy Park",
+      "mo_ta": "Tự do dạo làng Pháp, chơi trò trong nhà ở Fantasy Park (đã gồm trong vé).",
+      "toa_do": [
+        16.001,
+        107.988
+      ]
+    },
+    {
+      "gio": "16:00",
+      "ten": "Xuống cáp, về khách sạn",
+      "mo_ta": "Về tới nội thành khoảng 17:00.",
+      "toa_do": [
+        16.07,
+        108.2245
+      ]
+    }
+  ],
+  "bao_gom": [
+    "Xe đưa đón 16 chỗ có máy lạnh",
+    "Vé cáp treo và vé vào cổng Bà Nà Hills",
+    "Buffet trưa",
+    "Hướng dẫn viên tiếng Việt",
+    "Nước suối, khăn lạnh",
+    "Bảo hiểm du lịch"
+  ],
+  "chua_gom": [
+    "Bảo tàng sáp (khoảng 100.000 đ)",
+    "Đồ uống ngoài buffet",
+    "Tip cho hướng dẫn viên (tuỳ ý)"
+  ],
+  "nen_mang": [
+    "Áo khoác mỏng (trên núi lạnh hơn dưới phố 5–7 °C)",
+    "Giày đi bộ",
+    "Kem chống nắng"
+  ],
+  "luu_y": "Giá vé cáp treo Bà Nà có thể đổi theo mùa. Gió Nồm báo lại nếu giá vé đổi trước ngày đi.",
+  "phu_thu_phong_don": null,
+  "chuyen_sap_toi": [
+    {
+      "ngay": "2026-10-12",
+      "ma_chuyen": "GN-1210-BN",
+      "con_cho": 4
+    },
+    {
+      "ngay": "2026-10-13",
+      "ma_chuyen": "GN-1310-BN",
+      "con_cho": 12
+    },
+    {
+      "ngay": "2026-10-14",
+      "ma_chuyen": "GN-1410-BN",
+      "con_cho": 10
+    },
+    {
+      "ngay": "2026-10-15",
+      "ma_chuyen": "GN-1510-BN",
+      "con_cho": 12
+    },
+    {
+      "ngay": "2026-10-16",
+      "ma_chuyen": "GN-1610-BN",
+      "con_cho": 7
+    },
+    {
+      "ngay": "2026-10-17",
+      "ma_chuyen": "GN-1710-BN",
+      "con_cho": 3
+    },
+    {
+      "ngay": "2026-10-18",
+      "ma_chuyen": "GN-1810-BN",
+      "con_cho": 7
+    },
+    {
+      "ngay": "2026-10-19",
+      "ma_chuyen": "GN-1910-BN",
+      "con_cho": 1
+    },
+    {
+      "ngay": "2026-10-20",
+      "ma_chuyen": "GN-2010-BN",
+      "con_cho": 0
+    },
+    {
+      "ngay": "2026-10-21",
+      "ma_chuyen": "GN-2110-BN",
+      "con_cho": 0
+    },
+    {
+      "ngay": "2026-10-22",
+      "ma_chuyen": "GN-2210-BN",
+      "con_cho": 0
+    },
+    {
+      "ngay": "2026-10-23",
+      "ma_chuyen": "GN-2310-BN",
+      "con_cho": 12
+    },
+    {
+      "ngay": "2026-10-24",
+      "ma_chuyen": "GN-2410-BN",
+      "con_cho": 9
+    },
+    {
+      "ngay": "2026-10-25",
+      "ma_chuyen": "GN-2510-BN",
+      "con_cho": 3
+    },
+    {
+      "ngay": "2026-10-26",
+      "ma_chuyen": "GN-2610-BN",
+      "con_cho": 1
+    },
+    {
+      "ngay": "2026-10-27",
+      "ma_chuyen": "GN-2710-BN",
+      "con_cho": 6
+    },
+    {
+      "ngay": "2026-10-28",
+      "ma_chuyen": "GN-2810-BN",
+      "con_cho": 10
+    },
+    {
+      "ngay": "2026-10-29",
+      "ma_chuyen": "GN-2910-BN",
+      "con_cho": 7
+    },
+    {
+      "ngay": "2026-10-30",
+      "ma_chuyen": "GN-3010-BN",
+      "con_cho": 10
+    },
+    {
+      "ngay": "2026-10-31",
+      "ma_chuyen": "GN-3110-BN",
+      "con_cho": 12
+    }
+  ]
+}

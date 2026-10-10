@@ -19,6 +19,12 @@
 ## SEO
 - Mỗi trang một h1, title, meta description, OG, JSON-LD không bịa điểm đánh giá. `/he-thiet-ke/` và `/prototype/*` gắn noindex, bỏ trước khi lên chính thức.
 
+## Cho agent đọc
+- `npm run build` sinh thêm `<trang>.md`, `api/*.json`, `openapi.json`, `llms.txt` từ `data/*.json` (`site/scripts/agent-files.mjs`). Sửa data thì cả HTML, Markdown, API cùng đổi.
+- `site/functions/_middleware.js` (Cloudflare Pages): `Accept: text/markdown` → Markdown + `Vary: Accept`; lỗi `/api/*` → `application/problem+json` (RFC 9457).
+- `public/robots.txt` cho phép GPTBot, ChatGPT-User, ClaudeBot, Claude-User, PerplexityBot, Google-Extended, Applebot-Extended.
+- Kiểm: `npm run build && npm test` (site/tests).
+
 ## Luật chuyển động
 - Hiệu ứng chạy theo nhịp cuộn của người xem; không có hiệu ứng tự chạy dài bắt người xem chờ (intro tối đa ~0,8 giây, nội dung đọc được ngay).
 - Mỗi hiệu ứng phải có lý do (dẫn mắt, kể chuyện, phản hồi khi bấm); không thêm cho vui.

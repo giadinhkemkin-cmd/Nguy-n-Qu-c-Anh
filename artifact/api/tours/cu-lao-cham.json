@@ -1,0 +1,113 @@
+{
+  "slug": "cu-lao-cham",
+  "ten": "Cù Lao Chàm: ca nô, lặn ngắm san hô, ăn hải sản ở Bãi Ông",
+  "ten_ngan": "Cù Lao Chàm",
+  "vung": "Biển",
+  "thoi_luong": "1 ngày",
+  "gio": "07:30 – 16:00",
+  "gia_nguoi_lon": 790000,
+  "gia_tre_em": 590000,
+  "nhom_toi_da": 12,
+  "lich": "Hằng ngày, từ tháng 3 đến hết tháng 9",
+  "dang_mo_ban": false,
+  "diem_chinh": {
+    "ten": "Bãi san hô Hòn Dài",
+    "gio": "10:15"
+  },
+  "url": "/tour/cu-lao-cham/",
+  "api": "/api/tours/cu-lao-cham.json",
+  "mo_ta_ngan": "Ca nô 20 phút từ Cửa Đại ra đảo, lặn ống thở ở bãi san hô, ăn trưa hải sản trên bãi cát rồi về trước khi biển nổi gió chiều.",
+  "diem_nhan": [
+    "Ca nô cao tốc từ cảng Cửa Đại",
+    "Lặn ống thở ngắm san hô, có áo phao và kính",
+    "Làng chài Bãi Làng, chùa Hải Tạng",
+    "Ăn trưa hải sản ở Bãi Ông"
+  ],
+  "lich_trinh": [
+    {
+      "gio": "07:30",
+      "ten": "Đón tại khách sạn",
+      "mo_ta": "Xe đón trong nội thành Đà Nẵng.",
+      "toa_do": [
+        16.07,
+        108.2245
+      ]
+    },
+    {
+      "gio": "08:30",
+      "ten": "Cảng Cửa Đại",
+      "mo_ta": "Làm thủ tục, nhận áo phao. Ca nô chạy khoảng 20 phút.",
+      "toa_do": [
+        15.885,
+        108.38
+      ]
+    },
+    {
+      "gio": "09:00",
+      "ten": "Bãi Làng",
+      "mo_ta": "Thăm làng chài, chùa Hải Tạng, giếng cổ Chăm.",
+      "toa_do": [
+        15.955,
+        108.515
+      ]
+    },
+    {
+      "gio": "10:15",
+      "ten": "Bãi san hô Hòn Dài",
+      "mo_ta": "Lặn ống thở 45 phút. Có kính, ống thở, áo phao. Không biết bơi vẫn lặn được nhờ áo phao.",
+      "toa_do": [
+        15.94,
+        108.505
+      ]
+    },
+    {
+      "gio": "12:00",
+      "ten": "Bãi Ông",
+      "mo_ta": "Ăn trưa hải sản, nghỉ võng, tắm biển tự do.",
+      "toa_do": [
+        15.948,
+        108.522
+      ]
+    },
+    {
+      "gio": "14:30",
+      "ten": "Ca nô về Cửa Đại",
+      "mo_ta": "Về đất liền trước khi biển nổi gió chiều.",
+      "toa_do": [
+        15.885,
+        108.38
+      ]
+    },
+    {
+      "gio": "16:00",
+      "ten": "Về khách sạn",
+      "mo_ta": "Trả khách tại khách sạn.",
+      "toa_do": [
+        16.07,
+        108.2245
+      ]
+    }
+  ],
+  "bao_gom": [
+    "Xe đưa đón",
+    "Ca nô cao tốc hai chiều",
+    "Phí tham quan khu bảo tồn biển",
+    "Dụng cụ lặn ống thở, áo phao",
+    "Ăn trưa hải sản",
+    "Hướng dẫn viên",
+    "Bảo hiểm du lịch"
+  ],
+  "chua_gom": [
+    "Lặn bình khí (hỏi riêng)",
+    "Đồ uống",
+    "Thuê ghế, phòng tắm nước ngọt"
+  ],
+  "nen_mang": [
+    "Đồ bơi, khăn",
+    "Thuốc say sóng (uống trước 30 phút)",
+    "Túi chống nước cho điện thoại"
+  ],
+  "luu_y": "Tour phụ thuộc lệnh xuất bến của biên phòng. Biển động thì tour huỷ, hoàn 100% hoặc đổi ngày. Người có bệnh tim mạch, cột sống, đang mang thai không nên đi ca nô.",
+  "phu_thu_phong_don": null,
+  "chuyen_sap_toi": []
+}

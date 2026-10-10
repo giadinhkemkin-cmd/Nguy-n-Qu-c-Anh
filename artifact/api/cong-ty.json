@@ -1,0 +1,83 @@
+{
+  "du_lieu_test": true,
+  "ten": "Gió Nồm Travel",
+  "ten_phap_ly": "Công ty TNHH Du lịch Gió Nồm (tên giả, dữ liệu test)",
+  "giay_phep_lu_hanh": null,
+  "nam_thanh_lap": 2017,
+  "dia_chi": "68 Bạch Đằng, phường Hải Châu, Đà Nẵng",
+  "toa_do": [
+    16.07,
+    108.2245
+  ],
+  "ban_do": "https://maps.google.com/?q=16.0700,108.2245",
+  "gio_lam_viec": "7:00 – 21:00, cả tuần (kể cả lễ, Tết)",
+  "dien_thoai": "0905 000 000",
+  "dien_thoai_tel": "+84905000000",
+  "zalo": "https://zalo.me/0905000000",
+  "email": "xinchao@gionom.test",
+  "fanpage": "https://facebook.com/gionomtravel.test",
+  "doi_ngu": [
+    {
+      "ten": "Chị Hạnh",
+      "vai_tro": "Điều hành, nghe máy hotline"
+    },
+    {
+      "ten": "Anh Tín",
+      "vai_tro": "Hướng dẫn viên tuyến Bà Nà, Huế"
+    },
+    {
+      "ten": "Chị Vy",
+      "vai_tro": "Hướng dẫn viên tuyến Hội An, Mỹ Sơn"
+    }
+  ],
+  "cam_ket": [
+    {
+      "tieu_de": "Nhóm tối đa 12 khách",
+      "chi_tiet": "Xe 16 chỗ chỉ chở 12 người, nên không ai ngồi ghế phụ và ai cũng nghe rõ người dẫn."
+    },
+    {
+      "tieu_de": "Đón tận khách sạn",
+      "chi_tiet": "Miễn phí đón trả trong các quận Hải Châu, Sơn Trà, Ngũ Hành Sơn, Thanh Khê. Ngoài vùng này phụ thu theo km."
+    },
+    {
+      "tieu_de": "Đi lệch giờ đông",
+      "chi_tiet": "Lịch được xếp để tới điểm chính trước hoặc sau giờ các đoàn lớn đến."
+    },
+    {
+      "tieu_de": "Huỷ miễn phí trước 24 giờ",
+      "chi_tiet": "Báo huỷ trước giờ đón 24 giờ được hoàn 100% tiền cọc."
+    }
+  ],
+  "chinh_sach": {
+    "dat_coc": "Đặt cọc 30% qua chuyển khoản sau khi Gió Nồm xác nhận còn chỗ. Phần còn lại trả cho hướng dẫn viên ngày đi (tiền mặt hoặc chuyển khoản).",
+    "huy_tour": [
+      "Huỷ trước giờ đón từ 24 giờ trở lên: hoàn 100% tiền cọc.",
+      "Huỷ trong vòng 24 giờ: giữ tiền cọc.",
+      "Tour huỷ vì thời tiết (biển động, bão, mưa lớn): hoàn 100% hoặc đổi sang ngày khác, khách chọn."
+    ],
+    "tre_em": "Dưới 1 m: miễn phí (ngồi cùng bố mẹ). Từ 1 m đến 1,4 m: giá trẻ em. Trên 1,4 m: giá người lớn.",
+    "thanh_toan": "Chuyển khoản, tiền mặt. Chưa nhận thẻ tín dụng."
+  },
+  "cau_hoi_thuong_gap": [
+    {
+      "hoi": "Tôi đi một mình có ghép đoàn được không?",
+      "dap": "Được. Mọi tour đều là tour ghép, nhóm tối đa 12 khách. Đi một mình vẫn tính giá như bình thường."
+    },
+    {
+      "hoi": "Trời mưa thì sao?",
+      "dap": "Tour trên núi và trong phố vẫn chạy khi mưa nhỏ, Gió Nồm phát áo mưa. Tour biển Cù Lao Chàm phụ thuộc lệnh của biên phòng: biển động thì huỷ và hoàn tiền 100%."
+    },
+    {
+      "hoi": "Có cần đặt trước không?",
+      "dap": "Nên đặt trước ít nhất 1 ngày. Mùa cao điểm (tháng 6 – 8, lễ 30/4, 2/9) nên đặt trước 3–5 ngày."
+    },
+    {
+      "hoi": "Giá đã gồm vé tham quan chưa?",
+      "dap": "Đã gồm vé vào cổng và vé cáp treo các điểm ghi trong lịch trình. Chi phí riêng ghi rõ ở mục 'Chưa gồm' của từng tour."
+    },
+    {
+      "hoi": "Người lớn tuổi đi được không?",
+      "dap": "Được với Hội An, Mỹ Sơn, Bà Nà. Tour Cù Lao Chàm có đoạn ca nô khá xóc, người có bệnh tim mạch, cột sống hoặc mang thai nên hỏi bác sĩ trước."
+    }
+  ]
+}

@@ -1,0 +1,437 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Gió Nồm Travel – API chỉ đọc",
+    "version": "1.0.0",
+    "summary": "Tour, giá, lịch khởi hành và thông tin liên hệ của Gió Nồm Travel (dữ liệu test).",
+    "description": "File JSON tĩnh sinh từ data/*.json lúc build. Không cần xác thực. Chỉ hỗ trợ GET và HEAD; phương thức khác trả 405 dạng application/problem+json (RFC 9457). Đặt chỗ qua Zalo, API không nhận đặt chỗ."
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "paths": {
+    "/api/tours.json": {
+      "get": {
+        "operationId": "listTours",
+        "summary": "Danh sách 5 tour",
+        "responses": {
+          "200": {
+            "description": "Danh sách tour",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TourList"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/tours/{slug}.json": {
+      "get": {
+        "operationId": "getTour",
+        "summary": "Chi tiết một tour, gồm lịch trình và chuyến sắp tới",
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "ba-na-cau-vang",
+                "hoi-an-chieu-toi",
+                "cu-lao-cham",
+                "my-son-sang-som",
+                "hai-van-hue-2n1d"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Chi tiết tour",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TourDetail"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/api/lich.json": {
+      "get": {
+        "operationId": "listDepartures",
+        "summary": "Mọi chuyến đã mở bán và số chỗ còn lại",
+        "responses": {
+          "200": {
+            "description": "Lịch khởi hành",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Schedule"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/cong-ty.json": {
+      "get": {
+        "operationId": "getCompany",
+        "summary": "Liên hệ, cam kết, chính sách đặt cọc và huỷ, câu hỏi thường gặp",
+        "responses": {
+          "200": {
+            "description": "Thông tin công ty",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Company"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "responses": {
+      "NotFound": {
+        "description": "Không có tài nguyên",
+        "content": {
+          "application/problem+json": {
+            "schema": {
+              "$ref": "#/components/schemas/Problem"
+            }
+          }
+        }
+      }
+    },
+    "schemas": {
+      "MainStop": {
+        "type": "object",
+        "required": [
+          "ten",
+          "gio"
+        ],
+        "properties": {
+          "ten": {
+            "type": "string"
+          },
+          "gio": {
+            "type": "string",
+            "description": "Giờ đoàn tới điểm chính, HH:MM"
+          }
+        }
+      },
+      "TourSummary": {
+        "type": "object",
+        "required": [
+          "slug",
+          "ten",
+          "ten_ngan",
+          "thoi_luong",
+          "gio",
+          "gia_nguoi_lon",
+          "nhom_toi_da",
+          "lich",
+          "dang_mo_ban",
+          "diem_chinh",
+          "url",
+          "api"
+        ],
+        "properties": {
+          "slug": {
+            "type": "string"
+          },
+          "ten": {
+            "type": "string"
+          },
+          "ten_ngan": {
+            "type": "string"
+          },
+          "vung": {
+            "type": "string"
+          },
+          "thoi_luong": {
+            "type": "string"
+          },
+          "gio": {
+            "type": "string"
+          },
+          "gia_nguoi_lon": {
+            "type": "integer",
+            "description": "VND"
+          },
+          "gia_tre_em": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "description": "VND, trẻ 1–1,4 m"
+          },
+          "nhom_toi_da": {
+            "type": "integer"
+          },
+          "lich": {
+            "type": "string"
+          },
+          "dang_mo_ban": {
+            "type": "boolean"
+          },
+          "diem_chinh": {
+            "$ref": "#/components/schemas/MainStop"
+          },
+          "url": {
+            "type": "string"
+          },
+          "api": {
+            "type": "string"
+          }
+        }
+      },
+      "TourList": {
+        "type": "object",
+        "required": [
+          "cap_nhat",
+          "tours"
+        ],
+        "properties": {
+          "cap_nhat": {
+            "type": "string",
+            "format": "date"
+          },
+          "du_lieu_test": {
+            "type": "boolean"
+          },
+          "tours": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TourSummary"
+            }
+          }
+        }
+      },
+      "Stop": {
+        "type": "object",
+        "required": [
+          "gio",
+          "ten"
+        ],
+        "properties": {
+          "gio": {
+            "type": "string"
+          },
+          "ten": {
+            "type": "string"
+          },
+          "mo_ta": {
+            "type": "string"
+          },
+          "toa_do": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 2,
+            "maxItems": 2,
+            "description": "[vĩ độ, kinh độ]"
+          }
+        }
+      },
+      "Departure": {
+        "type": "object",
+        "required": [
+          "ngay",
+          "ma_chuyen",
+          "con_cho"
+        ],
+        "properties": {
+          "tour": {
+            "type": "string"
+          },
+          "ngay": {
+            "type": "string",
+            "format": "date"
+          },
+          "ma_chuyen": {
+            "type": "string"
+          },
+          "con_cho": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 12
+          }
+        }
+      },
+      "TourDetail": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/TourSummary"
+          },
+          {
+            "type": "object",
+            "required": [
+              "lich_trinh",
+              "bao_gom",
+              "chua_gom",
+              "chuyen_sap_toi"
+            ],
+            "properties": {
+              "mo_ta_ngan": {
+                "type": "string"
+              },
+              "diem_nhan": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "lich_trinh": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Stop"
+                }
+              },
+              "bao_gom": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "chua_gom": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "nen_mang": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "luu_y": {
+                "type": "string"
+              },
+              "phu_thu_phong_don": {
+                "type": [
+                  "integer",
+                  "null"
+                ]
+              },
+              "chuyen_sap_toi": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Departure"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "Schedule": {
+        "type": "object",
+        "required": [
+          "cap_nhat",
+          "chuyen"
+        ],
+        "properties": {
+          "cap_nhat": {
+            "type": "string",
+            "format": "date"
+          },
+          "du_lieu_test": {
+            "type": "boolean"
+          },
+          "chuyen": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Departure"
+            }
+          }
+        }
+      },
+      "Company": {
+        "type": "object",
+        "required": [
+          "ten",
+          "dien_thoai",
+          "zalo",
+          "email",
+          "dia_chi"
+        ],
+        "properties": {
+          "ten": {
+            "type": "string"
+          },
+          "dien_thoai": {
+            "type": "string"
+          },
+          "zalo": {
+            "type": "string",
+            "format": "uri"
+          },
+          "email": {
+            "type": "string"
+          },
+          "dia_chi": {
+            "type": "string"
+          },
+          "gio_lam_viec": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": true
+      },
+      "Problem": {
+        "type": "object",
+        "description": "RFC 9457 Problem Details",
+        "required": [
+          "type",
+          "title",
+          "status",
+          "code"
+        ],
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "status": {
+            "type": "integer"
+          },
+          "detail": {
+            "type": "string"
+          },
+          "instance": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string",
+            "enum": [
+              "not_found",
+              "method_not_allowed"
+            ]
+          },
+          "hint": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

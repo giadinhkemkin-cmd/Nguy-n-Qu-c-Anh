@@ -1,0 +1,221 @@
+{
+  "slug": "hai-van-hue-2n1d",
+  "ten": "Qua đèo Hải Vân về Huế, 2 ngày 1 đêm",
+  "ten_ngan": "Hải Vân – Huế 2N1Đ",
+  "vung": "Cố đô",
+  "thoi_luong": "2 ngày 1 đêm",
+  "gio": "07:30 ngày 1 – 18:00 ngày 2",
+  "gia_nguoi_lon": 3290000,
+  "gia_tre_em": 2490000,
+  "nhom_toi_da": 12,
+  "lich": "Thứ Ba và Thứ Sáu",
+  "dang_mo_ban": true,
+  "diem_chinh": {
+    "ten": "Đỉnh đèo Hải Vân",
+    "gio": "08:30"
+  },
+  "url": "/tour/hai-van-hue-2n1d/",
+  "api": "/api/tours/hai-van-hue-2n1d.json",
+  "mo_ta_ngan": "Đi đường đèo Hải Vân thay vì hầm, dừng ở đỉnh đèo và đầm Lập An, một đêm ở Huế với bữa tối cơm cung đình, sáng hôm sau đi Đại Nội và lăng Khải Định.",
+  "diem_nhan": [
+    "Dừng ở đỉnh đèo Hải Vân và Hải Vân Quan",
+    "Ăn trưa hải sản ở đầm Lập An, Lăng Cô",
+    "Một đêm khách sạn 3 sao ở trung tâm Huế",
+    "Đại Nội, chùa Thiên Mụ, lăng Khải Định"
+  ],
+  "lich_trinh": [
+    {
+      "gio": "N1 07:30",
+      "ten": "Đón tại khách sạn",
+      "mo_ta": "Xe đón trong nội thành Đà Nẵng.",
+      "toa_do": [
+        16.07,
+        108.2245
+      ]
+    },
+    {
+      "gio": "N1 08:30",
+      "ten": "Đỉnh đèo Hải Vân",
+      "mo_ta": "Dừng 30 phút ở Hải Vân Quan. Trời quang nhìn thấy cả vịnh Đà Nẵng.",
+      "toa_do": [
+        16.1956,
+        108.131
+      ]
+    },
+    {
+      "gio": "N1 11:30",
+      "ten": "Đầm Lập An",
+      "mo_ta": "Ăn trưa hàu, cá đầm bên mép nước.",
+      "toa_do": [
+        16.25,
+        108.07
+      ]
+    },
+    {
+      "gio": "N1 15:00",
+      "ten": "Chùa Thiên Mụ",
+      "mo_ta": "Ngôi chùa bên sông Hương, tháp Phước Duyên bảy tầng.",
+      "toa_do": [
+        16.4537,
+        107.5447
+      ]
+    },
+    {
+      "gio": "N1 19:00",
+      "ten": "Ăn tối cơm cung đình, nghỉ đêm",
+      "mo_ta": "Bữa tối món Huế, nghỉ khách sạn 3 sao gần sông Hương.",
+      "toa_do": [
+        16.4637,
+        107.5909
+      ]
+    },
+    {
+      "gio": "N2 08:00",
+      "ten": "Đại Nội Huế",
+      "mo_ta": "Ngọ Môn, điện Thái Hoà, Tử Cấm Thành. Đi bộ khoảng 2 giờ.",
+      "toa_do": [
+        16.4693,
+        107.5779
+      ]
+    },
+    {
+      "gio": "N2 13:30",
+      "ten": "Lăng Khải Định",
+      "mo_ta": "Lăng trên sườn đồi, nội thất ghép sành sứ.",
+      "toa_do": [
+        16.399,
+        107.5904
+      ]
+    },
+    {
+      "gio": "N2 18:00",
+      "ten": "Về Đà Nẵng qua hầm Hải Vân",
+      "mo_ta": "Trả khách tại khách sạn.",
+      "toa_do": [
+        16.07,
+        108.2245
+      ]
+    }
+  ],
+  "bao_gom": [
+    "Xe đưa đón 2 ngày",
+    "1 đêm khách sạn 3 sao (phòng đôi hoặc hai giường)",
+    "3 bữa chính, 1 bữa sáng",
+    "Vé tham quan các điểm trong lịch trình",
+    "Hướng dẫn viên",
+    "Bảo hiểm du lịch"
+  ],
+  "chua_gom": [
+    "Phụ thu phòng đơn 600.000 đ",
+    "Thuyền rồng sông Hương (tuỳ chọn)",
+    "Đồ uống"
+  ],
+  "nen_mang": [
+    "Quần áo che vai, gối khi vào chùa và Đại Nội",
+    "Ô hoặc áo mưa (Huế mưa nhiều tháng 9 – 12)"
+  ],
+  "luu_y": "Mưa bão làm đèo Hải Vân đóng thì xe đi hầm, lịch trình giữ nguyên các điểm còn lại.",
+  "phu_thu_phong_don": 600000,
+  "chuyen_sap_toi": [
+    {
+      "ngay": "2026-10-13",
+      "ma_chuyen": "GN-1310-HV",
+      "con_cho": 1
+    },
+    {
+      "ngay": "2026-10-16",
+      "ma_chuyen": "GN-1610-HV",
+      "con_cho": 3
+    },
+    {
+      "ngay": "2026-10-20",
+      "ma_chuyen": "GN-2010-HV",
+      "con_cho": 7
+    },
+    {
+      "ngay": "2026-10-23",
+      "ma_chuyen": "GN-2310-HV",
+      "con_cho": 1
+    },
+    {
+      "ngay": "2026-10-27",
+      "ma_chuyen": "GN-2710-HV",
+      "con_cho": 9
+    },
+    {
+      "ngay": "2026-10-30",
+      "ma_chuyen": "GN-3010-HV",
+      "con_cho": 0
+    },
+    {
+      "ngay": "2026-11-03",
+      "ma_chuyen": "GN-0311-HV",
+      "con_cho": 8
+    },
+    {
+      "ngay": "2026-11-06",
+      "ma_chuyen": "GN-0611-HV",
+      "con_cho": 8
+    },
+    {
+      "ngay": "2026-11-10",
+      "ma_chuyen": "GN-1011-HV",
+      "con_cho": 12
+    },
+    {
+      "ngay": "2026-11-13",
+      "ma_chuyen": "GN-1311-HV",
+      "con_cho": 6
+    },
+    {
+      "ngay": "2026-11-17",
+      "ma_chuyen": "GN-1711-HV",
+      "con_cho": 8
+    },
+    {
+      "ngay": "2026-11-20",
+      "ma_chuyen": "GN-2011-HV",
+      "con_cho": 12
+    },
+    {
+      "ngay": "2026-11-24",
+      "ma_chuyen": "GN-2411-HV",
+      "con_cho": 9
+    },
+    {
+      "ngay": "2026-11-27",
+      "ma_chuyen": "GN-2711-HV",
+      "con_cho": 9
+    },
+    {
+      "ngay": "2026-12-01",
+      "ma_chuyen": "GN-0112-HV",
+      "con_cho": 12
+    },
+    {
+      "ngay": "2026-12-04",
+      "ma_chuyen": "GN-0412-HV",
+      "con_cho": 10
+    },
+    {
+      "ngay": "2026-12-08",
+      "ma_chuyen": "GN-0812-HV",
+      "con_cho": 12
+    },
+    {
+      "ngay": "2026-12-11",
+      "ma_chuyen": "GN-1112-HV",
+      "con_cho": 10
+    },
+    {
+      "ngay": "2026-12-15",
+      "ma_chuyen": "GN-1512-HV",
+      "con_cho": 6
+    },
+    {
+      "ngay": "2026-12-18",
+      "ma_chuyen": "GN-1812-HV",
+      "con_cho": 8
+    }
+  ]
+}

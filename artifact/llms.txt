@@ -1,0 +1,27 @@
+# Gió Nồm Travel
+
+> Công ty tour ghép nhóm nhỏ ở Đà Nẵng (dữ liệu thử nghiệm): 5 tour quanh Đà Nẵng, Hội An, Huế, tối đa 12 khách mỗi xe, giá đã gồm vé, đặt chỗ qua Zalo 0905 000 000.
+
+Mọi trang trả bản Markdown khi gửi header `Accept: text/markdown`. Dữ liệu JSON mô tả trong OpenAPI 3.1.
+
+## Trang
+
+- [Trang chủ](/index.md): năm tour, cam kết, cách đặt, câu hỏi thường gặp
+- [Danh mục tour](/tour.md): bảng giá và lịch của 5 tour
+- [Lịch khởi hành](/lich-khoi-hanh.md): chuyến và chỗ còn trong 4 tuần tới
+- [Liên hệ](/lien-he.md): Zalo, điện thoại, chính sách cọc và huỷ
+
+## Tour
+
+- [Bà Nà – Cầu Vàng](/tour/ba-na-cau-vang.md): 1 ngày, người lớn 1.490.000 đ
+- [Hội An chiều tối](/tour/hoi-an-chieu-toi.md): Nửa ngày, người lớn 650.000 đ
+- [Cù Lao Chàm](/tour/cu-lao-cham.md): 1 ngày, người lớn 790.000 đ
+- [Mỹ Sơn sáng sớm](/tour/my-son-sang-som.md): Nửa ngày, người lớn 890.000 đ
+- [Hải Vân – Huế 2N1Đ](/tour/hai-van-hue-2n1d.md): 2 ngày 1 đêm, người lớn 3.290.000 đ
+
+## API
+
+- [OpenAPI 3.1](/openapi.json): mô tả 4 endpoint GET
+- [Danh sách tour](/api/tours.json)
+- [Lịch khởi hành](/api/lich.json)
+- [Thông tin công ty](/api/cong-ty.json)

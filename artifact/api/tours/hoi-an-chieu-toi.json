@@ -1,0 +1,204 @@
+{
+  "slug": "hoi-an-chieu-toi",
+  "ten": "Hội An chiều tối: phố cổ, sông Hoài, đèn hoa đăng",
+  "ten_ngan": "Hội An chiều tối",
+  "vung": "Phố cổ",
+  "thoi_luong": "Nửa ngày",
+  "gio": "14:30 – 21:00",
+  "gia_nguoi_lon": 650000,
+  "gia_tre_em": 450000,
+  "nhom_toi_da": 12,
+  "lich": "Khởi hành hằng ngày",
+  "dang_mo_ban": true,
+  "diem_chinh": {
+    "ten": "Phố cổ Hội An",
+    "gio": "16:30"
+  },
+  "url": "/tour/hoi-an-chieu-toi/",
+  "api": "/api/tours/hoi-an-chieu-toi.json",
+  "mo_ta_ngan": "Tới Hội An lúc nắng đã dịu, đi bộ phố cổ với người dẫn sinh ra ở Hội An, ăn tối rồi xuống thuyền thả đèn trên sông Hoài.",
+  "diem_nhan": [
+    "Dừng chân ở Ngũ Hành Sơn trên đường đi",
+    "Đi bộ phố cổ: chùa Cầu, nhà cổ Tấn Ký, hội quán Phúc Kiến",
+    "Ăn tối cao lầu, bánh xèo, hoành thánh",
+    "Thuyền trên sông Hoài, thả đèn hoa đăng"
+  ],
+  "lich_trinh": [
+    {
+      "gio": "14:30",
+      "ten": "Đón tại khách sạn",
+      "mo_ta": "Xe đón trong nội thành Đà Nẵng.",
+      "toa_do": [
+        16.07,
+        108.2245
+      ]
+    },
+    {
+      "gio": "15:00",
+      "ten": "Ngũ Hành Sơn",
+      "mo_ta": "Leo núi Thuỷ Sơn khoảng 40 phút, xem động Huyền Không.",
+      "toa_do": [
+        16.0036,
+        108.2639
+      ]
+    },
+    {
+      "gio": "16:30",
+      "ten": "Phố cổ Hội An",
+      "mo_ta": "Đi bộ qua chùa Cầu, nhà cổ Tấn Ký, hội quán Phúc Kiến. Vé tham quan phố cổ đã gồm.",
+      "toa_do": [
+        15.8771,
+        108.326
+      ]
+    },
+    {
+      "gio": "18:15",
+      "ten": "Ăn tối",
+      "mo_ta": "Cao lầu, bánh xèo, hoành thánh chiên ở một quán gia đình trên đường Trần Phú.",
+      "toa_do": [
+        15.8775,
+        108.3285
+      ]
+    },
+    {
+      "gio": "19:30",
+      "ten": "Thuyền sông Hoài",
+      "mo_ta": "Thuyền 20 phút, mỗi khách một đèn hoa đăng.",
+      "toa_do": [
+        15.876,
+        108.327
+      ]
+    },
+    {
+      "gio": "20:15",
+      "ten": "Về Đà Nẵng",
+      "mo_ta": "Về tới khách sạn khoảng 21:00.",
+      "toa_do": [
+        16.07,
+        108.2245
+      ]
+    }
+  ],
+  "bao_gom": [
+    "Xe đưa đón",
+    "Vé tham quan phố cổ Hội An",
+    "Vé Ngũ Hành Sơn",
+    "Bữa tối",
+    "Thuyền và đèn hoa đăng",
+    "Hướng dẫn viên",
+    "Bảo hiểm du lịch"
+  ],
+  "chua_gom": [
+    "Thang máy Ngũ Hành Sơn (15.000 đ)",
+    "Đồ uống",
+    "Mua sắm cá nhân"
+  ],
+  "nen_mang": [
+    "Giày đế bằng",
+    "Thuốc chống muỗi khi xuống thuyền"
+  ],
+  "luu_y": "Mùa nước lên (tháng 10 – 11) phố cổ có thể ngập. Khi đó lịch trình đổi sang đi thuyền trong phố, giá không đổi.",
+  "phu_thu_phong_don": null,
+  "chuyen_sap_toi": [
+    {
+      "ngay": "2026-10-12",
+      "ma_chuyen": "GN-1210-HA",
+      "con_cho": 9
+    },
+    {
+      "ngay": "2026-10-13",
+      "ma_chuyen": "GN-1310-HA",
+      "con_cho": 10
+    },
+    {
+      "ngay": "2026-10-14",
+      "ma_chuyen": "GN-1410-HA",
+      "con_cho": 4
+    },
+    {
+      "ngay": "2026-10-15",
+      "ma_chuyen": "GN-1510-HA",
+      "con_cho": 1
+    },
+    {
+      "ngay": "2026-10-16",
+      "ma_chuyen": "GN-1610-HA",
+      "con_cho": 12
+    },
+    {
+      "ngay": "2026-10-17",
+      "ma_chuyen": "GN-1710-HA",
+      "con_cho": 10
+    },
+    {
+      "ngay": "2026-10-18",
+      "ma_chuyen": "GN-1810-HA",
+      "con_cho": 10
+    },
+    {
+      "ngay": "2026-10-19",
+      "ma_chuyen": "GN-1910-HA",
+      "con_cho": 3
+    },
+    {
+      "ngay": "2026-10-20",
+      "ma_chuyen": "GN-2010-HA",
+      "con_cho": 10
+    },
+    {
+      "ngay": "2026-10-21",
+      "ma_chuyen": "GN-2110-HA",
+      "con_cho": 12
+    },
+    {
+      "ngay": "2026-10-22",
+      "ma_chuyen": "GN-2210-HA",
+      "con_cho": 3
+    },
+    {
+      "ngay": "2026-10-23",
+      "ma_chuyen": "GN-2310-HA",
+      "con_cho": 7
+    },
+    {
+      "ngay": "2026-10-24",
+      "ma_chuyen": "GN-2410-HA",
+      "con_cho": 6
+    },
+    {
+      "ngay": "2026-10-25",
+      "ma_chuyen": "GN-2510-HA",
+      "con_cho": 9
+    },
+    {
+      "ngay": "2026-10-26",
+      "ma_chuyen": "GN-2610-HA",
+      "con_cho": 10
+    },
+    {
+      "ngay": "2026-10-27",
+      "ma_chuyen": "GN-2710-HA",
+      "con_cho": 1
+    },
+    {
+      "ngay": "2026-10-28",
+      "ma_chuyen": "GN-2810-HA",
+      "con_cho": 0
+    },
+    {
+      "ngay": "2026-10-29",
+      "ma_chuyen": "GN-2910-HA",
+      "con_cho": 4
+    },
+    {
+      "ngay": "2026-10-30",
+      "ma_chuyen": "GN-3010-HA",
+      "con_cho": 1
+    },
+    {
+      "ngay": "2026-10-31",
+      "ma_chuyen": "GN-3110-HA",
+      "con_cho": 0
+    }
+  ]
+}

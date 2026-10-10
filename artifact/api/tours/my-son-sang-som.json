@@ -1,0 +1,212 @@
+{
+  "slug": "my-son-sang-som",
+  "ten": "Mỹ Sơn sáng sớm, về Hội An bằng thuyền sông Thu Bồn",
+  "ten_ngan": "Mỹ Sơn sáng sớm",
+  "vung": "Di sản",
+  "thoi_luong": "Nửa ngày",
+  "gio": "04:45 – 12:30",
+  "gia_nguoi_lon": 890000,
+  "gia_tre_em": 650000,
+  "nhom_toi_da": 12,
+  "lich": "Thứ Hai, Thứ Tư, Thứ Sáu",
+  "dang_mo_ban": true,
+  "diem_chinh": {
+    "ten": "Cổng Mỹ Sơn",
+    "gio": "06:00"
+  },
+  "url": "/tour/my-son-sang-som/",
+  "api": "/api/tours/my-son-sang-som.json",
+  "mo_ta_ngan": "Vào thánh địa Mỹ Sơn lúc cổng vừa mở, đi giữa các tháp Chăm khi trời còn mát, rồi xuôi sông Thu Bồn về Hội An.",
+  "diem_nhan": [
+    "Vào cổng lúc 6:00, trước các đoàn lớn khoảng hai giờ",
+    "Xem múa Chăm ở nhà trưng bày",
+    "Ăn sáng ở Mỹ Sơn",
+    "Xuôi thuyền sông Thu Bồn, ghé làng mộc Kim Bồng"
+  ],
+  "lich_trinh": [
+    {
+      "gio": "04:45",
+      "ten": "Đón tại khách sạn",
+      "mo_ta": "Xe đón trong nội thành Đà Nẵng, có bánh mì và cà phê mang theo.",
+      "toa_do": [
+        16.07,
+        108.2245
+      ]
+    },
+    {
+      "gio": "06:00",
+      "ten": "Cổng Mỹ Sơn",
+      "mo_ta": "Xe điện từ cổng vào khu tháp. Trời sáng dần sau núi Mỹ Sơn (núi Răng Mèo).",
+      "toa_do": [
+        15.764,
+        108.124
+      ]
+    },
+    {
+      "gio": "06:20",
+      "ten": "Khu tháp B, C, D",
+      "mo_ta": "Đi bộ 90 phút giữa các tháp Chăm xây từ thế kỷ 4 đến 13, nghe kể về vương quốc Chămpa.",
+      "toa_do": [
+        15.763,
+        108.123
+      ]
+    },
+    {
+      "gio": "08:30",
+      "ten": "Múa Chăm, ăn sáng",
+      "mo_ta": "Xem múa Chăm ở nhà trưng bày, ăn sáng tại nhà hàng gần cổng.",
+      "toa_do": [
+        15.77,
+        108.13
+      ]
+    },
+    {
+      "gio": "10:00",
+      "ten": "Bến thuyền Thu Bồn",
+      "mo_ta": "Xuôi sông khoảng 75 phút, ghé làng mộc Kim Bồng.",
+      "toa_do": [
+        15.833,
+        108.255
+      ]
+    },
+    {
+      "gio": "11:30",
+      "ten": "Hội An",
+      "mo_ta": "Lên bờ ở Hội An. Khách có thể ở lại phố cổ hoặc theo xe về Đà Nẵng.",
+      "toa_do": [
+        15.8771,
+        108.326
+      ]
+    },
+    {
+      "gio": "12:30",
+      "ten": "Về Đà Nẵng",
+      "mo_ta": "Trả khách tại khách sạn.",
+      "toa_do": [
+        16.07,
+        108.2245
+      ]
+    }
+  ],
+  "bao_gom": [
+    "Xe đưa đón",
+    "Vé tham quan Mỹ Sơn và xe điện",
+    "Ăn sáng",
+    "Thuyền sông Thu Bồn",
+    "Hướng dẫn viên",
+    "Bảo hiểm du lịch"
+  ],
+  "chua_gom": [
+    "Đồ uống",
+    "Vé phố cổ Hội An nếu ở lại tham quan"
+  ],
+  "nen_mang": [
+    "Mũ, nước",
+    "Giày đi bộ",
+    "Thuốc chống muỗi"
+  ],
+  "luu_y": "Ở lại Hội An thì tự về Đà Nẵng hoặc Gió Nồm đặt xe giúp (phụ thu). Thung lũng Mỹ Sơn bị núi che phía đông nên thường không thấy mặt trời mọc rõ; đi sớm là để mát và vắng.",
+  "phu_thu_phong_don": null,
+  "chuyen_sap_toi": [
+    {
+      "ngay": "2026-10-12",
+      "ma_chuyen": "GN-1210-MS",
+      "con_cho": 3
+    },
+    {
+      "ngay": "2026-10-14",
+      "ma_chuyen": "GN-1410-MS",
+      "con_cho": 0
+    },
+    {
+      "ngay": "2026-10-16",
+      "ma_chuyen": "GN-1610-MS",
+      "con_cho": 10
+    },
+    {
+      "ngay": "2026-10-19",
+      "ma_chuyen": "GN-1910-MS",
+      "con_cho": 12
+    },
+    {
+      "ngay": "2026-10-21",
+      "ma_chuyen": "GN-2110-MS",
+      "con_cho": 0
+    },
+    {
+      "ngay": "2026-10-23",
+      "ma_chuyen": "GN-2310-MS",
+      "con_cho": 12
+    },
+    {
+      "ngay": "2026-10-26",
+      "ma_chuyen": "GN-2610-MS",
+      "con_cho": 0
+    },
+    {
+      "ngay": "2026-10-28",
+      "ma_chuyen": "GN-2810-MS",
+      "con_cho": 0
+    },
+    {
+      "ngay": "2026-10-30",
+      "ma_chuyen": "GN-3010-MS",
+      "con_cho": 10
+    },
+    {
+      "ngay": "2026-11-02",
+      "ma_chuyen": "GN-0211-MS",
+      "con_cho": 9
+    },
+    {
+      "ngay": "2026-11-04",
+      "ma_chuyen": "GN-0411-MS",
+      "con_cho": 10
+    },
+    {
+      "ngay": "2026-11-06",
+      "ma_chuyen": "GN-0611-MS",
+      "con_cho": 12
+    },
+    {
+      "ngay": "2026-11-09",
+      "ma_chuyen": "GN-0911-MS",
+      "con_cho": 10
+    },
+    {
+      "ngay": "2026-11-11",
+      "ma_chuyen": "GN-1111-MS",
+      "con_cho": 12
+    },
+    {
+      "ngay": "2026-11-13",
+      "ma_chuyen": "GN-1311-MS",
+      "con_cho": 12
+    },
+    {
+      "ngay": "2026-11-16",
+      "ma_chuyen": "GN-1611-MS",
+      "con_cho": 10
+    },
+    {
+      "ngay": "2026-11-18",
+      "ma_chuyen": "GN-1811-MS",
+      "con_cho": 12
+    },
+    {
+      "ngay": "2026-11-20",
+      "ma_chuyen": "GN-2011-MS",
+      "con_cho": 12
+    },
+    {
+      "ngay": "2026-11-23",
+      "ma_chuyen": "GN-2311-MS",
+      "con_cho": 9
+    },
+    {
+      "ngay": "2026-11-25",
+      "ma_chuyen": "GN-2511-MS",
+      "con_cho": 12
+    }
+  ]
+}

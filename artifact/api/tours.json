@@ -1,0 +1,101 @@
+{
+  "cap_nhat": "2026-10-10",
+  "du_lieu_test": true,
+  "tours": [
+    {
+      "slug": "ba-na-cau-vang",
+      "ten": "Bà Nà – Cầu Vàng, lên cáp chuyến sớm",
+      "ten_ngan": "Bà Nà – Cầu Vàng",
+      "vung": "Núi",
+      "thoi_luong": "1 ngày",
+      "gio": "07:00 – 17:00",
+      "gia_nguoi_lon": 1490000,
+      "gia_tre_em": 1190000,
+      "nhom_toi_da": 12,
+      "lich": "Khởi hành hằng ngày",
+      "dang_mo_ban": true,
+      "diem_chinh": {
+        "ten": "Cầu Vàng",
+        "gio": "08:15"
+      },
+      "url": "/tour/ba-na-cau-vang/",
+      "api": "/api/tours/ba-na-cau-vang.json"
+    },
+    {
+      "slug": "hoi-an-chieu-toi",
+      "ten": "Hội An chiều tối: phố cổ, sông Hoài, đèn hoa đăng",
+      "ten_ngan": "Hội An chiều tối",
+      "vung": "Phố cổ",
+      "thoi_luong": "Nửa ngày",
+      "gio": "14:30 – 21:00",
+      "gia_nguoi_lon": 650000,
+      "gia_tre_em": 450000,
+      "nhom_toi_da": 12,
+      "lich": "Khởi hành hằng ngày",
+      "dang_mo_ban": true,
+      "diem_chinh": {
+        "ten": "Phố cổ Hội An",
+        "gio": "16:30"
+      },
+      "url": "/tour/hoi-an-chieu-toi/",
+      "api": "/api/tours/hoi-an-chieu-toi.json"
+    },
+    {
+      "slug": "cu-lao-cham",
+      "ten": "Cù Lao Chàm: ca nô, lặn ngắm san hô, ăn hải sản ở Bãi Ông",
+      "ten_ngan": "Cù Lao Chàm",
+      "vung": "Biển",
+      "thoi_luong": "1 ngày",
+      "gio": "07:30 – 16:00",
+      "gia_nguoi_lon": 790000,
+      "gia_tre_em": 590000,
+      "nhom_toi_da": 12,
+      "lich": "Hằng ngày, từ tháng 3 đến hết tháng 9",
+      "dang_mo_ban": false,
+      "diem_chinh": {
+        "ten": "Bãi san hô Hòn Dài",
+        "gio": "10:15"
+      },
+      "url": "/tour/cu-lao-cham/",
+      "api": "/api/tours/cu-lao-cham.json"
+    },
+    {
+      "slug": "my-son-sang-som",
+      "ten": "Mỹ Sơn sáng sớm, về Hội An bằng thuyền sông Thu Bồn",
+      "ten_ngan": "Mỹ Sơn sáng sớm",
+      "vung": "Di sản",
+      "thoi_luong": "Nửa ngày",
+      "gio": "04:45 – 12:30",
+      "gia_nguoi_lon": 890000,
+      "gia_tre_em": 650000,
+      "nhom_toi_da": 12,
+      "lich": "Thứ Hai, Thứ Tư, Thứ Sáu",
+      "dang_mo_ban": true,
+      "diem_chinh": {
+        "ten": "Cổng Mỹ Sơn",
+        "gio": "06:00"
+      },
+      "url": "/tour/my-son-sang-som/",
+      "api": "/api/tours/my-son-sang-som.json"
+    },
+    {
+      "slug": "hai-van-hue-2n1d",
+      "ten": "Qua đèo Hải Vân về Huế, 2 ngày 1 đêm",
+      "ten_ngan": "Hải Vân – Huế 2N1Đ",
+      "vung": "Cố đô",
+      "thoi_luong": "2 ngày 1 đêm",
+      "gio": "07:30 ngày 1 – 18:00 ngày 2",
+      "gia_nguoi_lon": 3290000,
+      "gia_tre_em": 2490000,
+      "nhom_toi_da": 12,
+      "lich": "Thứ Ba và Thứ Sáu",
+      "dang_mo_ban": true,
+      "diem_chinh": {
+        "ten": "Đỉnh đèo Hải Vân",
+        "gio": "08:30"
+      },
+      "url": "/tour/hai-van-hue-2n1d/",
+      "api": "/api/tours/hai-van-hue-2n1d.json"
+    }
+  ]
+}

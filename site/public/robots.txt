@@ -1,0 +1,26 @@
+# Gió Nồm Travel: nội dung công khai (tour, giá, lịch, liên hệ) mở cho công cụ tìm kiếm và trợ lý AI.
+# Bản máy đọc: /llms.txt, /openapi.json, mọi trang trả Markdown khi gửi Accept: text/markdown.
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: *
+Allow: /
