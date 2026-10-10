@@ -96,13 +96,13 @@ const ngay = (g) => (g.match(/^N(\d)/) ? `Ngày ${g.match(/^N(\d)/)[1]}` : '');
       times.forEach((el) => (reduce ? (el.textContent = s.dataset.gio!) : flap(el, s.dataset.gio!, { steps: 4 })));
       names.forEach((el) => {
         if (reduce) { el.textContent = s.dataset.ten!; return; }
-        gsap.fromTo(el, { opacity: 0, y: fwd ? 8 : -8, filter: 'blur(3px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.24, ease: 'power3.out', overwrite: true, onStart: () => { el.textContent = s.dataset.ten!; } });
+        gsap.fromTo(el, { opacity: 0, y: fwd ? 8 : -8, filter: 'blur(3px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.24, ease: 'gn-out', overwrite: true, onStart: () => { el.textContent = s.dataset.ten!; } });
       });
       idxs.forEach((el) => (el.textContent = String(i + 1)));
       segs.forEach((p) => {
         const on = Number(p.dataset.seg) <= i;
         if (reduce) p.style.opacity = on ? '1' : '0.15';
-        else gsap.to(p, { strokeDashoffset: on ? 0 : 1, duration: 0.45, ease: 'power2.out', overwrite: true });
+        else gsap.to(p, { strokeDashoffset: on ? 0 : 1, duration: 0.45, ease: 'gn-out', overwrite: true });
       });
       pts.forEach((c) => c.classList.toggle('is-on', Number(c.dataset.pt) <= i));
       const last = i === stops.length - 1;

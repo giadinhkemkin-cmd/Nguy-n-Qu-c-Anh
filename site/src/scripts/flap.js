@@ -1,6 +1,6 @@
 // Giờ lật kiểu bảng lật số ở bến xe: mỗi ký tự số chạy qua vài giá trị rồi dừng đúng giờ.
 // Lấy ý từ các demo split-flap (Codrops), tự viết bằng GSAP. Reduced-motion: không gọi hàm này.
-import { gsap } from 'gsap';
+import { gsap } from './motion.js';
 const DIGITS = '0123456789';
 export function flap(el, target, { delay = 0, from, steps = 6 } = {}) {
   el._flap?.kill(); // ngắt lượt lật cũ khi cuộn nhanh (interruptible)
@@ -10,7 +10,7 @@ export function flap(el, target, { delay = 0, from, steps = 6 } = {}) {
   const state = { t: 0 };
   el.textContent = start;
   return (el._flap = gsap.to(state, {
-    t: 1, duration: 0.55, delay, ease: 'power2.out',
+    t: 1, duration: 0.55, delay, ease: 'gn-out',
     onUpdate() {
       const k = state.t;
       el.textContent = chars.map((c, i) => {

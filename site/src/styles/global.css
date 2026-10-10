@@ -37,7 +37,7 @@
   --fs-lead: clamp(1.125rem, 0.6vw + 1rem, 1.3rem);
   --fs-body: 1.0625rem;
   --fs-small: 0.9375rem;
-  --fs-tiny: 0.8125rem;
+  --fs-tiny: 0.875rem;
 
   --sp-1: 0.25rem; --sp-2: 0.5rem; --sp-3: 0.75rem; --sp-4: 1rem; --sp-5: 1.5rem;
   --sp-6: 2rem; --sp-7: 3rem; --sp-8: 4.5rem; --sp-9: 6.5rem;
@@ -115,7 +115,7 @@ button { font: inherit; color: inherit; }
   background: var(--bg); color: var(--fg); font-family: var(--f-display);
   font-weight: 700; font-size: 1.2rem; letter-spacing: 0.01em; text-decoration: none; cursor: pointer;
   transition: transform var(--dur-press) var(--ease-out), background-color var(--dur-ui) var(--ease-out), box-shadow var(--dur-ui) var(--ease-out);
-  box-shadow: 0 1px 0 rgba(0,0,0,0.18), 0 6px 14px -8px rgba(0,0,0,0.45);
+  box-shadow: 0 1px 0 rgba(13,51,120,0.22), 0 8px 18px -10px rgba(13,51,120,0.55);
   user-select: none; -webkit-user-select: none; touch-action: manipulation;
 }
 .btn svg { width: 1.25em; height: 1.25em; flex: none; }
@@ -128,13 +128,17 @@ button { font: inherit; color: inherit; }
 .btn--block { width: 100%; }
 .link-arrow { display: inline-flex; align-items: center; gap: 0.4rem; font-weight: 600; text-decoration: none; min-height: 44px; }
 .link-arrow svg { width: 1.1em; height: 1.1em; transition: transform var(--dur-ui) var(--ease-out); }
+/* Mũi tên đặt trong tấm biển nhỏ (nút phụ trên nền xanh) */
+.link-plate svg { box-sizing: content-box; width: 0.95em; height: 0.95em; padding: 0.3em; border-radius: 4px; background: #fff; color: var(--c-sign); }
 @media (hover: hover) and (pointer: fine) { .link-arrow:hover svg { transform: translateX(3px); } .link-arrow:hover { text-decoration: underline; } }
 
 /* Vạch kẻ đường */
 .road-line { height: 6px; background: repeating-linear-gradient(90deg, var(--c-line) 0 48px, transparent 48px 84px); }
 
-.section { padding-block: var(--sp-8); }
+.section { padding-block: var(--sp-8) calc(var(--sp-8) + 0.5rem); }
+@media (min-width: 960px) { .section { padding-block: var(--sp-9) calc(var(--sp-9) + 1rem); } .section--tight { padding-block: var(--sp-7) var(--sp-8); } }
 .section-head { display: grid; gap: var(--sp-3); margin-bottom: var(--sp-6); max-width: 46rem; }
+.section-head p { max-width: 38rem; }
 .section-head h2 { font-size: var(--fs-h2); }
 .section-head p { font-size: var(--fs-lead); color: var(--c-ink-2); }
 

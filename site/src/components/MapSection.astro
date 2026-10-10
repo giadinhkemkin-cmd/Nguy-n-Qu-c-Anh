@@ -38,8 +38,8 @@ import { tuyen } from '../lib/data.js';
         trigger: box, start: 'top 70%', once: true,
         onEnter: () => {
           const tl = gsap.timeline();
-          tl.to(lines, { strokeDashoffset: 0, duration: 1.1, ease: 'power2.inOut', stagger: 0.12 })
-            .to(rest, { opacity: 1, duration: 0.3, ease: 'power1.out', stagger: 0.03 }, '-=0.5');
+          tl.to(lines, { strokeDashoffset: 0, duration: 1.1, ease: 'gn-inout', stagger: 0.12 })
+            .to(rest, { opacity: 1, duration: 0.3, ease: 'gn-out', stagger: 0.03 }, '-=0.5');
         },
       });
     });

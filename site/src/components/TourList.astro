@@ -2,11 +2,11 @@
 // Danh sách tour dạng bảng giờ bến xe: mỗi hàng đủ tên, giờ, thời lượng, lịch, giá người lớn/trẻ em.
 import Icon from './Icon.astro';
 import { tours, vnd, coGia, diemChinh, PICTO, MAU_TUYEN, dangMua, LOAI, chuyenConCho, ngayVN } from '../lib/data.js';
-interface Props { list?: typeof tours; heading?: string; level?: 'h2' | 'h3'; full?: boolean }
-const { list = tours, level = 'h3', full = false } = Astro.props;
+interface Props { list?: typeof tours; heading?: string; level?: 'h2' | 'h3'; full?: boolean; board?: boolean }
+const { list = tours, level = 'h3', full = false, board = false } = Astro.props;
 const H = level;
 ---
-<ol class:list={['tl', { 'tl--full': full }]}>
+<ol class:list={['tl', { 'tl--full': full, 'tl--board': board }]}>
   {list.map((t) => {
     const d = diemChinh(t);
     const mua = dangMua(t);
@@ -64,6 +64,17 @@ const H = level;
     .tl__row:hover .tl__name { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 0.15em; }
     .tl__row:hover .tl__cta svg { transform: translateX(4px); }
   }
+  /* Bảng giờ xanh (trang chủ): chữ trắng trên nền biển chỉ dẫn */
+  .tl--board { border-top: 0; }
+  .tl--board .tl__row { border-bottom-color: rgba(255,255,255,.2); color: #fff; }
+  .tl--board .tl__row:last-child { border-bottom: 0; }
+  .tl--board .tl__pic { background: #fff; color: var(--c-sign); }
+  .tl--board .tl__desc, .tl--board .tl__meta, .tl--board .tl__arrive span, .tl--board .tl__price span { color: var(--c-on-sign-2); }
+  .tl--board .tl__meta svg { color: #fff; }
+  .tl--board .tl__arrive strong { color: var(--c-time); background: #fff; padding: 0.15rem 0.4rem 0; border-radius: 4px; box-shadow: inset 0 3px 0 var(--c-cap); justify-self: start; }
+  .tl--board .tl__cta { color: var(--c-line); }
+  .tl--board .tl__off { color: #ffb4ab; }
+  @media (hover: hover) and (pointer: fine) { .tl--board .tl__row:hover { background: rgba(255,255,255,.07); } }
   @media (min-width: 760px) {
     .tl__row { grid-template-columns: auto 1fr 16rem; padding: 1.5rem 1rem; margin-inline: -1rem; border-radius: 4px; }
     .tl__pic { grid-row: auto; }

@@ -15,7 +15,7 @@ const giaMin = Math.min(...tours.map((t) => t.gia_nguoi_lon));
         <p class="hs__lead">Năm tour quanh Đà Nẵng, Hội An và Huế. Mỗi xe chở tối đa 12 khách, giờ đi được xếp để bạn tới Cầu Vàng, Mỹ Sơn, phố Hội trước hoặc sau lúc xe đoàn lớn đến.</p>
         <div class="hs__cta">
           <a class="btn" href={congTy.zalo} target="_blank" rel="noopener" data-zalo data-msg="Chào Gió Nồm, mình muốn hỏi chỗ tour. Tour: …, ngày đi: …, số người: …"><Icon name="chat" />Nhắn Zalo hỏi chỗ</a>
-          <a class="link-arrow hs__more" href="/tour/">Xem 5 tour và giá <Icon name="arrow-right" /></a>
+          <a class="link-arrow link-plate hs__more" href="/tour/">Xem 5 tour và giá <Icon name="arrow-right" /></a>
         </div>
         {tGan && (
           <p class="hs__proof">
@@ -42,7 +42,7 @@ const giaMin = Math.min(...tours.map((t) => t.gia_nguoi_lon));
     arrows.forEach((svg, i) => {
       const deg = Number(svg.parentElement?.dataset.huong || 0);
       svg.style.transform = '';
-      gsap.fromTo(svg, { rotate: 0 }, { rotate: deg > 180 ? deg - 360 : deg, duration: 0.7, ease: 'expo.out', delay: 0.15 + i * 0.06 });
+      gsap.fromTo(svg, { rotate: 0 }, { rotate: deg > 180 ? deg - 360 : deg, duration: 0.55, ease: 'gn-out', delay: 0.1 + i * 0.05 });
     });
     document.querySelectorAll<HTMLElement>('.hs [data-flap]').forEach((el, i) => flap(el, el.dataset.flap!, { delay: 0.1 + i * 0.06, from: '00:00' }));
   });

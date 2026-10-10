@@ -1,7 +1,11 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { CustomEase } from 'gsap/CustomEase';
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, CustomEase);
+// Đường cong GSAP trùng token CSS (--ease-out, --ease-in-out)
+CustomEase.create('gn-out', 'M0,0 C0.23,1 0.32,1 1,1');
+CustomEase.create('gn-inout', 'M0,0 C0.77,0 0.175,1 1,1');
 export const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 let lenis = null;

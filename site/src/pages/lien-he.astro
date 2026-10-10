@@ -68,7 +68,7 @@ import { tours, congTy, HOM_NAY } from '../lib/data.js';
           <li><Icon name="phone" /><a href={`tel:${congTy.dien_thoai_tel}`}>{congTy.dien_thoai}</a></li>
         </ul>
         <a class="link-arrow" href={congTy.ban_do} target="_blank" rel="noopener">Mở Google Maps <Icon name="arrow-right" /></a>
-        <h2 class="lh__h2b">Đặt cọc và huỷ</h2>
+        <h2 class="lh__h2b" id="chinh-sach">Đặt cọc và huỷ</h2>
         <p>{congTy.chinh_sach.dat_coc}</p>
         <ul class="lh__pol">{congTy.chinh_sach.huy_tour.map((x) => <li>{x}</li>)}</ul>
       </aside>
