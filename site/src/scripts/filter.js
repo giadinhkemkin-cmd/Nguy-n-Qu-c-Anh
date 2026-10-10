@@ -7,6 +7,7 @@ export function wireFilter(groupName, itemsSelector, attr, onChange) {
     const b = e.target.closest('button[data-key]');
     if (!b) return;
     const key = b.dataset.key;
+    document.documentElement.classList.add('is-filtering');
     group.querySelectorAll('button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
     let shown = 0;
     items.forEach((it) => { const ok = key === 'all' || it.dataset[attr] === key; it.hidden = !ok; if (ok) shown++; });

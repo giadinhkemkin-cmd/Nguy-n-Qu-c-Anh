@@ -34,15 +34,15 @@ Người dùng yêu cầu: không dừng hỏi ở bước nào; chỗ cần duy
 - [x] break-ui
 
 ### 4. Nhân ra (checklist từng trang: find-animation-opportunities + impeccable audit)
-- [ ] / (trang chủ)
-- [ ] /tour/
-- [ ] /tour/ba-na-cau-vang/
-- [ ] /tour/hoi-an-chieu-toi/
-- [ ] /tour/cu-lao-cham/
-- [ ] /tour/my-son-sang-som/
-- [ ] /tour/hai-van-hue-2n1d/
-- [ ] /lich-khoi-hanh/
-- [ ] /lien-he/
+- [x] / (trang chủ)
+- [x] /tour/
+- [x] /tour/ba-na-cau-vang/
+- [x] /tour/hoi-an-chieu-toi/
+- [x] /tour/cu-lao-cham/
+- [x] /tour/my-son-sang-som/
+- [x] /tour/hai-van-hue-2n1d/
+- [x] /lich-khoi-hanh/
+- [x] /lien-he/
 
 ### 5. Nâng design
 - [ ] redesign-existing-projects
@@ -123,6 +123,31 @@ Dữ liệu xấu nhất ở `data/_test/worst-case.json`, đi qua đúng compon
 | Menu mobile hiện tức thì | @starting-style 200ms mờ + trượt 8px | Menu mở thỉnh thoảng, cần biết nó đến từ header |
 | Thẻ mốc giờ đổi độ mờ 300ms | 220ms | UI dưới 300ms |
 | Nút không có trạng thái nhấn | `:active` scale 0.97 trên mọi nút, hàng biển | Phản hồi lúc chạm xuống |
+
+## Bước 4 – find-animation-opportunities (theo loại trang, lọc theo Emil)
+
+| # | Trang | Chỗ | Hôm nay | Mục đích | Tần suất | Làm |
+|---|---|---|---|---|---|---|
+| 1 | Trang chủ | FAQ | Câu trả lời hiện bụp | Chỉ trạng thái | Thỉnh thoảng | `::details-content` cao + mờ 220ms ✔ |
+| 2 | /tour/, /lich-khoi-hanh/ | Bộ lọc | Hàng ẩn/hiện tức thì | Tránh đổi đột ngột | Thỉnh thoảng | `@starting-style` mờ + trượt 6px 200ms, chỉ khi bấm lọc ✔ |
+| 3 | /lien-he/ | Lỗi form | Hiện bụp | Chỉ trạng thái | Thỉnh thoảng | mờ + trượt 4px 160ms ✔ |
+| 4 | /lien-he/ | Báo đã gửi | Hiện bụp | Phản hồi | Hiếm | mờ + trượt 6px 220ms ✔ |
+| – | Trang chủ | Danh sách tour vào lần lượt | – | Trang trí | – | Loại: khách cần đọc ngay |
+| – | Chi tiết | 12 ghế tô dần khi cuộn tới | – | Trang trí trên dữ liệu | – | Loại: dữ liệu khách đang đọc không được động |
+| – | Trang chủ | Biển cam kết nảy vào | – | Trang trí | – | Loại |
+
+## Bước 4 – impeccable audit (mọi trang, 10/10/2026)
+
+| # | Mặt | Điểm | Ghi chú |
+|---|---|---|---|
+| 1 | Truy cập | 4 | Lighthouse a11y 100 mọi trang sau khi sửa: mốc giờ chưa sáng dùng opacity 0.5 làm tương phản 2,2:1 → đổi sang màu chữ phụ 7:1; nhãn logo khác chữ hiện → dùng chữ ẩn bổ sung. Reduced-motion: bỏ lệnh tắt 0,01ms toàn cục, từng phần có bản thay thế. |
+| 2 | Hiệu năng | 4 | Lần 1 trang chủ 79 → 98: CSS nhúng thẳng, preload 3 font, bỏ `text-wrap: pretty`, Lenis chỉ tải cho máy có chuột, ScrollTrigger tạo lúc rảnh, không đọc layout khi cuộn. |
+| 3 | Theming | 3 | Token màu đủ; còn vài màu lẻ (#fbfbf7 giấy vé, #9aa0a6 cột) nên gom thành token. Chỉ có giao diện sáng (chọn theo cảnh dùng: khách xem cả ngày ngoài trời). |
+| 4 | Responsive | 4 | 390px không tràn ngang (đo scrollWidth mọi trang), vùng bấm ≥ 44px, mobile có bố cục riêng (hàng biển 1 dòng, trục giờ dọc, dải vé đáy). |
+| 5 | Toàn vẹn | 3 | Detector: 2 lỗi thật đã sửa (viền trái màu ở mốc giờ, vạch màu trên cột cây số). Còn 4 dương tính giả: 3 vạch kẻ đầu bảng (list, không bo góc) và răng cưa vé (radial-gradient là lỗ bấm vé, không phải lưới). |
+| | **Tổng** | **18/20** | Excellent |
+
+Lighthouse mobile (lan-2, sau khi sửa): / 98 · /tour/ 96 · Bà Nà 96 · Hội An 97 · Cù Lao Chàm 93 · Mỹ Sơn 97 · Huế 98 · Lịch 99 · Liên hệ 96. A11y/BP/SEO 100. Dung lượng lần tải đầu 217–252 KB.
 
 ## Điểm giám khảo
 

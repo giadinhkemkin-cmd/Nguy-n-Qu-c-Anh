@@ -50,35 +50,39 @@ const hours = Array.from({ length: H1 - H0 + 1 }, (_, i) => H0 + i);
   </div>
 </section>
 <script>
-  import { gsap, ScrollTrigger, reduce } from '../scripts/motion.js';
+  import { gsap, ScrollTrigger, reduce, idle } from '../scripts/motion.js';
   const board = document.querySelector<HTMLElement>('.dr__board');
   const van = document.querySelector<HTMLElement>('.dr__van');
   const items = [...document.querySelectorAll<HTMLElement>('.dr__item')];
-  if (board && van && !reduce) {
+  if (board && van && !reduce) idle(() => {
     board.classList.add('is-armed');
     const mm = gsap.matchMedia();
     const light = (p: number) => items.forEach((it) => it.classList.toggle('is-on', Number(it.dataset.p) <= p + 0.005));
     mm.add('(min-width: 960px)', () => {
       const road = board.querySelector<HTMLElement>('.dr__road')!;
+      let span = 0; // đo một lần, đo lại khi ScrollTrigger refresh (không đọc layout trong lúc cuộn)
       const st = ScrollTrigger.create({
         trigger: board, start: 'top 75%', end: 'bottom 35%', scrub: 0.6,
-        onUpdate: (s) => { gsap.set(van, { x: s.progress * (road.clientWidth - van.offsetWidth) }); light(s.progress); },
+        onRefresh: () => { span = road.clientWidth - van.offsetWidth; },
+        onUpdate: (s) => { gsap.set(van, { x: s.progress * span }); light(s.progress); },
       });
       return () => st.kill();
     });
     mm.add('(max-width: 959.98px)', () => {
       const list = board.querySelector<HTMLElement>('.dr__items')!;
+      let span = 0, tops: number[] = [];
       const st = ScrollTrigger.create({
         trigger: list, start: 'top 70%', end: 'bottom 55%', scrub: 0.6,
+        onRefresh: () => { span = list.clientHeight - van.offsetHeight; tops = items.map((it) => it.offsetTop); },
         onUpdate: (s) => {
-          const y = s.progress * (list.clientHeight - van.offsetHeight);
+          const y = s.progress * span;
           gsap.set(van, { y });
-          items.forEach((it) => it.classList.toggle('is-on', it.offsetTop <= y + 24));
+          items.forEach((it, i) => it.classList.toggle('is-on', tops[i] <= y + 24));
         },
       });
       return () => st.kill();
     });
-  }
+  });
 </script>
 <style>
   .dr__board { position: relative; --road: 40px; }
@@ -97,21 +101,23 @@ const hours = Array.from({ length: H1 - H0 + 1 }, (_, i) => H0 + i);
   .dr__van { position: absolute; left: 50%; top: 0; translate: -50% 0; width: 34px; height: 34px; border-radius: 6px; background: var(--c-line); color: var(--c-asphalt); display: grid; place-items: center; z-index: 3; box-shadow: 0 4px 10px rgba(0,0,0,.35); }
   .dr__van svg { width: 24px; height: 24px; rotate: 90deg; }
   .dr__hours { display: none; }
-  .is-armed .dr__item:not(.is-on) .dr__card { opacity: 0.5; }
-  .is-armed .dr__item .dr__card { transition: opacity 220ms var(--ease-out); }
+  .is-armed .dr__item:not(.is-on) .dr__time { color: var(--c-ink-2); }
+  .is-armed .dr__item:not(.is-on)::before { box-shadow: 0 0 0 4px #b8bcc3; }
+  .is-armed .dr__item .dr__time { transition: color 220ms var(--ease-out); }
+  .is-armed .dr__item::before { transition: box-shadow 220ms var(--ease-out); }
   @media (hover: hover) and (pointer: fine) { .dr__card:hover .dr__name { text-decoration: underline; } }
 
   /* Desktop: đường ngang, mốc treo theo giờ thật */
   @media (min-width: 960px) {
     .dr__board { --road: 56px; height: 470px; margin-bottom: 2rem; }
     .dr__items { position: absolute; inset: 0 0 calc(var(--road) + 34px); padding: 0; display: block; }
-    .dr__item { position: absolute; left: calc(var(--p) * 100%); bottom: calc(var(--lvl) * 118px); margin: 0; width: 12.5rem; padding-left: 14px; border-left: 3px solid var(--tuyen); }
-    .dr__item[data-end] { left: auto; right: calc((1 - var(--p)) * 100%); padding: 0 14px 0 0; border-left: 0; border-right: 3px solid var(--tuyen); text-align: right; }
+    .dr__item { position: absolute; left: calc(var(--p) * 100%); bottom: calc(var(--lvl) * 118px); margin: 0; width: 12.5rem; padding-left: 14px; background: linear-gradient(#9aa0a6, #9aa0a6) 0 0 / 2px 100% no-repeat; }
+    .dr__item[data-end] { left: auto; right: calc((1 - var(--p)) * 100%); padding: 0 14px 0 0; background-position: 100% 0; text-align: right; }
     .dr__item[data-end] .dr__card { justify-items: end; }
-    .dr__item::before { left: -9.5px; top: auto; bottom: -34px; }
-    .dr__item[data-end]::before { left: auto; right: -9.5px; }
-    .dr__item::after { content: ''; position: absolute; left: -3px; bottom: -28px; width: 3px; height: 28px; background: var(--tuyen); }
-    .dr__item[data-end]::after { left: auto; right: -3px; }
+    .dr__item::before { left: -6px; top: auto; bottom: -34px; }
+    .dr__item[data-end]::before { left: auto; right: -6px; }
+    .dr__item::after { content: ''; position: absolute; left: 0; bottom: -28px; width: 2px; height: 28px; background: #9aa0a6; }
+    .dr__item[data-end]::after { left: auto; right: 0; }
     .dr__card { border: 0; padding: 0; background: var(--c-paint); }
     .dr__cau { font-size: var(--fs-small); }
     .dr__road { top: auto; left: 0; right: 0; bottom: 34px; width: auto; height: var(--road); }

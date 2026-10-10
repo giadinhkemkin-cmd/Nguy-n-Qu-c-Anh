@@ -82,7 +82,7 @@ body {
 }
 img, svg { display: block; max-width: 100%; }
 h1, h2, h3, h4 { font-family: var(--f-display); font-weight: var(--w-display); letter-spacing: var(--track-display); line-height: 1.02; margin: 0; text-wrap: balance; }
-p { margin: 0; text-wrap: pretty; }
+p { margin: 0; }
 p, li, h1, h2, h3, dd, dt, figcaption, label, strong, span { overflow-wrap: break-word; }
 main li, main p { min-width: 0; }
 a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
@@ -138,8 +138,12 @@ button { font: inherit; color: inherit; }
 .section-head h2 { font-size: var(--fs-h2); }
 .section-head p { font-size: var(--fs-lead); color: var(--c-ink-2); }
 
+/* Reduced motion: từng component tự đổi chuyển động thành mờ dần/đứng yên (xem các khối @media trong component).
+   Ở đây chỉ chặn cuộn mượt và keyframes lặp; giữ transition màu/độ mờ vì chúng giúp hiểu trạng thái. */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+  html { scroll-behavior: auto !important; }
+  *, *::before, *::after { animation-iteration-count: 1 !important; }
+  .btn:active, .row:active, .fc__chip:active, .dp__btn:active, .lk__btn:active { transform: none; }
 }
 
 /* Chuyển trang: biển tour trên trang chủ morph sang đầu trang chi tiết (View Transitions giữa hai tài liệu) */
@@ -151,3 +155,8 @@ button { font: inherit; color: inherit; }
 ::-webkit-scrollbar-track { background: var(--c-paint); }
 html { scrollbar-color: #9aa0a8 var(--c-paint); }
 input, textarea, select { caret-color: var(--c-sign); accent-color: var(--c-sign); }
+
+/* Lọc danh sách: hàng hiện lại mờ dần + trượt 6px, chỉ khi người dùng bấm lọc */
+.is-filtering .tl__row, .is-filtering .lk__row, .is-filtering .lk__week { transition: opacity 200ms var(--ease-out), translate 200ms var(--ease-out); }
+@starting-style { .is-filtering .tl__row, .is-filtering .lk__row, .is-filtering .lk__week { opacity: 0; translate: 0 6px; } }
+@media (prefers-reduced-motion: reduce) { @starting-style { .is-filtering .tl__row, .is-filtering .lk__row, .is-filtering .lk__week { translate: 0 0; } } }

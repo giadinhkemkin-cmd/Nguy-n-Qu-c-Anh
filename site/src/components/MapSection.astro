@@ -26,12 +26,12 @@ import { tuyen } from '../lib/data.js';
   </div>
 </section>
 <script>
-  import { gsap, ScrollTrigger, reduce } from '../scripts/motion.js';
+  import { gsap, ScrollTrigger, reduce, idle } from '../scripts/motion.js';
   const box = document.querySelector<HTMLElement>('[data-map]');
   if (box) {
     const lines = box.querySelectorAll<SVGPathElement>('.rmap__line');
     const rest = box.querySelectorAll<SVGElement>('.rmap__water, .rmap__stop, .rmap__label');
-    if (!reduce) {
+    if (!reduce) idle(() => {
       gsap.set(lines, { strokeDasharray: 1, strokeDashoffset: 1 });
       gsap.set(rest, { opacity: 0 });
       ScrollTrigger.create({
@@ -42,7 +42,7 @@ import { tuyen } from '../lib/data.js';
             .to(rest, { opacity: 1, duration: 0.3, ease: 'power1.out', stagger: 0.03 }, '-=0.5');
         },
       });
-    }
+    });
     const btns = document.querySelectorAll<HTMLButtonElement>('[data-route-btn]');
     btns.forEach((b) => b.addEventListener('click', () => {
       const on = b.getAttribute('aria-pressed') !== 'true';

@@ -12,7 +12,7 @@ const nav = [
 ---
 <header class="hdr">
   <div class="hdr__in wrap">
-    <a href="/" class="hdr__home" aria-label="Gió Nồm Travel, về trang chủ"><Logo /></a>
+    <a href="/" class="hdr__home"><Logo /><span class="sr-only"> – về trang chủ</span></a>
     <nav class="hdr__nav" aria-label="Chính">
       {nav.map((n) => <a href={n.href} aria-current={current === n.key ? 'page' : undefined}>{n.label}</a>)}
       <a class="btn btn--ghost hdr__cta" href={congTy.zalo} target="_blank" rel="noopener" data-zalo data-msg="Chào Gió Nồm, mình muốn hỏi chỗ tour.">

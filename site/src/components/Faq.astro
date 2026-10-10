@@ -25,6 +25,11 @@ const { items = congTy.cau_hoi_thuong_gap, title = 'Câu hỏi thường gặp' 
   .faq__item summary svg { flex: none; color: var(--c-sign); transition: transform 220ms var(--ease-out); }
   .faq__item[open] summary svg { transform: rotate(180deg); }
   .faq__a { padding: 0 0 1.1rem; color: var(--c-ink-2); max-width: 44rem; }
+  /* Mở/đóng câu trả lời: chiều cao + độ mờ 220ms (chỉ trình duyệt hỗ trợ ::details-content) */
+  .faq__list { interpolate-size: allow-keywords; }
+  .faq__item::details-content { block-size: 0; opacity: 0; overflow: hidden; transition: block-size 220ms var(--ease-out), opacity 220ms var(--ease-out), content-visibility 220ms allow-discrete; }
+  .faq__item[open]::details-content { block-size: auto; opacity: 1; }
+  @media (prefers-reduced-motion: reduce) { .faq__item::details-content { transition: opacity 150ms linear; } }
   @media (hover: hover) and (pointer: fine) { .faq__item summary:hover span { text-decoration: underline; } }
   @media (min-width: 960px) { .faq__in { display: grid; grid-template-columns: 1fr 1.6fr; gap: var(--sp-8); align-items: start; } }
 </style>

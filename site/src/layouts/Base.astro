@@ -7,6 +7,9 @@ import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { congTy } from '../lib/data.js';
+import fBc700 from '@fontsource/barlow-condensed/files/barlow-condensed-latin-700-normal.woff2?url';
+import fBc700vi from '@fontsource/barlow-condensed/files/barlow-condensed-vietnamese-700-normal.woff2?url';
+import fB400 from '@fontsource/barlow/files/barlow-latin-400-normal.woff2?url';
 interface Props { title: string; description: string; noindex?: boolean; font?: string; jsonld?: object | object[]; current?: string; bare?: boolean }
 const { title, description, noindex = false, font, jsonld, current = '', bare = false } = Astro.props;
 const fullTitle = title.includes('Gió Nồm') ? title : `${title} | Gió Nồm Travel`;
@@ -26,6 +29,7 @@ const ld = [org, ...(Array.isArray(jsonld) ? jsonld : jsonld ? [jsonld] : [])];
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
     <meta name="theme-color" content="#1446a0" />
+    {[fBc700, fBc700vi, fB400].map((f) => <link rel="preload" href={f} as="font" type="font/woff2" crossorigin />)}
     <meta property="og:type" content="website" />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
