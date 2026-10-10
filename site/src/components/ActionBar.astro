@@ -12,7 +12,7 @@ const { msg = 'Chào Gió Nồm, mình muốn hỏi chỗ tour. Tour: …, ngày
 <script>
   const bar = document.querySelector<HTMLElement>('[data-actionbar]');
   const hero = document.querySelector('main > section, main > header');
-  const foot = document.querySelector('footer');
+  const foot = document.querySelector('.cta') || document.querySelector('footer');
   if (bar) {
     let pastHero = false, atFoot = false;
     const upd = () => bar.classList.toggle('is-on', pastHero && !atFoot);

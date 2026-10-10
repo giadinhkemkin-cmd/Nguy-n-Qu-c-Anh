@@ -13,11 +13,13 @@ const CAU = {
 const H0 = 5, H1 = 18;
 const toH = (g) => { const [h, m] = g.split(':').map(Number); return h + m / 60; };
 const pos = (g) => (toH(g) - H0) / (H1 - H0);
-const LVL = { 'my-son-sang-som': 0, 'ba-na-cau-vang': 2, 'hai-van-hue-2n1d': 1, 'cu-lao-cham': 0, 'hoi-an-chieu-toi': 0 };
+// Desktop: nhãn so le trên/dưới đường để không chồng nhau (up = trên đường, down = dưới)
+const LVL = { 'my-son-sang-som': 0, 'ba-na-cau-vang': 1, 'hai-van-hue-2n1d': 0, 'cu-lao-cham': 0, 'hoi-an-chieu-toi': 0 };
+const SIDE = { 'my-son-sang-som': 'up', 'ba-na-cau-vang': 'up', 'hai-van-hue-2n1d': 'down', 'cu-lao-cham': 'up', 'hoi-an-chieu-toi': 'down' };
 const items = tuyen.map((r, i) => {
   const prev = tuyen[i - 1];
   const gap = prev ? Math.min(140, Math.max(14, (toH(r.gio) - toH(prev.gio)) * 22)) : 0;
-  return { ...r, p: pos(r.gio), lvl: LVL[r.slug] ?? 0, cau: CAU[r.slug], gap };
+  return { ...r, p: pos(r.gio), lvl: LVL[r.slug] ?? 0, side: SIDE[r.slug] ?? 'up', cau: CAU[r.slug], gap };
 });
 const hours = Array.from({ length: H1 - H0 + 1 }, (_, i) => H0 + i);
 ---
@@ -25,12 +27,12 @@ const hours = Array.from({ length: H1 - H0 + 1 }, (_, i) => H0 + i);
   <div class="wrap">
     <div class="section-head">
       <h2 id="dr-h2">Mỗi tour xếp quanh một giờ tới nơi</h2>
-      <p>Xe đoàn lớn thường rời Đà Nẵng lúc 8–9 giờ sáng. Lịch của Gió Nồm tránh khung giờ đó.</p>
+      <p>Xe đoàn lớn thường rời Đà Nẵng lúc 8–9 giờ sáng, nên điểm chính đông dần từ khoảng 9 giờ. Lịch của Gió Nồm tới trước hoặc sau khung giờ đó.</p>
     </div>
     <div class="dr__board">
       <ol class="dr__items">
         {items.map((it) => (
-          <li class="dr__item" style={`--p:${it.p};--lvl:${it.lvl};--gap:${it.gap}px;--tuyen:${it.mau}`} data-p={it.p} data-end={it.p > 0.7 ? '' : undefined}>
+          <li class="dr__item" style={`--p:${it.p};--lvl:${it.lvl};--gap:${it.gap}px;--tuyen:${it.mau}`} data-p={it.p} data-side={it.side} data-end={it.p > 0.7 ? '' : undefined}>
             <a href={`/tour/${it.slug}/`} class="dr__card">
               <span class="dr__time num"><span class="tile">{it.gio}</span></span>
               <span class="dr__name">{it.diem}</span>
@@ -41,7 +43,7 @@ const hours = Array.from({ length: H1 - H0 + 1 }, (_, i) => H0 + i);
         ))}
       </ol>
       <div class="dr__road" aria-hidden="true">
-        <div class="dr__zone" style={`--a:${pos('08:00')};--b:${pos('09:00')}`}><span>8–9 giờ: xe đoàn lớn rời Đà Nẵng</span></div>
+        <div class="dr__zone" style={`--a:${pos('09:00')};--b:${pos('11:00')}`}><span>Từ 9 giờ: Cầu Vàng đông dần khi xe đoàn lớn lên tới</span></div>
         <div class="dr__lane"></div>
         <div class="dr__van"><Icon name="xe" size={30} /></div>
       </div>
@@ -63,7 +65,7 @@ const hours = Array.from({ length: H1 - H0 + 1 }, (_, i) => H0 + i);
       let span = 0; // đo một lần, đo lại khi ScrollTrigger refresh (không đọc layout trong lúc cuộn)
       const st = ScrollTrigger.create({
         trigger: board, start: 'top 75%', end: 'bottom 35%', scrub: 0.6,
-        onRefresh: () => { span = road.clientWidth - van.offsetWidth; },
+        onRefresh: () => { span = road.clientWidth - van.offsetWidth - 56; },
         onUpdate: (s) => { gsap.set(van, { x: s.progress * span }); light(s.progress); },
       });
       return () => st.kill();
@@ -98,7 +100,7 @@ const hours = Array.from({ length: H1 - H0 + 1 }, (_, i) => H0 + i);
   .dr__road { position: absolute; left: 0; top: 0; bottom: 0; width: var(--road); background: var(--c-asphalt); border-radius: 4px; }
   .dr__lane { position: absolute; left: 50%; top: 8px; bottom: 8px; width: 4px; translate: -50% 0; background: repeating-linear-gradient(180deg, var(--c-line) 0 22px, transparent 22px 38px); }
   .dr__zone { display: none; }
-  .dr__van { position: absolute; left: 50%; top: 0; translate: -50% 0; width: 34px; height: 34px; border-radius: 6px; background: var(--c-line); color: var(--c-asphalt); display: grid; place-items: center; z-index: 3; box-shadow: 0 4px 10px rgba(0,0,0,.35); }
+  .dr__van { position: absolute; left: 50%; top: 0; translate: -50% 0; width: 34px; height: 34px; border-radius: 6px; background: #fff; color: var(--c-sign); display: grid; place-items: center; z-index: 3; box-shadow: 0 4px 10px rgba(0,0,0,.35); }
   .dr__van svg { width: 24px; height: 24px; rotate: 90deg; }
   .dr__hours { display: none; }
   .is-armed .dr__item:not(.is-on) .dr__time .tile { color: var(--c-ink-2); box-shadow: inset 0 3px 0 #b8bcc3; }
@@ -107,29 +109,35 @@ const hours = Array.from({ length: H1 - H0 + 1 }, (_, i) => H0 + i);
   .is-armed .dr__item::before { transition: box-shadow 220ms var(--ease-out); }
   @media (hover: hover) and (pointer: fine) { .dr__card:hover .dr__name { text-decoration: underline; } }
 
-  /* Desktop: đường ngang, mốc treo theo giờ thật */
+  /* Desktop: đường ngang, chấm nằm trên mặt đường, nhãn so le trên/dưới */
   @media (min-width: 960px) {
-    .dr__board { --road: 56px; height: 470px; margin-bottom: 2rem; }
-    .dr__items { position: absolute; inset: 0 0 calc(var(--road) + 34px); padding: 0; display: block; }
-    .dr__item { position: absolute; left: calc(var(--p) * 100%); bottom: calc(var(--lvl) * 118px); margin: 0; width: 12.5rem; padding-left: 14px; background: linear-gradient(#9aa0a6, #9aa0a6) 0 0 / 2px 100% no-repeat; }
+    .dr__board { --road: 64px; --top: 300px; height: 520px; margin-bottom: 1rem; }
+    .dr__items { position: absolute; inset: 0; padding: 0; display: block; }
+    .dr__item { position: absolute; left: calc(var(--p) * 100%); margin: 0; width: 12.5rem; padding-left: 14px; background: linear-gradient(#9aa0a6, #9aa0a6) 0 0 / 2px 100% no-repeat; }
+    .dr__item[data-side='up'] { bottom: calc(520px - var(--top) + 44px + var(--lvl) * 120px); }
+    .dr__item[data-side='down'] { top: calc(var(--top) + var(--road) + 26px); }
     .dr__item[data-end] { left: auto; right: calc((1 - var(--p)) * 100%); padding: 0 14px 0 0; background-position: 100% 0; text-align: right; }
     .dr__item[data-end] .dr__card { justify-items: end; }
-    .dr__item::before { left: -6px; top: auto; bottom: -34px; }
-    .dr__item[data-end]::before { left: auto; right: -6px; }
-    .dr__item::after { content: ''; position: absolute; left: 0; bottom: -28px; width: 2px; height: 28px; background: #9aa0a6; }
+    /* cọc nối nhãn xuống tâm mặt đường + chấm tròn trên vạch giữa */
+    .dr__item::after { content: ''; position: absolute; left: 0; width: 2px; background: #9aa0a6; }
+    .dr__item[data-side='up']::after { bottom: calc(-44px - var(--road) / 2 - var(--lvl) * 120px); height: calc(44px + var(--road) / 2 + var(--lvl) * 120px); }
+    .dr__item[data-side='down']::after { top: calc(-26px - var(--road) / 2); height: calc(26px + var(--road) / 2); }
     .dr__item[data-end]::after { left: auto; right: 0; }
+    .dr__item::before { left: -6px; z-index: 3; }
+    .dr__item[data-side='up']::before { top: auto; bottom: calc(-44px - var(--road) / 2 - 7px - var(--lvl) * 120px); }
+    .dr__item[data-side='down']::before { top: calc(-26px - var(--road) / 2 - 7px); }
+    .dr__item[data-end]::before { left: auto; right: -6px; }
     .dr__card { border: 0; padding: 0; background: var(--c-paint); }
     .dr__cau { font-size: var(--fs-small); }
-    .dr__road { top: auto; left: 0; right: 0; bottom: 34px; width: auto; height: var(--road); }
+    .dr__road { top: var(--top); left: 0; right: 0; bottom: auto; width: auto; height: var(--road); }
     .dr__lane { left: 8px; right: 8px; top: 50%; bottom: auto; width: auto; height: 5px; translate: 0 -50%; background: repeating-linear-gradient(90deg, var(--c-line) 0 40px, transparent 40px 70px); }
-    .dr__zone { display: block; position: absolute; top: -26px; bottom: 0; left: calc(var(--a) * 100%); width: calc((var(--b) - var(--a)) * 100%); background: repeating-linear-gradient(135deg, var(--c-cap) 0 10px, #fff 10px 20px); opacity: .9; }
-    .dr__zone::before { content: ''; position: absolute; inset: 26px 0 0; background: rgba(35,38,43,.55); }
-    .dr__zone span { position: absolute; bottom: -3.6rem; left: 50%; translate: -50% 0; white-space: nowrap; font-size: var(--fs-tiny); font-weight: 600; color: var(--c-cap); }
-    .dr__van { left: 0; top: 50%; translate: 0 -50%; width: 46px; height: 40px; }
+    .dr__zone { display: block; position: absolute; top: -12px; height: 12px; left: calc(var(--a) * 100%); width: calc((var(--b) - var(--a)) * 100%); background: repeating-linear-gradient(135deg, var(--c-cap) 0 8px, #fff 8px 16px); border-radius: 2px 2px 0 0; }
+    .dr__zone span { position: absolute; bottom: calc(100% + 0.3rem); left: 0; white-space: nowrap; font-size: var(--fs-tiny); font-weight: 600; color: var(--c-cap); }
+    .dr__van { left: 8px; top: 50%; translate: 0 -50%; width: 46px; height: 40px; }
     .dr__van svg { rotate: 0deg; width: 30px; height: 30px; }
-    .dr__hours { display: block; list-style: none; margin: 0; padding: 0; position: absolute; left: 0; right: 0; bottom: 0; height: 28px; }
-    .dr__hours li { position: absolute; left: calc(var(--p) * 100%); translate: -50% 0; font-size: var(--fs-tiny); color: var(--c-ink-2); }
-    .dr__hours li:first-child { translate: 0 0; }
-    .dr__hours li:last-child { translate: -100% 0; }
+    .dr__hours { display: block; list-style: none; margin: 0; padding: 0; position: absolute; left: 0; right: 0; top: calc(var(--top) + var(--road) - 18px); height: 16px; pointer-events: none; }
+    .dr__hours li { position: absolute; left: calc(var(--p) * 100%); translate: -50% 0; font-size: 0.75rem; line-height: 1; color: #b9bdc3; }
+    .dr__hours li:first-child { translate: 4px 0; }
+    .dr__hours li:last-child { translate: calc(-100% - 4px) 0; }
   }
 </style>

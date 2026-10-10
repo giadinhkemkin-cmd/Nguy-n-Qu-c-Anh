@@ -167,6 +167,6 @@ html { scrollbar-color: #9aa0a8 var(--c-paint); }
 input, textarea, select { caret-color: var(--c-sign); accent-color: var(--c-sign); }
 
 /* Lọc danh sách: hàng hiện lại mờ dần + trượt 6px, chỉ khi người dùng bấm lọc */
-.is-filtering .tl__row, .is-filtering .lk__row, .is-filtering .lk__week { transition: opacity 200ms var(--ease-out), translate 200ms var(--ease-out); }
-@starting-style { .is-filtering .tl__row, .is-filtering .lk__row, .is-filtering .lk__week { opacity: 0; translate: 0 6px; } }
-@media (prefers-reduced-motion: reduce) { @starting-style { .is-filtering .tl__row, .is-filtering .lk__row, .is-filtering .lk__week { translate: 0 0; } } }
+.is-filtering .rc__item, .is-filtering .tl__row, .is-filtering .lk__row, .is-filtering .lk__week { transition: opacity 200ms var(--ease-out), translate 200ms var(--ease-out); }
+@starting-style { .is-filtering .rc__item, .is-filtering .tl__row, .is-filtering .lk__row, .is-filtering .lk__week { opacity: 0; translate: 0 6px; } }
+@media (prefers-reduced-motion: reduce) { @starting-style { .is-filtering .rc__item, .is-filtering .tl__row, .is-filtering .lk__row, .is-filtering .lk__week { translate: 0 0; } } }

@@ -15,7 +15,7 @@ const nav = [
     <a href="/" class="hdr__home"><Logo /><span class="sr-only"> – về trang chủ</span></a>
     <nav class="hdr__nav" aria-label="Chính">
       {nav.map((n) => <a href={n.href} aria-current={current === n.key ? 'page' : undefined}>{n.label}</a>)}
-      <a class="btn btn--ghost hdr__cta" href={congTy.zalo} target="_blank" rel="noopener" data-zalo data-msg="Chào Gió Nồm, mình muốn hỏi chỗ tour.">
+      <a class="btn hdr__cta" href={congTy.zalo} target="_blank" rel="noopener" data-zalo data-msg="Chào Gió Nồm, mình muốn hỏi chỗ tour.">
         <Icon name="chat" />Nhắn Zalo
       </a>
     </nav>
